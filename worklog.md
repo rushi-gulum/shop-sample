@@ -92,3 +92,25 @@ Stage Summary:
 - Site is now fully SHOP.CO monochrome: black/white dominant, warm gray hierarchy, red #FF3333 strictly for sale/error, gold #FFC633 stars, green #00C853 success; zero gradients; zero legacy theme colors (grep-audited); dark mode = true monochrome inversion.
 - Dev server restarted clean; lint + console clean.
 - Key files: src/app/globals.css (tokens), header/nav-bar/hero-carousel/promo-cards/deals-view/shop-view/chat-widget/sign-in-modal/cart-drawer/category-chips/star-rating/pdp-reviews/quick-view/product-detail/product-card/footer/toast/checkout-view/account-view.
+---
+Task ID: 5
+Agent: Z.ai Code (cron webDevReview)
+Task: Round 5 — status assessment + QA sweep, then styling details & new features on top of the SHOP.CO monochrome rebrand.
+
+Work Log:
+- STATUS: Task 4 rebrand stable; dev server healthy (GET / 200, compiles clean).
+- QA via agent-browser (fresh browser session after `agent-browser close`):
+  - Home light renders correctly; console clean.
+  - Investigated Next.js "1 Issue" dev overlay: radix id hydration diff on header dropdowns. Root cause = stale Fast-Refresh artifact, NOT a real SSR bug — after closing and relaunching the browser, a fresh load shows CLEAN hydration (store already uses skipHydration:true + rehydrate() in zshop-app useEffect, so persisted state cannot mismatch SSR). No fix required.
+  - Verified existing PDP "Frequently bought together" bundle renders correctly (selectable items, bundle total, save amount, black CTA) — prior rounds' feature confirmed good.
+- FEATURE: Rotating announcement bar (top-bar.tsx rewritten) — 4 monochrome messages (free shipping / WELCOME15 promo / 30-day returns / secure checkout) auto-rotate every 4s with fade+slide (tw-animate), hover pauses, clickable dot indicators (sm+), aria-live="polite", fixed h-9 black bar preserved.
+- FEATURE: Search keyboard shortcuts (header.tsx) — "/" or Cmd/Ctrl+K focuses + selects the search input from anywhere (skips when already typing in inputs/textareas; guarded against modifier keys). Added <kbd>/</kbd> hint chip inside the search bar (auto-hides when focused or has query), aria-keyshortcuts on input.
+- FEATURE: Active filter chips (shop-view.tsx) — "FILTERS" row under the shop header shows removable chips for search query, category, price cap ("Under $X"), rating ("N stars & up"), on-sale, and each selected brand + "Clear all" underlined action. FilterChip local component: pill border/bg-brand-50, hover flips remove button to solid black/white. Verified: apply "On sale" in Audio → chips render; click X removes chip and updates results; dark mode chip styling correct.
+- QA screenshots: analysis/t5-home.png, t5-topbar-a/b.png (rotation proof), t5-chips.png (light), t5-chips-dark.png (dark), t5-bundle.png (bundle verification).
+- bun run lint clean; dev.log clean; no console errors.
+
+Stage Summary:
+- Project is stable on the SHOP.CO monochrome system; three new UX features added (rotating announcements, search shortcuts, filter chips) with zero color regressions.
+- Unresolved risks: radix hydration diff can reappear as a false positive after HMR rebuilds (ignore unless it shows on a fresh load); TopBar rotation and shortcuts are client-only (SSR shows first message — consistent, no mismatch).
+- Next-round recommendations: trending searches + recent searches in the search dropdown; wishlist/compare empty-state icon audit (Task 2 leftover); "load more" pagination on shop grid; product Q&A section on PDP; mobile bottom nav bar.
+- Key files: top-bar.tsx, header.tsx, shop-view.tsx.

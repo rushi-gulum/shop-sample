@@ -1,26 +1,70 @@
 "use client";
 
-import { BadgePercent, ShieldCheck, Truck } from "lucide-react";
+import { useEffect, useState } from "react";
+import { BadgePercent, RotateCcw, ShieldCheck, Truck, type LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+interface Announcement {
+  icon: LucideIcon;
+  text: string;
+  highlight?: string;
+  suffix?: string;
+}
+
+const MESSAGES: Announcement[] = [
+  { icon: Truck, text: "Free shipping on orders over $99" },
+  { icon: BadgePercent, text: "Use code", highlight: "WELCOME15", suffix: "for 15% off" },
+  { icon: RotateCcw, text: "30-day free returns, no questions asked" },
+  { icon: ShieldCheck, text: "Secure checkout — 256-bit encryption" },
+];
 
 export function TopBar() {
+  const [idx, setIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setIdx((i) => (i + 1) % MESSAGES.length), 4000);
+    return () => clearInterval(t);
+  }, [paused]);
+
+  const { icon: Icon, text, highlight, suffix } = MESSAGES[idx];
+
   return (
-    <div className="bg-neutral-950 text-neutral-200">
+    <div
+      className="bg-neutral-950 text-neutral-200"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       <div className="mx-auto flex h-9 max-w-7xl items-center justify-between gap-2 px-3 text-xs sm:px-6">
-        <div className="flex min-w-0 items-center gap-3 overflow-hidden">
-          <span className="hidden items-center gap-1.5 sm:flex">
-            <Truck className="h-3.5 w-3.5 shrink-0 text-brand-400" />
-            Free shipping on orders over $99
-          </span>
-          <span className="flex items-center gap-1.5">
-            <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-success-400" />
-            <span className="hidden xs:inline sm:inline">Secure payment</span>
-          </span>
-          <span className="hidden items-center gap-1.5 md:flex">
-            <BadgePercent className="h-3.5 w-3.5 shrink-0 text-brand-400" />
-            Use code <strong className="font-semibold text-brand-300">WELCOME15</strong> for 15% off
+        <div className="flex min-w-0 items-center gap-3" aria-live="polite">
+          <p
+            key={idx}
+            className="flex min-w-0 animate-in fade-in slide-in-from-bottom-1 items-center gap-1.5 truncate duration-500"
+          >
+            <Icon className="h-3.5 w-3.5 shrink-0 text-neutral-400" aria-hidden />
+            <span className="truncate">
+              {text}
+              {highlight && <strong className="font-semibold text-white"> {highlight}</strong>}
+              {suffix && <span> {suffix}</span>}
+            </span>
+          </p>
+          <span className="hidden shrink-0 items-center gap-1 sm:flex" aria-hidden>
+            {MESSAGES.map((_, i) => (
+              <button
+                key={i}
+                tabIndex={-1}
+                aria-label={`Show announcement ${i + 1}`}
+                className={cn(
+                  "h-1 rounded-full transition-all",
+                  i === idx ? "w-3 bg-white" : "w-1 bg-white/30 hover:bg-white/60"
+                )}
+                onClick={() => setIdx(i)}
+              />
+            ))}
           </span>
         </div>
-        <div className="flex items-center gap-1.5 whitespace-nowrap">
+        <div className="flex shrink-0 items-center gap-1.5 whitespace-nowrap">
           <span className="text-neutral-400">Ship to:</span>
           <span className="font-semibold text-white">US</span>
         </div>

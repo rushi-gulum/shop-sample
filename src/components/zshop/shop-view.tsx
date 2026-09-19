@@ -315,6 +315,52 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
         </div>
       </div>
 
+      {/* active filter chips */}
+      {(activeFilterCount > 0 || isSearch || activeCategory !== "all") && (
+        <div className="mb-4 flex flex-wrap items-center gap-2" aria-label="Active filters">
+          <span className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
+            Filters
+          </span>
+          {isSearch && (
+            <FilterChip
+              label={`"${query}"`}
+              onRemove={() => navigate({ name: "shop", category: activeCategory })}
+            />
+          )}
+          {activeCategory !== "all" && (
+            <FilterChip
+              label={CATEGORY_MAP[activeCategory]?.name ?? activeCategory}
+              onRemove={() => navigate({ name: "shop", category: "all" })}
+            />
+          )}
+          {maxPrice < 5000 && (
+            <FilterChip label={`Under ${price(maxPrice)}`} onRemove={() => setMaxPrice(5000)} />
+          )}
+          {minRating > 0 && (
+            <FilterChip
+              label={`${minRating} stars & up`}
+              onRemove={() => setMinRating(0)}
+            />
+          )}
+          {onlyDeals && <FilterChip label="On sale" onRemove={() => setOnlyDeals(false)} />}
+          {brands.map((b) => (
+            <FilterChip
+              key={b}
+              label={b}
+              onRemove={() => setBrands((cur) => cur.filter((x) => x !== b))}
+            />
+          ))}
+          {activeFilterCount > 0 && (
+            <button
+              className="text-xs font-semibold text-muted-foreground underline underline-offset-4 transition hover:text-foreground"
+              onClick={clearFilters}
+            >
+              Clear all
+            </button>
+          )}
+        </div>
+      )}
+
       <div className="flex gap-6">
         {/* desktop sidebar */}
         <aside className="hidden w-56 shrink-0 lg:block" aria-label="Product filters">
@@ -378,5 +424,21 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
         </div>
       </div>
     </div>
+  );
+}
+
+function FilterChip({ label, onRemove }: { label: string; onRemove: () => void }) {
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full border border-brand-200 bg-brand-50 py-1 pl-3 pr-1.5 text-xs font-semibold text-brand-700 transition-colors hover:border-brand-400 dark:border-brand-400/20 dark:bg-brand-400/10 dark:text-brand-300">
+      {label}
+      <button
+        type="button"
+        aria-label={`Remove filter: ${label}`}
+        className="flex h-4.5 w-4.5 items-center justify-center rounded-full text-brand-500 transition-colors hover:bg-brand-500 hover:text-primary-foreground dark:text-brand-300 dark:hover:bg-brand-400 dark:hover:text-neutral-950"
+        onClick={onRemove}
+      >
+        <X className="h-3 w-3" aria-hidden />
+      </button>
+    </span>
   );
 }

@@ -37,6 +37,7 @@ export function Header() {
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { theme, setTheme } = useTheme();
   const price = usePrice();
 
@@ -62,6 +63,26 @@ export function Header() {
     }
     document.addEventListener("mousedown", onDown);
     return () => document.removeEventListener("mousedown", onDown);
+  }, []);
+
+  // "/" or Cmd/Ctrl+K focuses the search field (skipped while typing)
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      const target = e.target as HTMLElement | null;
+      const typing =
+        !!target &&
+        (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
+      const isSlash = e.key === "/" && !typing && !e.metaKey && !e.ctrlKey && !e.altKey;
+      const isCmdK = (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k";
+      if (isSlash || isCmdK) {
+        e.preventDefault();
+        inputRef.current?.focus();
+        inputRef.current?.select();
+        setFocused(true);
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
 
   function submitSearch() {
@@ -156,13 +177,23 @@ export function Header() {
             }}
           >
             <input
+              ref={inputRef}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onFocus={() => setFocused(true)}
               aria-label="Search Z Shop"
+              aria-keyshortcuts="/ Meta+K Control+K"
               placeholder="Search products, brands and categories..."
               className="h-10 w-full bg-transparent px-3.5 text-sm text-neutral-900 outline-none placeholder:text-neutral-400"
             />
+            {!focused && !query && (
+              <kbd
+                aria-hidden
+                className="mr-2 hidden shrink-0 items-center self-center rounded-md border border-neutral-200 bg-white px-1.5 py-0.5 text-[10px] font-bold text-neutral-400 sm:inline-flex"
+              >
+                /
+              </kbd>
+            )}
             <button
               type="submit"
               aria-label="Search"
