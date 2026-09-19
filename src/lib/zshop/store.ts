@@ -51,6 +51,18 @@ function sanitizeIdList(raw: unknown, max?: number): string[] {
   return out;
 }
 
+function sanitizeStringList(raw: unknown, max: number): string[] {
+  if (!Array.isArray(raw)) return [];
+  const out: string[] = [];
+  for (const term of raw) {
+    if (typeof term !== "string") continue;
+    const t = term.trim().slice(0, 60);
+    if (t && !out.includes(t)) out.push(t);
+    if (out.length >= max) break;
+  }
+  return out;
+}
+
 export interface Totals {
   itemCount: number;
   subtotal: number; // USD
@@ -72,6 +84,7 @@ interface ZShopState {
   wishlist: string[];
   compare: string[];
   recentlyViewed: string[];
+  recentSearches: string[];
   currency: CurrencyCode;
   user: User | null;
   orders: Order[];
@@ -97,6 +110,9 @@ interface ZShopState {
   toggleCompare: (id: string) => void;
   clearCompare: () => void;
   clearRecentlyViewed: () => void;
+  addRecentSearch: (term: string) => void;
+  removeRecentSearch: (term: string) => void;
+  clearRecentSearches: () => void;
   setCurrency: (c: CurrencyCode) => void;
   applyPromo: (code: string) => boolean;
   removePromo: () => void;
@@ -122,6 +138,7 @@ export const useZShop = create<ZShopState>()(
       wishlist: [],
       compare: [],
       recentlyViewed: [],
+      recentSearches: [],
       currency: "USD",
       user: null,
       orders: [],
@@ -234,6 +251,18 @@ export const useZShop = create<ZShopState>()(
         set({ recentlyViewed: [] });
         toast("Recently viewed cleared");
       },
+
+      addRecentSearch: (term) => {
+        const t = term.trim().slice(0, 60);
+        if (!t) return;
+        set({ recentSearches: [t, ...get().recentSearches.filter((x) => x !== t)].slice(0, 6) });
+      },
+
+      removeRecentSearch: (term) => {
+        set({ recentSearches: get().recentSearches.filter((x) => x !== term) });
+      },
+
+      clearRecentSearches: () => set({ recentSearches: [] }),
 
       setCurrency: (c) => set({ currency: c }),
 
@@ -372,6 +401,7 @@ export const useZShop = create<ZShopState>()(
         wishlist: s.wishlist,
         compare: s.compare,
         recentlyViewed: s.recentlyViewed,
+        recentSearches: s.recentSearches,
         currency: s.currency,
         user: s.user,
         orders: s.orders,
@@ -385,6 +415,7 @@ export const useZShop = create<ZShopState>()(
           base.wishlist = sanitizeIdList(p.wishlist);
           base.compare = sanitizeIdList(p.compare, MAX_COMPARE);
           base.recentlyViewed = sanitizeIdList(p.recentlyViewed, 8);
+          base.recentSearches = sanitizeStringList(p.recentSearches, 6);
           if (
             typeof p.currency === "string" &&
             p.currency in CURRENCIES

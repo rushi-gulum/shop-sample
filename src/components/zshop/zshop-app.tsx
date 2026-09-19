@@ -6,6 +6,7 @@ import { useZShop } from "@/lib/zshop/store";
 import { TopBar } from "./top-bar";
 import { Header } from "./header";
 import { NavBar } from "./nav-bar";
+import { BottomNav } from "./bottom-nav";
 import { Footer } from "./footer";
 import { CartDrawer } from "./cart-drawer";
 import { QuickViewModal } from "./quick-view";
@@ -63,6 +64,11 @@ export function ZShopApp() {
       </main>
 
       <Footer />
+
+      {/* spacer so the fixed mobile bottom nav never covers footer content */}
+      <div aria-hidden className="h-16 lg:hidden" />
+
+      <BottomNav />
 
       {/* overlays */}
       <CartDrawer />

@@ -176,7 +176,7 @@ export function ChatWidget() {
       {!open && (
         <button
           aria-label="Open chat support"
-          className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-neutral-950 py-3 pl-4 pr-5 text-white shadow-xl transition hover:scale-105 hover:shadow-2xl dark:ring-1 dark:ring-white/15"
+          className="fixed bottom-[4.75rem] right-4 z-40 flex items-center gap-2 rounded-full bg-neutral-950 py-3 pl-4 pr-5 text-white shadow-xl transition hover:scale-105 hover:shadow-2xl dark:ring-1 dark:ring-white/15 lg:bottom-5 lg:right-5"
           onClick={() => setOpen(true)}
           data-testid="chat-open"
         >
@@ -189,7 +189,7 @@ export function ChatWidget() {
       {/* chat panel */}
       <div
         className={cn(
-          "fixed bottom-4 right-4 z-50 flex h-[540px] w-[min(calc(100vw-2rem),380px)] flex-col overflow-hidden rounded-2xl border bg-card shadow-2xl transition-all duration-200",
+          "fixed bottom-[4.5rem] right-4 z-50 flex h-[540px] max-h-[calc(100dvh-6rem)] w-[min(calc(100vw-2rem),380px)] flex-col overflow-hidden rounded-2xl border bg-card shadow-2xl transition-all duration-200 lg:bottom-4",
           open ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
         )}
         role="dialog"

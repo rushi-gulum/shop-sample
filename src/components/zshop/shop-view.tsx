@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Check, ChevronRight, Flame, Home, Search, SlidersHorizontal, X } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Check, ChevronDown, ChevronRight, Flame, Home, Search, SlidersHorizontal, X } from "lucide-react";
 import {
   BRANDS,
   CATEGORIES,
@@ -29,6 +29,8 @@ import { cn } from "@/lib/utils";
 
 type SortKey = "featured" | "price-asc" | "price-desc" | "rating" | "discount";
 
+const PAGE_SIZE = 12;
+
 const SORT_LABELS: Record<SortKey, string> = {
   featured: "Featured first",
   "price-asc": "Price: low to high",
@@ -51,6 +53,12 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
   const [onlyDeals, setOnlyDeals] = useState(false);
   const [brands, setBrands] = useState<string[]>([]);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [visible, setVisible] = useState(PAGE_SIZE);
+
+  // reset pagination whenever the result set changes
+  useEffect(() => {
+    setVisible(PAGE_SIZE);
+  }, [category, query, sort, maxPrice, minRating, onlyDeals, brands]);
 
   const isSearch = !!query;
   const activeCategory: CategoryId | "all" = category;
@@ -391,11 +399,28 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
-              {results.map((p) => (
-                <ProductCard key={p.id} id={p.id} />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
+                {results.slice(0, visible).map((p) => (
+                  <ProductCard key={p.id} id={p.id} />
+                ))}
+              </div>
+              {visible < results.length && (
+                <div className="mt-8 flex flex-col items-center gap-3">
+                  <p className="text-xs text-muted-foreground">
+                    Showing <span className="font-semibold text-foreground">{Math.min(visible, results.length)}</span> of {results.length} products
+                  </p>
+                  <Button
+                    variant="outline"
+                    className="min-w-48 border-neutral-300 font-bold transition hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
+                    onClick={() => setVisible((v) => v + PAGE_SIZE)}
+                  >
+                    Load more products
+                    <ChevronDown className="ml-1.5 h-4 w-4" aria-hidden />
+                  </Button>
+                </div>
+              )}
+            </>
           )}
 
           {/* cross-sell: deals strip */}

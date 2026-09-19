@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import {
   ChevronDown,
+  Clock,
   Heart,
   MapPin,
   Moon,
@@ -11,9 +12,11 @@ import {
   ShoppingCart,
   Sun,
   Monitor,
+  TrendingUp,
   User2,
   Package,
   LogOut,
+  X,
 } from "lucide-react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
@@ -32,6 +35,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+
+const TRENDING = [
+  "wireless headphones",
+  "smartwatch",
+  "espresso machine",
+  "leather sneakers",
+  "yoga mat",
+  "air fryer",
+];
 
 export function Header() {
   const [query, setQuery] = useState("");
@@ -52,8 +64,15 @@ export function Header() {
   const setCartOpen = useZShop((s) => s.setCartOpen);
   const requestSignIn = useZShop((s) => s.requestSignIn);
   const signOut = useZShop((s) => s.signOut);
+  const recentSearches = useZShop((s) => s.recentSearches);
+  const addRecentSearch = useZShop((s) => s.addRecentSearch);
+  const removeRecentSearch = useZShop((s) => s.removeRecentSearch);
+  const clearRecentSearches = useZShop((s) => s.clearRecentSearches);
 
-  const suggestions = query.trim().length >= 1 ? searchProducts(query).slice(0, 6) : [];
+  const trimmed = query.trim();
+  const suggestions = trimmed.length >= 1 ? searchProducts(trimmed).slice(0, 6) : [];
+  const showDiscovery = focused && trimmed.length === 0;
+  const showSuggestions = focused && trimmed.length >= 1 && suggestions.length > 0;
 
   useEffect(() => {
     function onDown(e: MouseEvent) {
@@ -85,10 +104,13 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  function submitSearch() {
-    if (!query.trim()) return;
+  function submitSearch(term?: string) {
+    const q = (term ?? query).trim();
+    if (!q) return;
+    addRecentSearch(q);
     setFocused(false);
-    navigate({ name: "shop", query: query.trim() });
+    if (!term) setQuery(q);
+    navigate({ name: "shop", query: q });
   }
 
   function goWishlist() {
@@ -203,8 +225,85 @@ export function Header() {
             </button>
           </form>
 
+          {/* discovery: trending + recent searches (empty query) */}
+          {showDiscovery && (
+            <div
+              role="dialog"
+              aria-label="Search suggestions"
+              className="absolute left-0 right-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl border bg-popover shadow-xl"
+            >
+              <div className="grid gap-0 sm:grid-cols-2">
+                <div className="p-3 sm:border-r">
+                  <p className="flex items-center gap-1.5 px-1 pb-2 text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
+                    <TrendingUp className="h-3.5 w-3.5" aria-hidden /> Trending now
+                  </p>
+                  <ul>
+                    {TRENDING.map((t) => (
+                      <li key={t}>
+                        <button
+                          className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-sm transition hover:bg-accent"
+                          onClick={() => submitSearch(t)}
+                        >
+                          <TrendingUp
+                            className="h-3.5 w-3.5 shrink-0 text-muted-foreground"
+                            aria-hidden
+                          />
+                          <span className="truncate font-medium">{t}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="border-t p-3 sm:border-t-0">
+                  <p className="flex items-center justify-between px-1 pb-2 text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="h-3.5 w-3.5" aria-hidden /> Recent searches
+                    </span>
+                    {recentSearches.length > 0 && (
+                      <button
+                        className="text-[10px] font-semibold normal-case underline underline-offset-2 transition hover:text-foreground"
+                        onClick={clearRecentSearches}
+                      >
+                        Clear all
+                      </button>
+                    )}
+                  </p>
+                  {recentSearches.length === 0 ? (
+                    <p className="px-2.5 py-6 text-center text-xs text-muted-foreground">
+                      Your recent searches will appear here.
+                    </p>
+                  ) : (
+                    <ul>
+                      {recentSearches.map((t) => (
+                        <li key={t} className="group/term relative">
+                          <button
+                            className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 pr-9 text-left text-sm transition hover:bg-accent"
+                            onClick={() => submitSearch(t)}
+                          >
+                            <Clock
+                              className="h-3.5 w-3.5 shrink-0 text-muted-foreground"
+                              aria-hidden
+                            />
+                            <span className="truncate font-medium">{t}</span>
+                          </button>
+                          <button
+                            aria-label={`Remove recent search: ${t}`}
+                            className="absolute right-1.5 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground opacity-0 transition hover:bg-muted hover:text-foreground focus:opacity-100 group-hover/term:opacity-100"
+                            onClick={() => removeRecentSearch(t)}
+                          >
+                            <X className="h-3.5 w-3.5" aria-hidden />
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* live suggestions */}
-          {focused && suggestions.length > 0 && (
+          {showSuggestions && (
             <div className="absolute left-0 right-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl border bg-popover shadow-xl">
               {suggestions.map((p) => (
                 <button
@@ -229,7 +328,7 @@ export function Header() {
               ))}
               <button
                 className="w-full border-t bg-muted/40 px-3 py-2 text-center text-xs font-semibold text-brand-600 hover:bg-muted dark:text-brand-400"
-                onClick={submitSearch}
+                onClick={() => submitSearch()}
               >
                 See all results for &ldquo;{query.trim()}&rdquo;
               </button>
