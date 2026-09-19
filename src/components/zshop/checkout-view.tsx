@@ -12,9 +12,11 @@ import {
   PartyPopper,
   ShieldCheck,
   ShoppingCart,
+  Sparkles,
   Truck,
   Wallet,
 } from "lucide-react";
+import { toast } from "sonner";
 import { PRODUCT_MAP } from "@/lib/zshop/data";
 import { usePrice, useZShop } from "@/lib/zshop/store";
 import type { Order } from "@/lib/zshop/types";
@@ -43,10 +45,10 @@ export function CheckoutView() {
   const [form, setForm] = useState({
     name: user?.name ?? "",
     email: user?.email ?? "",
-    street: "",
-    city: "",
-    state: "",
-    zip: "",
+    street: user ? "123 Market Street, Apt 4B" : "",
+    city: user ? "San Francisco" : "",
+    state: user ? "CA" : "",
+    zip: user ? "94105" : "",
     country: "United States",
     cardName: "",
     cardNumber: "",
@@ -82,6 +84,18 @@ export function CheckoutView() {
     const digits = v.replace(/\D/g, "").slice(0, 4);
     if (digits.length <= 2) return digits;
     return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+  }
+
+  function autofillDemoCard() {
+    setForm((f) => ({
+      ...f,
+      cardName: (f.name || "Alex Shopper").toUpperCase(),
+      cardNumber: "4242 4242 4242 4242",
+      expiry: "12/28",
+      cvv: "123",
+    }));
+    setErrors({});
+    toast.success("Demo card details filled");
   }
 
   function validate(): boolean {
@@ -342,6 +356,13 @@ export function CheckoutView() {
                   2
                 </span>
                 <CreditCard className="h-4.5 w-4.5 text-amber-600" /> Payment method
+                <button
+                  type="button"
+                  onClick={autofillDemoCard}
+                  className="ml-auto flex items-center gap-1 rounded-full border border-dashed border-amber-400 px-2.5 py-1 text-xs font-semibold text-amber-600 transition hover:bg-amber-50 dark:text-amber-400 dark:hover:bg-amber-400/10"
+                >
+                  <Sparkles className="h-3 w-3" /> Autofill demo card
+                </button>
               </h2>
               <RadioGroup value={payment} onValueChange={(v) => setPayment(v as PaymentMethod)} className="grid gap-3 sm:grid-cols-3">
                 {[

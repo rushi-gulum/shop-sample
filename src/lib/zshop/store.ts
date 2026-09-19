@@ -424,10 +424,8 @@ export function formatPrice(usd: number, currency: CurrencyCode): string {
   let decimals: number;
   if (currency === "JPY" || Number.isInteger(rounded)) {
     decimals = 0;
-  } else if (Math.abs(Math.round(value * 10) - value * 10) < 0.005) {
-    decimals = 1; // values like 79.5
   } else {
-    decimals = 2;
+    decimals = 2; // always show cents for non-integers (e.g. $628.20)
   }
   return `${info.symbol}${rounded.toLocaleString("en-US", {
     minimumFractionDigits: decimals,
