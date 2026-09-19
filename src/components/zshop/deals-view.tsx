@@ -1,6 +1,6 @@
 "use client";
 
-import { Flame, Home, ChevronRight, Sparkles } from "lucide-react";
+import { Flame, Home, ChevronRight, Sparkles, Timer } from "lucide-react";
 import { dealProducts } from "@/lib/zshop/data";
 import { useZShop } from "@/lib/zshop/store";
 import { ProductCard } from "./product-card";
@@ -39,8 +39,9 @@ export function DealsView() {
         </span>
       </div>
 
-      <p className="mb-4 mt-6 text-sm font-semibold text-rose-600 dark:text-rose-400">
-        ⏰ {deals.length} live deals — refreshed every morning at 6 AM
+      <p className="mb-4 mt-6 flex items-center gap-1.5 text-sm font-semibold text-rose-600 dark:text-rose-400">
+        <Timer className="h-4 w-4" aria-hidden />
+        {deals.length} live deals — refreshed every morning at 6 AM
       </p>
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
