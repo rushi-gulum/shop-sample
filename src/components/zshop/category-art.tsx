@@ -1,7 +1,7 @@
 import type { CategoryId } from "@/lib/zshop/types";
 
 /**
- * Category artwork — Z Shop India (mobile store).
+ * Category artwork — Ganesh Electronics (India mobile store).
  * SHOP.CO monochrome system: black/gray shapes with restrained gold accents.
  * All illustrations live on a 64x64 viewBox with a soft ground shadow.
  */

@@ -653,7 +653,7 @@ export function CheckoutView() {
                 )}
               </Button>
               <p className="mt-2 text-center text-[11px] text-muted-foreground">
-                By placing your order you agree to Z Shop&apos;s demo terms.
+                By placing your order you agree to Ganesh Electronics&apos; demo terms.
               </p>
             </CardContent>
           </Card>

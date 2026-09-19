@@ -123,15 +123,15 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-2 px-3 py-2.5 sm:gap-3 sm:px-6">
         {/* logo */}
         <button
-          aria-label="Z Shop home"
+          aria-label="Ganesh Electronics home"
           className="flex items-center gap-2.5 rounded-md px-1 py-1 hover:opacity-90"
           onClick={() => navigate({ name: "home" })}
         >
           <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-950 text-lg font-black text-white shadow-md">
-            Z
+            G
           </span>
           <span className="hidden flex-col leading-tight sm:flex">
-            <span className="text-lg font-black text-neutral-950">Z Shop</span>
+            <span className="text-lg font-black text-neutral-950">Ganesh Electronics</span>
             <span className="text-[11px] font-medium text-neutral-800/80">
               India&apos;s mobile store
             </span>
@@ -161,7 +161,7 @@ export function Header() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onFocus={() => setFocused(true)}
-              aria-label="Search Z Shop"
+              aria-label="Search Ganesh Electronics"
               aria-keyshortcuts="/ Meta+K Control+K"
               placeholder="Search for phones, earbuds, brands and more..."
               className="h-10 w-full bg-transparent px-3.5 text-sm text-neutral-900 outline-none placeholder:text-neutral-400"

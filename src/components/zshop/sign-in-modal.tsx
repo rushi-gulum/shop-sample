@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const DEMO = { email: "demo@zshop.com", password: "demo1234", name: "Alex" };
+const DEMO = { email: "demo@ganeselectronics.com", password: "demo1234", name: "Aarav" };
 
 const INTENT_COPY: Record<string, { title: string; desc: string }> = {
   checkout: {
@@ -27,15 +27,15 @@ const INTENT_COPY: Record<string, { title: string; desc: string }> = {
     desc: "Continue shopping your favorite products.",
   },
   account: {
-    title: "Sign in to Z Shop",
+    title: "Sign in to Ganesh Electronics",
     desc: "Access your orders, wishlist and more.",
   },
   prime: {
-    title: "Sign in to start your Z Prime trial",
+    title: "Sign in to start your Ganesh Prime trial",
     desc: "Free same-day delivery, exclusive deals, and more.",
   },
   register: {
-    title: "Create your Z Shop account",
+    title: "Create your Ganesh Electronics account",
     desc: "Join 50,000+ happy shoppers.",
   },
 };
@@ -91,7 +91,7 @@ export function SignInModal() {
       <DialogContent className="max-w-md p-0 overflow-hidden" data-testid="signin-modal">
         <div className="bg-neutral-950 px-6 pb-6 pt-7 text-white">
           <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-lg font-black text-neutral-950">
-            Z
+            G
           </span>
           <DialogHeader className="mt-3 space-y-1">
             <DialogTitle className="text-left text-xl font-black text-white">
@@ -193,7 +193,7 @@ export function SignInModal() {
                   <Input
                     id="rg-name"
                     className="pl-8"
-                    placeholder="Alex Shopper"
+                    placeholder="Aarav Sharma"
                     value={name}
                     onChange={(e) => {
                       setName(e.target.value);
@@ -247,7 +247,7 @@ export function SignInModal() {
                 Create account
               </Button>
               <p className="text-center text-xs text-muted-foreground">
-                By creating an account you agree to Z Shop&apos;s demo terms.
+                By creating an account you agree to Ganesh Electronics&apos; demo terms.
               </p>
             </TabsContent>
           </Tabs>

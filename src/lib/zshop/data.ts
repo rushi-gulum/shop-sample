@@ -33,7 +33,7 @@ export const STANDARD_SHIPPING = 79; // ₹ — flat delivery fee otherwise
 export const PROMO_CODES: Record<string, { type: "percent"; value: number; label: string }> = {
   WELCOME15: { type: "percent", value: 15, label: "Welcome offer — 15% off your order" },
   FESTIVE10: { type: "percent", value: 10, label: "Festive sale — extra 10% off" },
-  ZPRIME5: { type: "percent", value: 5, label: "Z Prime member — extra 5% off" },
+  GPRIME5: { type: "percent", value: 5, label: "Ganesh Prime member — extra 5% off" },
 };
 
 const P = "/products";
@@ -1844,14 +1844,14 @@ export const PRODUCTS: Product[] = [
     rating: 4.4,
     ratingCount: 821,
     description:
-      "Certified refurbished iPhone 13 in superb condition — 40+ point quality check, 6-month Z Shop warranty, new box with cable. No scratches, battery health above 85%.",
+      "Certified refurbished iPhone 13 in superb condition — 40+ point quality check, 6-month Ganesh Electronics warranty, new box with cable. No scratches, battery health above 85%.",
     image: `${P}/real/rf1.jpg`,
     gallery: [`${P}/real/rf1.jpg`, `${P}/real/rf1-2.png`, `${P}/real/rf1-3.jpg`],
     tags: ["refurbished", "certified-pre-owned", "ios", "128gb", "value-for-money"],
     specs: [
       { label: "Condition", value: "Superb — no visible scratches" },
       { label: "Battery health", value: "Above 85%" },
-      { label: "Warranty", value: "6 months Z Shop warranty" },
+      { label: "Warranty", value: "6 months Ganesh Electronics warranty" },
       { label: "In box", value: "Device + new charging cable" },
     ],
   },
@@ -1871,7 +1871,7 @@ export const PRODUCTS: Product[] = [
     tags: ["refurbished", "certified-pre-owned", "android", "5g", "value-for-money"],
     specs: [
       { label: "Condition", value: "Superb" },
-      { label: "Warranty", value: "6 months Z Shop warranty" },
+      { label: "Warranty", value: "6 months Ganesh Electronics warranty" },
     ],
   },
   {
@@ -1890,7 +1890,7 @@ export const PRODUCTS: Product[] = [
     tags: ["refurbished", "used-phone", "android", "5g", "value-for-money"],
     specs: [
       { label: "Condition", value: "Good — minor marks" },
-      { label: "Warranty", value: "6 months Z Shop warranty" },
+      { label: "Warranty", value: "6 months Ganesh Electronics warranty" },
     ],
   },
   {
@@ -1910,7 +1910,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Condition", value: "Good" },
       { label: "Replacement", value: "7-day replacement" },
-      { label: "Warranty", value: "6 months Z Shop warranty" },
+      { label: "Warranty", value: "6 months Ganesh Electronics warranty" },
     ],
   },
 ];
@@ -2007,7 +2007,7 @@ const REVIEW_AUTHORS = [
 
 const REVIEW_CONTENT: Record<number, { title: string; body: string }[]> = {
   5: [
-    { title: "Value for money, hands down", body: "Quality is outstanding and delivery was a day early. Packaging was proper and the product feels premium. Would happily buy again from Z Shop." },
+    { title: "Value for money, hands down", body: "Quality is outstanding and delivery was a day early. Packaging was proper and the product feels premium. Would happily buy again from Ganesh Electronics." },
     { title: "Absolutely love it", body: "I was a bit skeptical at this price, but after two weeks of daily use I am impressed. Working perfectly with my Jio 5G. Cannot imagine going back." },
     { title: "Best purchase this year", body: "Does everything advertised and then some. Friends have already asked where I got it. Zero regrets — five stars well earned. Genuine product with proper GST invoice." },
     { title: "Fantastic quality", body: "You can tell real thought went into the design. Everything just works, straight out of the box. Highly recommended for the price." },

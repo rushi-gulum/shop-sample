@@ -9,7 +9,7 @@ export function PromoCards() {
   return (
     <section aria-label="Membership offers" className="mx-auto max-w-7xl px-3 pt-8 sm:px-6">
       <div className="grid gap-4 md:grid-cols-2">
-        {/* Z Prime */}
+        {/* Ganesh Prime */}
         <div className="relative overflow-hidden rounded-2xl bg-neutral-950 p-6 text-white shadow-md dark:ring-1 dark:ring-white/15 sm:p-8">
           <Crown
             aria-hidden
@@ -18,7 +18,7 @@ export function PromoCards() {
           <span className="w-fit rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
             Membership
           </span>
-          <h3 className="mt-3 text-2xl font-black sm:text-3xl">Join Z Prime</h3>
+          <h3 className="mt-3 text-2xl font-black sm:text-3xl">Join Ganesh Prime</h3>
           <p className="mt-1.5 max-w-sm text-sm text-white/90">
             Free same-day delivery in metros, exclusive festive deals, and more.
           </p>

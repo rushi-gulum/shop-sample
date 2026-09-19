@@ -444,7 +444,7 @@ const INR_FORMATTER = new Intl.NumberFormat("en-IN", {
   maximumFractionDigits: 0,
 });
 
-/** All prices on Z Shop India are rupees (₹), lakh-grouped: ₹1,09,999 */
+/** All prices on Ganesh Electronics are rupees (₹), lakh-grouped: ₹1,09,999 */
 export function formatPrice(inr: number): string {
   const rounded = Math.round(inr);
   return `₹${INR_FORMATTER.format(rounded)}`;

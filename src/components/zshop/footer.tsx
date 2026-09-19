@@ -120,7 +120,7 @@ export function Footer() {
       <div className="bg-neutral-950 text-neutral-300">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-2 lg:grid-cols-5">
           <div>
-            <h3 className="text-lg font-black text-white">Z Shop</h3>
+            <h3 className="text-lg font-black text-white">Ganesh Electronics</h3>
             <p className="mt-2 max-w-xs text-sm leading-relaxed text-neutral-400">
               India&apos;s trusted mobile store — phones, accessories &amp; more, delivered PAN-India.
             </p>
@@ -199,7 +199,7 @@ export function Footer() {
 
           <div>
             <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-white">
-              About Z Shop
+              About Ganesh Electronics
             </h4>
             <ul className="space-y-2 text-sm">
               {ABOUT_LINKS.map((label) => (
@@ -242,7 +242,7 @@ export function Footer() {
 
         <div className="border-t border-neutral-800">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs text-neutral-500 sm:flex-row sm:px-6">
-            <span>© 2025 Z Shop India. Phones, accessories & more — delivered PAN-India. Demo storefront.</span>
+            <span>© 2025 Ganesh Electronics India. Phones, accessories & more — delivered PAN-India. Demo storefront.</span>
             <span className="flex items-center gap-1">
               <ArrowUp className="h-3 w-3" /> Built with Next.js & shadcn/ui
             </span>

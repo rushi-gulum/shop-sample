@@ -35,7 +35,7 @@ const QUICK_QUESTIONS = [
 
 const WELCOME: ChatMessage = {
   role: "bot",
-  text: "Hi there! I'm Zoe, your Z Shop India assistant. How can I help you today? You can ask me about products, orders, delivery, COD, returns, or anything else!",
+  text: "Hi there! I'm Asha, your Ganesh Electronics assistant. How can I help you today? You can ask me about products, orders, delivery, COD, returns, or anything else!",
   ts: 0,
 };
 
@@ -65,7 +65,7 @@ function botReply(userText: string): ChatMessage {
   if (/(shipping|delivery|deliver|arrive|ship)/.test(q)) {
     return {
       role: "bot",
-      text: "We deliver PAN-India with FREE shipping on orders above ₹499 (otherwise just ₹79), arriving in 2–5 days. Z Prime members get free same-day delivery in metros like Mumbai, Delhi & Bengaluru.",
+      text: "We deliver PAN-India with FREE shipping on orders above ₹499 (otherwise just ₹79), arriving in 2–5 days. Ganesh Prime members get free same-day delivery in metros like Mumbai, Delhi & Bengaluru.",
       ts: Date.now(),
     };
   }
@@ -83,7 +83,7 @@ function botReply(userText: string): ChatMessage {
   if (/(promo|coupon|code|discount|deal|sale|offer)/.test(q)) {
     return {
       role: "bot",
-      text: 'Psst — use code WELCOME15 for 15% off your order, or ZPRIME5 for an extra 5%. Check the "Today\'s Deals" page for up to 44% off selected products!',
+      text: 'Psst — use code WELCOME15 for 15% off your order, or GPRIME5 for an extra 5%. Check the "Today\'s Deals" page for up to 44% off selected products!',
       ts: Date.now(),
     };
   }
@@ -179,7 +179,7 @@ export function ChatWidget() {
           data-testid="chat-open"
         >
           <MessageCircle className="h-5 w-5" />
-          <span className="text-sm font-bold">Ask Zoe</span>
+          <span className="text-sm font-bold">Ask Asha</span>
           <span className="absolute -right-0.5 -top-0.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-success-400" />
         </button>
       )}
@@ -191,7 +191,7 @@ export function ChatWidget() {
           open ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
         )}
         role="dialog"
-        aria-label="Ask Zoe chat support"
+        aria-label="Ask Asha chat support"
       >
         {/* header */}
         <div className="flex items-center gap-3 bg-neutral-950 px-4 py-3 text-white">
@@ -201,7 +201,7 @@ export function ChatWidget() {
           </span>
           <div className="min-w-0 flex-1 leading-tight">
             <p className="flex items-center gap-1 text-sm font-bold">
-              Zoe
+              Asha
               <span className="rounded bg-white/20 px-1 py-0.5 text-[9px] font-semibold">AI</span>
             </p>
             <p className="text-[11px] text-white/80">Online · replies instantly</p>

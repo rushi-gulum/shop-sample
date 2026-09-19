@@ -208,7 +208,7 @@ export function CartDrawer() {
                   <Input
                     value={giftInput}
                     onChange={(e) => setGiftInput(e.target.value)}
-                    placeholder="Gift card code (try ZGIFT50)"
+                    placeholder="Gift card code (try GGIFT50)"
                     className="h-9 pl-8 text-xs"
                   />
                 </div>

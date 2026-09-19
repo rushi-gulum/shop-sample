@@ -162,3 +162,28 @@ Stage Summary:
 - Every product card, gallery, hero slide, bundle and cart thumbnail now shows authentic web-sourced product photography of the actual devices/brands — matching the India store's credibility goals (real boAt/Lava/Noise packshots included).
 - Key files: scripts/fetch-real-images.ts, scripts/apply-real-images.ts, src/lib/zshop/data.ts (image+gallery fields), src/components/zshop/hero-carousel.tsx, public/products/real/ (270 files).
 - Risks/notes: photos are web-sourced (some are official marketing shots with text overlays like boAt's ENx graphic — authentic to how boAt lists them); search infrastructure rate-limits aggressively, so re-runs should keep the gentle pacing profile.
+
+---
+Task ID: 8
+Agent: Z.ai Code (main)
+Task: Rebrand — "convert all branding of 'Z Shop' into 'Ganesh Electronics'"
+
+Work Log:
+- AUDIT: rg sweep for "Z Shop", "Zoe", "Z Prime", "ZPRIME", "zshop.com", "ZGIFT", standalone "Z" logo glyphs, "Alex" across src/ — catalogued every user-facing brand touchpoint (internal code identifiers useZShop / zshop dirs / ZShopApp deliberately kept as non-branding symbols to avoid 30-file import churn and localStorage key churn).
+- HEADER: logo glyph Z→G (black rounded square), wordmark "Ganesh Electronics", aria-labels "Ganesh Electronics home" / "Search Ganesh Electronics".
+- FOOTER: brand h3, "About Ganesh Electronics" column, "© 2025 Ganesh Electronics India…" legal line.
+- LAYOUT METADATA: title "Ganesh Electronics India — Phones, Accessories & More", description, keywords[0], authors.
+- SIGN-IN MODAL: modal glyph Z→G, "Sign in to Ganesh Electronics", "Create your Ganesh Electronics account", "Ganesh Prime trial", terms lines, demo creds demo@zshop.com→demo@ganeselectronics.com, demo user Alex→Aarav (+ placeholder "Aarav Sharma").
+- CHAT WIDGET: bot Zoe→Asha ("Ask Asha" CTA, dialog aria-label, header name, welcome copy "I'm Asha, your Ganesh Electronics assistant").
+- LOYALTY PROGRAM: "Z Prime"→"Ganesh Prime" everywhere — promo-cards hero card, account-view badge, chat replies, sign-in intent copy; promo code ZPRIME5→GPRIME5 (PROMO_CODES key + chat hint) — verified applyPromo("GPRIME5") applies "Ganesh Prime member — extra 5% off" in cart drawer.
+- DATA/PRODUCTS: 5× "6 months Ganesh Electronics warranty" (refurbished specs), refurbished description, review body "buy again from Ganesh Electronics".
+- CHECKOUT: terms line "Ganesh Electronics' demo terms".
+- ASSETS & COMMENTS: public/logo.svg redrawn as white "G" glyph (kept dark tile + breathe animation); comments in globals.css (brand palette/scrollbar), store.ts formatPrice JSDoc, category-art.tsx header.
+- MISSED-FIRST-PASS CATCH (browser QA): cart drawer gift-card placeholder "try ZGIFT50"→"try GGIFT50".
+- QA (agent-browser): page title, header logo/wordmark/aria, 20-category nav, hero, footer brand + copyright, "Join Ganesh Prime" card, "Ask Asha" chat widget + bot name + welcome msg, sign-in modal (title/glyph/demo creds), demo sign-in → "Hello, Aarav" + account "Ganesh Prime" badge + "Welcome, Aarav!", cart GPRIME5 promo applied with correct label, gift-card placeholder. Screenshots: analysis/rebrand-home.png, rebrand-account.png, rebrand-mobile.png.
+- bun run lint clean; dev.log zero errors; final rg audit: ZERO occurrences of Z Shop/Zoe/Z Prime/ZPRIME/zshop.com/Alex in src/; 31 "Ganesh" references in place.
+
+Stage Summary:
+- Storefront fully rebranded to "Ganesh Electronics" (India's mobile store) with zero user-visible "Z Shop" remnants: header/footer/meta/SEO, sign-in, chat assistant (Asha), loyalty program (Ganesh Prime / GPRIME5), product warranties & reviews, checkout terms, logo glyph (G) and logo.svg asset.
+- Internal symbols (useZShop, src/*/zshop, ZShopApp, persist key zshop-store-v4) intentionally unchanged — code identifiers, not branding; renaming would churn ~30 imports and wipe persisted carts for no user-visible gain.
+- Key files: src/app/{layout.tsx,globals.css}, src/components/zshop/{header,footer,sign-in-modal,chat-widget,checkout-view,cart-drawer,promo-cards,account-view,category-art}.tsx, src/lib/zshop/{data,store}.ts, public/logo.svg.

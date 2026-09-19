@@ -15,11 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Z Shop India — Phones, Accessories & More",
+  title: "Ganesh Electronics India — Phones, Accessories & More",
   description:
-    "Z Shop is India's trusted online mobile store. Buy the latest smartphones, iPhones, earbuds, smartwatches, chargers and accessories with COD, UPI & EMI — delivered PAN-India.",
+    "Ganesh Electronics is India's trusted online mobile store. Buy the latest smartphones, iPhones, earbuds, smartwatches, chargers and accessories with COD, UPI & EMI — delivered PAN-India.",
   keywords: [
-    "Z Shop",
+    "Ganesh Electronics",
     "online shopping India",
     "mobile phones",
     "smartphones",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "COD",
     "best deals",
   ],
-  authors: [{ name: "Z Shop India" }],
+  authors: [{ name: "Ganesh Electronics" }],
 };
 
 export const viewport: Viewport = {

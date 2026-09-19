@@ -67,7 +67,7 @@ export function AccountView() {
           <div className="min-w-0 flex-1">
             <p className="flex items-center gap-2 text-lg font-bold">
               {user.name}
-              <Badge className="border-0 bg-brand-500 text-primary-foreground">Z Prime</Badge>
+              <Badge className="border-0 bg-brand-500 text-primary-foreground">Ganesh Prime</Badge>
             </p>
             <p className="truncate text-sm text-muted-foreground">{user.email}</p>
             <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">

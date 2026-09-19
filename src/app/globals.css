@@ -43,7 +43,7 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* ---------- Z Shop brand palette — SHOP.CO monochrome ----------
+/* ---------- Ganesh Electronics brand palette — SHOP.CO monochrome ----------
    Primary / brand  #000000 -> brand-* (500 = primary, 600 = hover, 700 = active)
    Page background  #FFFFFF · Surface #F0F0F0 · Warm #F0EEED · Hero #F2F0F1
    Text             primary #000000 · secondary #666666 · muted #999999
@@ -207,7 +207,7 @@
   }
 }
 
-/* ---------- Z Shop custom scrollbar ---------- */
+/* ---------- Ganesh Electronics custom scrollbar ---------- */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
