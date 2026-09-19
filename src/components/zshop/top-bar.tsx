@@ -12,7 +12,7 @@ export function TopBar() {
             Free shipping on orders over $99
           </span>
           <span className="flex items-center gap-1.5">
-            <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-emerald-400" />
+            <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-success-400" />
             <span className="hidden xs:inline sm:inline">Secure payment</span>
           </span>
           <span className="hidden items-center gap-1.5 md:flex">

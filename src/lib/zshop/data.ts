@@ -832,3 +832,151 @@ export function searchProducts(query: string): Product[] {
     return terms.every((t) => haystack.includes(t));
   }).sort((a, b) => b.rating - a.rating);
 }
+
+// ---------- Reviews (deterministic mock) ----------
+
+export interface Review {
+  id: string;
+  author: string;
+  rating: number; // 1..5
+  date: string; // relative display date
+  title: string;
+  body: string;
+  verified: boolean;
+  helpful: number;
+}
+
+const REVIEW_AUTHORS = [
+  "Priya Sharma",
+  "Marcus Chen",
+  "Elena Rodriguez",
+  "Tom Okafor",
+  "Hana Kim",
+  "Jonas Müller",
+  "Ava Thompson",
+  "Leo Fernández",
+  "Mei Lin",
+  "Sam Patel",
+  "Nora Haddad",
+  "Chris Novak",
+];
+
+const REVIEW_CONTENT: Record<number, { title: string; body: string }[]> = {
+  5: [
+    { title: "Exceeded expectations", body: "Quality is outstanding and it arrived a day early. The details feel premium and it does exactly what it promises. Would happily buy again." },
+    { title: "Absolutely love it", body: "I was a bit skeptical at this price, but after two weeks of daily use I am impressed. It has become part of my routine and I cannot imagine going back." },
+    { title: "Best purchase this year", body: "Does everything advertised and then some. Friends have already asked where I got it. Zero regrets — five stars well earned." },
+    { title: "Fantastic quality", body: "You can tell real thought went into the design. Everything just works, straight out of the box. Highly recommended." },
+  ],
+  4: [
+    { title: "Great overall", body: "Really solid for the price. Docking one star only because the packaging was a bit flimsy — the product itself is excellent and I would buy it again." },
+    { title: "Very happy with it", body: "Been using it for a month now with no complaints. A small learning curve at first, but once set up it performs beautifully." },
+    { title: "Close to perfect", body: "Nearly flawless experience. I wish it came in more colors, but performance and build quality are genuinely impressive for the money." },
+  ],
+  3: [
+    { title: "Does the job", body: "It works as described, but I expected slightly better finishing at this price point. Fine if you catch it on sale; hard to recommend at full price." },
+    { title: "Good, not great", body: "Halfway through my first week and it is fine so far. Nothing spectacular, nothing broken. A safe middle-of-the-road choice." },
+  ],
+  2: [
+    { title: "Not for me", body: "Had higher hopes based on the other reviews. A couple of small issues appeared within the first week, though customer support was responsive and polite." },
+  ],
+  1: [
+    { title: "Disappointed", body: "Stopped working properly within days of arriving. The return process was easy at least, but I expected much better quality control." },
+  ],
+};
+
+const REVIEW_DAY_GAPS = [2, 4, 9, 14, 21, 33, 47, 62, 88, 120];
+
+function hashString(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function relativeDate(daysAgo: number): string {
+  if (daysAgo <= 1) return "yesterday";
+  if (daysAgo < 7) return `${daysAgo} days ago`;
+  if (daysAgo < 30) {
+    const w = Math.floor(daysAgo / 7);
+    return w === 1 ? "1 week ago" : `${w} weeks ago`;
+  }
+  const m = Math.floor(daysAgo / 30);
+  return m === 1 ? "1 month ago" : `${m} months ago`;
+}
+
+/** Deterministic pseudo-random reviews for a product (same output every render/SSR). */
+export function reviewsFor(productId: string): Review[] {
+  const p = PRODUCT_MAP[productId];
+  if (!p) return [];
+  const seed = hashString(productId);
+  const count = 4 + (seed % 3); // 4..6 reviews
+  const rating = p.rating;
+
+  const reviews: { review: Review; daysAgo: number }[] = [];
+  const usedAuthorIdx = new Set<number>();
+  const usedContentKeys = new Set<string>();
+  for (let i = 0; i < count; i++) {
+    // deterministic star pick biased by the product rating
+    const roll = ((seed >>> (i * 3 + 1)) % 100) / 100;
+    let stars: number;
+    if (rating >= 4.5) stars = roll < 0.68 ? 5 : roll < 0.94 ? 4 : 3;
+    else if (rating >= 4.0) stars = roll < 0.52 ? 5 : roll < 0.9 ? 4 : 3;
+    else if (rating >= 3.5) stars = roll < 0.34 ? 5 : roll < 0.74 ? 4 : roll < 0.94 ? 3 : 2;
+    else stars = roll < 0.2 ? 5 : roll < 0.55 ? 4 : roll < 0.85 ? 3 : 2;
+
+    const pool = REVIEW_CONTENT[stars];
+    let cIdx = (seed >>> (i * 5 + 2)) % pool.length;
+    let guard = 0;
+    while (usedContentKeys.has(`${stars}:${cIdx}`) && guard < pool.length * 2) {
+      cIdx = (cIdx + 1) % pool.length;
+      guard++;
+    }
+    usedContentKeys.add(`${stars}:${cIdx}`);
+    const content = pool[cIdx];
+
+    let aIdx = (seed >>> (i * 4 + 3)) % REVIEW_AUTHORS.length;
+    guard = 0;
+    while (usedAuthorIdx.has(aIdx) && guard < REVIEW_AUTHORS.length) {
+      aIdx = (aIdx + 1) % REVIEW_AUTHORS.length;
+      guard++;
+    }
+    usedAuthorIdx.add(aIdx);
+    const author = REVIEW_AUTHORS[aIdx];
+
+    const daysAgo = REVIEW_DAY_GAPS[(seed >>> (i * 3 + 5)) % REVIEW_DAY_GAPS.length];
+
+    reviews.push({
+      daysAgo,
+      review: {
+        id: `${productId}-r${i}`,
+        author,
+        rating: stars,
+        date: relativeDate(daysAgo),
+        title: content.title,
+        body: content.body,
+        verified: i % 4 !== 3,
+        helpful: 3 + ((seed >>> (i * 6 + 4)) % 46),
+      },
+    });
+  }
+  // newest first
+  return reviews.sort((a, b) => a.daysAgo - b.daysAgo).map((r) => r.review);
+}
+
+/** Deterministic 5→1 star distribution that averages roughly to the product rating. */
+export function ratingBreakdown(p: Product): { stars: number; pct: number; count: number }[] {
+  const r = p.rating;
+  const five = Math.round(Math.min(82, Math.max(25, (r - 2.2) * 34)));
+  const one = Math.round(Math.min(18, Math.max(1, (5 - r) * 7)));
+  const four = Math.round((100 - five - one) * 0.52);
+  const three = Math.round((100 - five - one - four) * 0.55);
+  const two = Math.max(0, 100 - five - four - three - one);
+  return [five, four, three, two, one].map((pct, i) => ({
+    stars: 5 - i,
+    pct,
+    count: Math.round((pct / 100) * p.ratingCount),
+  }));
+}

@@ -45,7 +45,7 @@ function TrackingTimeline({ status }: { status: Order["status"] }) {
           aria-hidden
           className={cn(
             "absolute left-[12.5%] top-[17px] h-0.5 rounded transition-all duration-700",
-            status === "Delivered" ? "bg-emerald-500" : "bg-brand-500"
+            status === "Delivered" ? "bg-success-500" : "bg-brand-500"
           )}
           style={{ width: `calc((100% - 25%) * ${progress / 100})` }}
         />
@@ -62,10 +62,10 @@ function TrackingTimeline({ status }: { status: Order["status"] }) {
               <span
                 className={cn(
                   "flex h-9 w-9 items-center justify-center rounded-full border-2 shadow-sm transition-colors",
-                  done && "border-emerald-500 bg-emerald-500 text-white",
+                  done && "border-success-500 bg-success-500 text-white",
                   active &&
                     (status === "Delivered"
-                      ? "border-emerald-500 bg-emerald-500 text-white ring-4 ring-emerald-500/20"
+                      ? "border-success-500 bg-success-500 text-white ring-4 ring-success-500/20"
                       : "border-brand-500 bg-brand-500 text-white ring-4 ring-brand-500/25"),
                   !done && !active && "border-border bg-background text-muted-foreground/60"
                 )}
@@ -75,8 +75,8 @@ function TrackingTimeline({ status }: { status: Order["status"] }) {
               <span
                 className={cn(
                   "text-[10px] font-semibold uppercase tracking-wide sm:text-[11px]",
-                  done && "text-emerald-600 dark:text-emerald-400",
-                  active && (status === "Delivered" ? "text-emerald-600 dark:text-emerald-400" : "text-brand-600 dark:text-brand-400"),
+                  done && "text-success-600 dark:text-success-400",
+                  active && (status === "Delivered" ? "text-success-600 dark:text-success-400" : "text-brand-600 dark:text-brand-400"),
                   !done && !active && "text-muted-foreground/60"
                 )}
               >
@@ -172,12 +172,12 @@ export function OrdersView() {
                     <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
                       Arriving
                     </p>
-                    <p className="font-semibold text-emerald-600 dark:text-emerald-400">{order.eta}</p>
+                    <p className="font-semibold text-success-600 dark:text-success-400">{order.eta}</p>
                   </div>
                   <Badge
                     className={
                       order.status === "Delivered"
-                        ? "border-0 bg-emerald-600 text-white"
+                        ? "border-0 bg-success-600 text-white"
                         : "border-0 bg-brand-500 text-white"
                     }
                   >

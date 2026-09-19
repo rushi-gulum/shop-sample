@@ -182,7 +182,7 @@ export function ChatWidget() {
         >
           <MessageCircle className="h-5 w-5" />
           <span className="text-sm font-bold">Ask Zoe</span>
-          <span className="absolute -right-0.5 -top-0.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-emerald-400" />
+          <span className="absolute -right-0.5 -top-0.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-success-400" />
         </button>
       )}
 
@@ -199,7 +199,7 @@ export function ChatWidget() {
         <div className="flex items-center gap-3 bg-gradient-to-r from-electric-600 to-electric-700 px-4 py-3 text-white">
           <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-white/20">
             <Bot className="h-5 w-5" />
-            <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-electric-700 bg-emerald-400" />
+            <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-electric-700 bg-success-400" />
           </span>
           <div className="min-w-0 flex-1 leading-tight">
             <p className="flex items-center gap-1 text-sm font-bold">

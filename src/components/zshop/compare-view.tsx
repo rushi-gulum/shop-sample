@@ -45,7 +45,7 @@ export function CompareView() {
       label: "Category",
       render: (id) => CATEGORY_MAP[PRODUCT_MAP[id].category]?.name ?? "—",
     },
-    { label: "Availability", render: () => <span className="font-semibold text-emerald-600 dark:text-emerald-400">In stock</span> },
+    { label: "Availability", render: () => <span className="font-semibold text-success-600 dark:text-success-400">In stock</span> },
     {
       label: "Best for",
       render: (id) => <span className="text-xs text-muted-foreground">{PRODUCT_MAP[id].tags?.slice(0, 3).map((t) => `#${t}`).join(" ") || "—"}</span>,
@@ -92,7 +92,7 @@ export function CompareView() {
             Add up to 3 products using the scale icon on any product card.
           </p>
           <Button
-            className="bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
+            className="bg-brand-500 font-bold text-white hover:bg-brand-600"
             onClick={() => navigate({ name: "shop", category: "all" })}
           >
             Browse products
@@ -147,7 +147,7 @@ export function CompareView() {
                     <td key={p.id} className="p-3">
                       <Button
                         size="sm"
-                        className="w-full bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
+                        className="w-full bg-brand-500 font-bold text-white hover:bg-brand-600"
                         onClick={() => addToCart(p.id)}
                       >
                         <ShoppingCart className="mr-1 h-3.5 w-3.5" /> Add to cart

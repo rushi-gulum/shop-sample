@@ -131,7 +131,7 @@ export function Footer() {
                 <button
                   key={label}
                   aria-label={label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-800 text-neutral-300 transition hover:bg-brand-400 hover:text-neutral-950"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-800 text-neutral-300 transition hover:bg-brand-500 hover:text-white"
                   onClick={() => toast.info(`${label} — demo link`)}
                 >
                   <Icon className="h-4 w-4" />
@@ -221,7 +221,7 @@ export function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="h-10 border-neutral-700 bg-neutral-900 text-white placeholder:text-neutral-500"
               />
-              <Button type="submit" className="h-10 bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500">
+              <Button type="submit" className="h-10 bg-brand-500 font-bold text-white hover:bg-brand-600">
                 Subscribe
               </Button>
             </form>

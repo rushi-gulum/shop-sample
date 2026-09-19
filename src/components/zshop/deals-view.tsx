@@ -4,6 +4,7 @@ import { Flame, Home, ChevronRight, Sparkles, Timer } from "lucide-react";
 import { dealProducts } from "@/lib/zshop/data";
 import { useZShop } from "@/lib/zshop/store";
 import { ProductCard } from "./product-card";
+import { FlashCountdown } from "./flash-countdown";
 
 export function DealsView() {
   const navigate = useZShop((s) => s.navigate);
@@ -34,6 +35,7 @@ export function DealsView() {
         <p className="mt-1 max-w-md text-sm text-white/90 sm:text-base">
           Save big on the products you love. Limited time only.
         </p>
+        <FlashCountdown variant="hero" className="mt-4" />
         <span className="absolute right-6 top-1/2 hidden -translate-y-1/2 text-6xl opacity-30 md:block">
           <Sparkles />
         </span>

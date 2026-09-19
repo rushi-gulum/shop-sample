@@ -27,11 +27,13 @@ import {
   relatedProducts,
 } from "@/lib/zshop/data";
 import { usePrice, useZShop } from "@/lib/zshop/store";
+import { useFocusTrap, useScrollLock } from "@/hooks/use-focus-trap";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { StarRating } from "./star-rating";
 import { ProductCard } from "./product-card";
+import { PdpReviews } from "./pdp-reviews";
 import { cn } from "@/lib/utils";
 
 export function ProductDetail({ id }: { id: string }) {
@@ -52,6 +54,8 @@ export function ProductDetail({ id }: { id: string }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [showStickyBar, setShowStickyBar] = useState(false);
   const buyBoxRef = useRef<HTMLDivElement | null>(null);
+  const lightboxTrapRef = useFocusTrap<HTMLDivElement>(lightboxOpen);
+  useScrollLock(lightboxOpen);
 
   const gallery = useMemo(
     () => (p?.gallery && p.gallery.length > 1 ? p.gallery : p ? [p.image] : []),
@@ -163,10 +167,10 @@ export function ProductDetail({ id }: { id: string }) {
             />
             <div className="absolute left-3 top-3 z-[2] flex flex-col gap-1.5">
               {p.featured && (
-                <Badge className="border-0 bg-brand-400 text-black">Featured</Badge>
+                <Badge className="border-0 bg-brand-500 text-white">Featured</Badge>
               )}
               {p.newArrival && !p.featured && (
-                <Badge className="border-0 bg-emerald-500 text-white">New</Badge>
+                <Badge className="border-0 bg-success-500 text-white">New</Badge>
               )}
               {discount !== null && (
                 <Badge className="border-0 bg-brand-600 text-white">-{discount}%</Badge>
@@ -224,7 +228,12 @@ export function ProductDetail({ id }: { id: string }) {
           <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
             <StarRating rating={p.rating} size={16} />
             <span className="font-semibold">{p.rating}</span>
-            <button className="text-brand-600 underline-offset-2 hover:underline dark:text-brand-400">
+            <button
+              className="text-brand-600 underline-offset-2 hover:underline dark:text-brand-400"
+              onClick={() =>
+                document.getElementById("reviews")?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               {p.ratingCount.toLocaleString()} ratings
             </button>
             {p.tags?.slice(0, 3).map((t) => (
@@ -245,7 +254,7 @@ export function ProductDetail({ id }: { id: string }) {
                   <Badge variant="destructive" className="bg-brand-600">
                     -{discount}%
                   </Badge>
-                  <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                  <span className="text-sm font-semibold text-success-600 dark:text-success-400">
                     You save {price(savings)}
                   </span>
                 </>
@@ -256,7 +265,7 @@ export function ProductDetail({ id }: { id: string }) {
 
           <p className="mt-4 leading-relaxed text-muted-foreground">{p.description}</p>
 
-          <p className="mt-3 flex items-center gap-1.5 text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+          <p className="mt-3 flex items-center gap-1.5 text-sm font-semibold text-success-600 dark:text-success-400">
             <BadgeCheck className="h-4 w-4" aria-hidden />
             In stock — ships within 24 hours
           </p>
@@ -383,7 +392,7 @@ export function ProductDetail({ id }: { id: string }) {
                     <span className="relative aspect-square overflow-hidden rounded-lg bg-muted">
                       <Image src={b.image} alt={b.title} fill sizes="160px" className="object-cover" />
                       {selectedIds.includes(b.id) && (
-                        <span className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-white">
+                        <span className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-success-500 text-white">
                           <Check className="h-3 w-3" aria-hidden />
                         </span>
                       )}
@@ -420,7 +429,7 @@ export function ProductDetail({ id }: { id: string }) {
               {bundleListTotal > bundleTotal && (
                 <p className="text-sm text-muted-foreground">
                   <span className="line-through">{price(bundleListTotal)}</span>{" "}
-                  <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                  <span className="font-semibold text-success-600 dark:text-success-400">
                     Save {price(bundleListTotal - bundleTotal)}
                   </span>
                 </p>
@@ -429,7 +438,7 @@ export function ProductDetail({ id }: { id: string }) {
                 {selectedIds.length} item{selectedIds.length === 1 ? "" : "s"} selected
               </p>
               <Button
-                className="mt-3 w-full bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
+                className="mt-3 w-full bg-brand-500 font-bold text-white hover:bg-brand-600"
                 onClick={addSelectedBundle}
               >
                 <ShoppingCart className="mr-1.5 h-4 w-4" />
@@ -439,6 +448,9 @@ export function ProductDetail({ id }: { id: string }) {
           </div>
         </CardContent>
       </Card>
+
+      {/* customer reviews */}
+      <PdpReviews product={p} />
 
       {/* popular in category */}
       <section className="mt-10" aria-labelledby="popular-in-category">
@@ -459,10 +471,12 @@ export function ProductDetail({ id }: { id: string }) {
       {/* image lightbox */}
       {lightboxOpen && (
         <div
+          ref={lightboxTrapRef}
           role="dialog"
           aria-modal="true"
           aria-label={`${p.title} image viewer`}
-          className="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+          tabIndex={-1}
+          className="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-black/85 p-4 outline-none backdrop-blur-sm"
           onClick={() => setLightboxOpen(false)}
         >
           <button
@@ -532,7 +546,7 @@ export function ProductDetail({ id }: { id: string }) {
             </span>
           </span>
           <Button
-            className="bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
+            className="bg-brand-500 font-bold text-white hover:bg-brand-600"
             onClick={() => addToCart(p.id, qty)}
           >
             <ShoppingCart className="h-4 w-4" /> Add to cart

@@ -79,7 +79,7 @@ export function Header() {
   }
 
   return (
-    <header className="bg-brand-400 dark:bg-brand-400">
+    <header className="bg-brand-500 dark:bg-brand-500">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-2 px-3 py-2.5 sm:gap-3 sm:px-6">
         {/* logo */}
         <button

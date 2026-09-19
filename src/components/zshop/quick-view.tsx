@@ -74,7 +74,7 @@ export function QuickViewModal() {
               <div className="text-xs text-muted-foreground">
                 Category: {CATEGORY_MAP[p.category]?.name} ·{" "}
                 {p.compareAt ? (
-                  <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                  <span className="font-semibold text-success-600 dark:text-success-400">
                     You save {price(p.compareAt - p.price)}
                   </span>
                 ) : (

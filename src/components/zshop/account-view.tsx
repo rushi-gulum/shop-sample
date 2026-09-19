@@ -26,7 +26,7 @@ export function AccountView() {
           Sign in to view your profile, orders and wishlist.
         </p>
         <Button
-          className="mt-2 bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
+          className="mt-2 bg-brand-500 font-bold text-white hover:bg-brand-600"
           onClick={() => useZShop.getState().requestSignIn("account")}
         >
           Sign in
@@ -60,18 +60,18 @@ export function AccountView() {
       <Card className="mt-6">
         <CardContent className="flex flex-wrap items-center gap-4 p-6">
           <Avatar className="h-16 w-16">
-            <AvatarFallback className="bg-brand-400 text-xl font-black text-neutral-950">
+            <AvatarFallback className="bg-brand-500 text-xl font-black text-white">
               {initials}
             </AvatarFallback>
           </Avatar>
           <div className="min-w-0 flex-1">
             <p className="flex items-center gap-2 text-lg font-bold">
               {user.name}
-              <Badge className="border-0 bg-brand-400 text-black">Z Prime</Badge>
+              <Badge className="border-0 bg-brand-500 text-white">Z Prime</Badge>
             </p>
             <p className="truncate text-sm text-muted-foreground">{user.email}</p>
             <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
-              <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" /> Member since 2025 ·
+              <ShieldCheck className="h-3.5 w-3.5 text-success-600" /> Member since 2025 ·
               Demo account
             </p>
           </div>

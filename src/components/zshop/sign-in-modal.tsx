@@ -157,7 +157,7 @@ export function SignInModal() {
               </div>
 
               <Button
-                className="w-full bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
+                className="w-full bg-brand-500 font-bold text-white hover:bg-brand-600"
                 onClick={submit}
                 data-testid="signin-submit"
               >
@@ -238,7 +238,7 @@ export function SignInModal() {
               </div>
 
               <Button
-                className="w-full bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
+                className="w-full bg-brand-500 font-bold text-white hover:bg-brand-600"
                 onClick={() => {
                   if (intent === "register") submit();
                   else submit();
@@ -259,7 +259,7 @@ export function SignInModal() {
           )}
 
           <p className="mt-4 flex items-center justify-center gap-1 text-[11px] text-muted-foreground">
-            <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
+            <ShieldCheck className="h-3.5 w-3.5 text-success-600" />
             Secured with 256-bit encryption
           </p>
         </div>

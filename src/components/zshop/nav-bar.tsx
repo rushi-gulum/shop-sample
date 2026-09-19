@@ -25,8 +25,8 @@ export function NavBar() {
       <div className="mx-auto flex max-w-7xl items-center gap-0.5 overflow-x-auto px-3 py-1.5 sm:px-6 [&::-webkit-scrollbar]:hidden">
         <button
           className={cn(
-            "flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm font-bold text-neutral-950 transition hover:bg-brand-400",
-            activeCategory === "__deals" && "bg-brand-400"
+            "flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm font-bold text-white transition hover:bg-white/15",
+            activeCategory === "__deals" && "bg-white/20"
           )}
           onClick={() => navigate({ name: "deals" })}
         >
@@ -35,7 +35,7 @@ export function NavBar() {
         </button>
         <button
           className={cn(
-            "shrink-0 whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm text-neutral-950 transition hover:bg-brand-400",
+            "shrink-0 whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm text-white/90 transition hover:bg-white/15",
             activeCategory === null && "font-bold"
           )}
           onClick={goAll}
@@ -46,8 +46,8 @@ export function NavBar() {
           <button
             key={c.id}
             className={cn(
-              "shrink-0 whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm text-neutral-950 transition hover:bg-brand-400",
-              activeCategory === c.id && "bg-brand-400 font-semibold"
+              "shrink-0 whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm text-white/90 transition hover:bg-white/15",
+              activeCategory === c.id && "bg-white/20 font-semibold"
             )}
             onClick={() => navigate({ name: "shop", category: c.id })}
           >

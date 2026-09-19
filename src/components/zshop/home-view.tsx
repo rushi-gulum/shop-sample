@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, Flame, Sparkles, TrendingUp } from "lucide-react";
+import { ChevronRight, Flame, History, Sparkles, TrendingUp } from "lucide-react";
 import { dealProducts, featuredProducts, newArrivals } from "@/lib/zshop/data";
 import { useZShop } from "@/lib/zshop/store";
 import { HeroCarousel } from "./hero-carousel";
@@ -8,6 +8,7 @@ import { TrustBadges } from "./trust-badges";
 import { CategoryChips } from "./category-chips";
 import { ProductCard } from "./product-card";
 import { PromoCards } from "./promo-cards";
+import { FlashCountdown } from "./flash-countdown";
 
 export function HomeView() {
   const navigate = useZShop((s) => s.navigate);
@@ -31,6 +32,7 @@ export function HomeView() {
           <span className="rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-bold text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">
             Limited time
           </span>
+          <FlashCountdown variant="card" className="max-sm:hidden" />
           <button
             className="ml-auto flex items-center gap-1 text-sm font-semibold text-brand-600 transition hover:gap-2 dark:text-brand-400"
             onClick={() => navigate({ name: "deals" })}
@@ -73,7 +75,7 @@ export function HomeView() {
       <section aria-labelledby="new-arrivals" className="mx-auto max-w-7xl px-3 pt-10 sm:px-6">
         <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
           <h2 id="new-arrivals" className="flex items-center gap-2 text-xl font-black sm:text-2xl">
-            <TrendingUp className="h-5 w-5 text-emerald-500" />
+            <TrendingUp className="h-5 w-5 text-success-500" />
             New arrivals
           </h2>
           <button
@@ -99,12 +101,20 @@ export function HomeView() {
 
 function RecentlyViewed() {
   const recentlyViewed = useZShop((s) => s.recentlyViewed);
+  const clearRecentlyViewed = useZShop((s) => s.clearRecentlyViewed);
   if (recentlyViewed.length === 0) return null;
   return (
     <section aria-label="Recently viewed" className="mx-auto max-w-7xl px-3 pt-10 sm:px-6">
       <div className="mb-4 flex items-center gap-2">
         <Sparkles className="h-5 w-5 text-brand-500" />
         <h2 className="text-xl font-black">Recently viewed</h2>
+        <button
+          className="ml-auto flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold text-muted-foreground transition hover:border-brand-300 hover:text-brand-600 dark:hover:text-brand-400"
+          onClick={clearRecentlyViewed}
+        >
+          <History className="h-3.5 w-3.5" aria-hidden />
+          Clear history
+        </button>
       </div>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         {recentlyViewed.slice(0, 6).map((id) => (

@@ -57,12 +57,12 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
         {!hideBadges && (
           <div className="absolute left-2 top-2 flex flex-col items-start gap-1">
             {p.featured && (
-              <Badge className="border-0 bg-brand-400 text-black shadow-sm hover:bg-brand-400">
+              <Badge className="border-0 bg-brand-500 text-white shadow-sm hover:bg-brand-500">
                 Featured
               </Badge>
             )}
             {p.newArrival && !p.featured && (
-              <Badge className="border-0 bg-emerald-500 text-white shadow-sm hover:bg-emerald-500">
+              <Badge className="border-0 bg-success-500 text-white shadow-sm hover:bg-success-500">
                 New
               </Badge>
             )}
@@ -109,7 +109,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
             aria-label={inCompare ? "Remove from compare" : "Add to compare"}
             className={cn(
               "h-8 w-8 rounded-full shadow-sm",
-              inCompare && "bg-brand-400 text-black hover:bg-brand-400"
+              inCompare && "bg-brand-500 text-white hover:bg-brand-500"
             )}
             onClick={(e) => {
               e.stopPropagation();

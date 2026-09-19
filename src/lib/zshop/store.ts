@@ -96,6 +96,7 @@ interface ZShopState {
   toggleWishlist: (id: string) => void;
   toggleCompare: (id: string) => void;
   clearCompare: () => void;
+  clearRecentlyViewed: () => void;
   setCurrency: (c: CurrencyCode) => void;
   applyPromo: (code: string) => boolean;
   removePromo: () => void;
@@ -228,6 +229,11 @@ export const useZShop = create<ZShopState>()(
       },
 
       clearCompare: () => set({ compare: [] }),
+
+      clearRecentlyViewed: () => {
+        set({ recentlyViewed: [] });
+        toast("Recently viewed cleared");
+      },
 
       setCurrency: (c) => set({ currency: c }),
 

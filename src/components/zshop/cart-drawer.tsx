@@ -81,7 +81,7 @@ export function CartDrawer() {
               Browse our catalog and add your favorite items.
             </p>
             <Button
-              className="mt-2 gap-2 bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
+              className="mt-2 gap-2 bg-brand-500 font-bold text-white hover:bg-brand-600"
               onClick={() => navigate({ name: "shop", category: "all" })}
             >
               Start shopping <X className="hidden" />
@@ -101,7 +101,7 @@ export function CartDrawer() {
                   more for FREE shipping
                 </p>
               ) : (
-                <p className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                <p className="flex items-center gap-1.5 text-xs font-semibold text-success-600 dark:text-success-400">
                   <PartyPopper className="h-3.5 w-3.5" aria-hidden />
                   You unlocked FREE shipping!
                 </p>
@@ -227,7 +227,7 @@ export function CartDrawer() {
                 </Button>
               </div>
               {t.promoApplied && (
-                <div className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-1.5 text-xs text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
+                <div className="flex items-center justify-between rounded-lg bg-success-50 px-3 py-1.5 text-xs text-success-700 dark:bg-success-950/50 dark:text-success-300">
                   <span className="flex items-center gap-1.5">
                     <CheckCircle2 className="h-3.5 w-3.5" />
                     {t.promoApplied} applied — {t.promoLabel}
@@ -261,7 +261,7 @@ export function CartDrawer() {
               {t.listTotal > t.subtotal && (
                 <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">Deal savings</span>
-                  <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                  <span className="font-semibold text-success-600 dark:text-success-400">
                     −{price(t.listTotal - t.subtotal)}
                   </span>
                 </div>
@@ -269,7 +269,7 @@ export function CartDrawer() {
               {t.promoDiscount > 0 && (
                 <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">Promo {t.promoApplied}</span>
-                  <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                  <span className="font-semibold text-success-600 dark:text-success-400">
                     −{price(t.promoDiscount)}
                   </span>
                 </div>
@@ -278,7 +278,7 @@ export function CartDrawer() {
                 <span className="text-muted-foreground">Shipping</span>
                 <span className="font-semibold">
                   {t.shipping === 0 ? (
-                    <span className="text-emerald-600 dark:text-emerald-400">FREE</span>
+                    <span className="text-success-600 dark:text-success-400">FREE</span>
                   ) : (
                     price(t.shipping)
                   )}
@@ -290,7 +290,7 @@ export function CartDrawer() {
                 <span className="font-black">{price(t.total)}</span>
               </div>
               <Button
-                className="mt-2 w-full bg-brand-400 py-2.5 font-bold text-neutral-950 hover:bg-brand-500"
+                className="mt-2 w-full bg-brand-500 py-2.5 font-bold text-white hover:bg-brand-600"
                 onClick={checkout}
                 data-testid="checkout-button"
               >

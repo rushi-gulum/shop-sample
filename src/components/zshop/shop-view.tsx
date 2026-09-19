@@ -286,7 +286,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
                 <SlidersHorizontal className="mr-1 h-4 w-4" />
                 Filters
                 {activeFilterCount > 0 && (
-                  <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-400 text-[11px] font-bold text-black">
+                  <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-500 text-[11px] font-bold text-white">
                     {activeFilterCount}
                   </span>
                 )}
@@ -337,7 +337,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
                   Clear filters
                 </Button>
                 <Button
-                  className="bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
+                  className="bg-brand-500 font-bold text-white hover:bg-brand-600"
                   onClick={() => navigate({ name: "shop", category: "all" })}
                 >
                   Browse all products

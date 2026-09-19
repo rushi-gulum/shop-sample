@@ -164,10 +164,10 @@ export function CheckoutView() {
   if (placedOrder) {
     return (
       <div className="mx-auto max-w-2xl px-3 py-10 sm:px-6" data-testid="order-confirmation">
-        <Card className="border-emerald-200 dark:border-emerald-500/40">
+        <Card className="border-success-200 dark:border-success-500/40">
           <CardContent className="flex flex-col items-center gap-4 p-8 text-center">
-            <span className="flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950/50">
-              <PackageCheck className="h-10 w-10 text-emerald-600 dark:text-emerald-400" />
+            <span className="flex h-20 w-20 items-center justify-center rounded-full bg-success-100 dark:bg-success-950/50">
+              <PackageCheck className="h-10 w-10 text-success-600 dark:text-success-400" />
             </span>
             <div>
               <h1 className="flex items-center justify-center gap-2 text-2xl font-black">
@@ -186,7 +186,7 @@ export function CheckoutView() {
               </div>
               <div className="mt-1 flex items-center justify-between">
                 <span className="text-muted-foreground">Estimated delivery</span>
-                <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                <span className="font-semibold text-success-600 dark:text-success-400">
                   {placedOrder.eta}
                 </span>
               </div>
@@ -205,7 +205,7 @@ export function CheckoutView() {
             </div>
             <div className="flex gap-3">
               <Button
-                className="bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
+                className="bg-brand-500 font-bold text-white hover:bg-brand-600"
                 onClick={() => {
                   useZShop.getState().setCheckoutOrderId(null);
                   navigate({ name: "orders" });
@@ -239,7 +239,7 @@ export function CheckoutView() {
         <h1 className="text-2xl font-black">Your cart is empty</h1>
         <p className="text-sm text-muted-foreground">Add a few products before checking out.</p>
         <Button
-          className="mt-2 bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
+          className="mt-2 bg-brand-500 font-bold text-white hover:bg-brand-600"
           onClick={() => navigate({ name: "shop", category: "all" })}
         >
           Start shopping
@@ -255,7 +255,7 @@ export function CheckoutView() {
     <div className="mx-auto max-w-7xl px-3 py-4 sm:px-6" data-testid="checkout-view">
       <h1 className="text-2xl font-black sm:text-3xl">Checkout</h1>
       <p className="mt-0.5 text-sm text-muted-foreground">
-        <Lock className="mr-1 inline h-3.5 w-3.5 text-emerald-600" />
+        <Lock className="mr-1 inline h-3.5 w-3.5 text-success-600" />
         Secure 256-bit SSL encrypted checkout — demo only, no real payment is taken.
       </p>
 
@@ -265,7 +265,7 @@ export function CheckoutView() {
           <Card>
             <CardContent className="p-5">
               <h2 className="mb-4 flex items-center gap-2 text-lg font-bold">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-400 text-sm font-black text-neutral-950">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-sm font-black text-white">
                   1
                 </span>
                 <MapPin className="h-4.5 w-4.5 text-brand-600" /> Shipping address
@@ -352,7 +352,7 @@ export function CheckoutView() {
           <Card>
             <CardContent className="p-5">
               <h2 className="mb-4 flex items-center gap-2 text-lg font-bold">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-400 text-sm font-black text-neutral-950">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-sm font-black text-white">
                   2
                 </span>
                 <CreditCard className="h-4.5 w-4.5 text-brand-600" /> Payment method
@@ -454,14 +454,14 @@ export function CheckoutView() {
           <Card>
             <CardContent className="p-5">
               <h2 className="mb-3 flex items-center gap-2 text-lg font-bold">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-400 text-sm font-black text-neutral-950">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-sm font-black text-white">
                   3
                 </span>
                 <Truck className="h-4.5 w-4.5 text-brand-600" /> Delivery
               </h2>
-              <div className="flex items-center justify-between rounded-xl border border-emerald-200 bg-emerald-50 p-4 dark:border-emerald-500/40 dark:bg-emerald-950/30">
+              <div className="flex items-center justify-between rounded-xl border border-success-200 bg-success-50 p-4 dark:border-success-500/40 dark:bg-success-950/30">
                 <div className="flex items-center gap-3">
-                  <BadgeCheck className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                  <BadgeCheck className="h-5 w-5 text-success-600 dark:text-success-400" />
                   <div>
                     <p className="text-sm font-bold">FREE Standard Shipping</p>
                     <p className="text-xs text-muted-foreground">
@@ -469,7 +469,7 @@ export function CheckoutView() {
                     </p>
                   </div>
                 </div>
-                <span className="text-sm font-black text-emerald-600 dark:text-emerald-400">
+                <span className="text-sm font-black text-success-600 dark:text-success-400">
                   {t.shipping === 0 ? "FREE" : price(t.shipping)}
                 </span>
               </div>
@@ -505,7 +505,7 @@ export function CheckoutView() {
                 {t.listTotal > t.subtotal && (
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Deal savings</span>
-                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                    <span className="font-semibold text-success-600 dark:text-success-400">
                       −{price(t.listTotal - t.subtotal)}
                     </span>
                   </div>
@@ -513,7 +513,7 @@ export function CheckoutView() {
                 {t.bundleSavings > 0 && (
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Bundle {t.bundleBrand}</span>
-                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                    <span className="font-semibold text-success-600 dark:text-success-400">
                       −{price(t.bundleSavings)}
                     </span>
                   </div>
@@ -521,7 +521,7 @@ export function CheckoutView() {
                 {t.promoDiscount > 0 && (
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Promo {t.promoApplied}</span>
-                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                    <span className="font-semibold text-success-600 dark:text-success-400">
                       −{price(t.promoDiscount)}
                     </span>
                   </div>
@@ -530,7 +530,7 @@ export function CheckoutView() {
                   <span className="text-muted-foreground">Shipping</span>
                   <span className="font-semibold">
                     {t.shipping === 0 ? (
-                      <span className="text-emerald-600 dark:text-emerald-400">FREE</span>
+                      <span className="text-success-600 dark:text-success-400">FREE</span>
                     ) : (
                       price(t.shipping)
                     )}
@@ -543,7 +543,7 @@ export function CheckoutView() {
                 </div>
               </div>
               <Button
-                className="mt-4 h-12 w-full bg-brand-400 text-base font-bold text-neutral-950 hover:bg-brand-500 disabled:opacity-60"
+                className="mt-4 h-12 w-full bg-brand-500 text-base font-bold text-white hover:bg-brand-600 disabled:opacity-60"
                 onClick={confirmOrder}
                 disabled={placing}
                 data-testid="place-order"
