@@ -40,7 +40,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
     >
       {/* image area */}
       <div
-        className="relative aspect-square cursor-pointer overflow-hidden bg-muted/30"
+        className="img-skeleton relative aspect-square cursor-pointer overflow-hidden bg-muted/30"
         onClick={() => openProduct(p.id)}
         role="link"
         aria-label={`View ${p.title}`}

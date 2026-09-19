@@ -1,11 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import {
   BadgeCheck,
   Check,
+  ChevronLeft,
   ChevronRight,
+  Expand,
   Heart,
   Home,
   Minus,
@@ -13,6 +15,7 @@ import {
   Scale,
   ShoppingCart,
   TrendingUp,
+  X,
   Zap,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -46,6 +49,9 @@ export function ProductDetail({ id }: { id: string }) {
   const [qty, setQtyLocal] = useState(1);
   const [imgIdx, setImgIdx] = useState(0);
   const [bundleSel, setBundleSel] = useState<string[]>([]);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [showStickyBar, setShowStickyBar] = useState(false);
+  const buyBoxRef = useRef<HTMLDivElement | null>(null);
 
   const gallery = useMemo(
     () => (p?.gallery && p.gallery.length > 1 ? p.gallery : p ? [p.image] : []),
@@ -53,6 +59,34 @@ export function ProductDetail({ id }: { id: string }) {
   );
   const related = useMemo(() => (p ? relatedProducts(p, 4) : []), [p]);
   const bundle = useMemo(() => (p ? bundleFor(p) : []), [p]);
+
+  // sticky add-to-cart bar appears once the buy box scrolls out of view
+  useEffect(() => {
+    const el = buyBoxRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) =>
+        setShowStickyBar(!entry.isIntersecting && entry.boundingClientRect.top < 0),
+      { threshold: 0 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [id]);
+
+  // lightbox keyboard controls
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxOpen(false);
+      if (e.key === "ArrowRight")
+        setImgIdx((i) => (i + 1) % Math.max(gallery.length, 1));
+      if (e.key === "ArrowLeft")
+        setImgIdx((i) => (i - 1 + Math.max(gallery.length, 1)) % Math.max(gallery.length, 1));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxOpen, gallery.length]);
+
 
   if (!p) {
     return (
@@ -127,7 +161,7 @@ export function ProductDetail({ id }: { id: string }) {
               priority
               className="object-cover"
             />
-            <div className="absolute left-3 top-3 flex flex-col gap-1.5">
+            <div className="absolute left-3 top-3 z-[2] flex flex-col gap-1.5">
               {p.featured && (
                 <Badge className="border-0 bg-amber-400 text-black">Featured</Badge>
               )}
@@ -139,9 +173,21 @@ export function ProductDetail({ id }: { id: string }) {
               )}
             </div>
             <button
+              aria-label="Zoom image"
+              type="button"
+              onClick={() => setLightboxOpen(true)}
+              className="absolute inset-0 z-[1] cursor-zoom-in transition-colors hover:bg-black/5"
+            />
+            <span
+              aria-hidden
+              className="pointer-events-none absolute bottom-3 right-3 z-[2] flex h-8 w-8 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur-sm"
+            >
+              <Expand className="h-4 w-4" />
+            </span>
+            <button
               aria-label="Toggle wishlist"
               className={cn(
-                "absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md transition hover:scale-105 dark:bg-neutral-800",
+                "absolute right-3 top-3 z-[2] flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md transition hover:scale-105 dark:bg-neutral-800",
                 inWishlist && "text-rose-600"
               )}
               onClick={() => toggleWishlist(p.id)}
@@ -216,7 +262,7 @@ export function ProductDetail({ id }: { id: string }) {
           </p>
 
           {/* qty + subtotal + actions */}
-          <div className="mt-5 flex flex-wrap items-center gap-3">
+          <div ref={buyBoxRef} className="mt-5 flex flex-wrap items-center gap-3">
             <div className="flex items-center rounded-lg border">
               <button
                 aria-label="Decrease quantity"
@@ -409,6 +455,93 @@ export function ProductDetail({ id }: { id: string }) {
           ))}
         </div>
       </section>
+
+      {/* image lightbox */}
+      {lightboxOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${p.title} image viewer`}
+          className="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <button
+            type="button"
+            aria-label="Close image viewer"
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/25"
+            onClick={() => setLightboxOpen(false)}
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            aria-label="Previous image"
+            className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/25 sm:left-6"
+            onClick={(e) => {
+              e.stopPropagation();
+              setImgIdx((i) => (i - 1 + gallery.length) % gallery.length);
+            }}
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <div
+            className="relative h-[72vh] w-full max-w-3xl overflow-hidden rounded-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={gallery[imgIdx] ?? p.image}
+              alt={`${p.title} — view ${imgIdx + 1} of ${gallery.length}`}
+              fill
+              sizes="90vw"
+              className="object-contain"
+            />
+          </div>
+          <button
+            type="button"
+            aria-label="Next image"
+            className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/25 sm:right-6"
+            onClick={(e) => {
+              e.stopPropagation();
+              setImgIdx((i) => (i + 1) % gallery.length);
+            }}
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+          <p className="mt-3 text-xs font-semibold text-white/80">
+            {imgIdx + 1} / {gallery.length} — use arrow keys
+          </p>
+        </div>
+      )}
+
+      {/* sticky add-to-cart bar */}
+      <div
+        aria-hidden={!showStickyBar}
+        className={cn(
+          "zshop-sticky-bar fixed inset-x-0 bottom-0 z-40 border-t bg-background/95 shadow-[0_-8px_24px_rgba(0,0,0,0.08)] backdrop-blur transition-transform duration-300",
+          showStickyBar ? "translate-y-0" : "translate-y-full"
+        )}
+      >
+        <div className="mx-auto flex max-w-7xl items-center gap-3 px-3 py-2.5 sm:px-6">
+          <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg border bg-muted">
+            <Image src={p.image} alt="" fill sizes="44px" className="object-cover" />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block truncate text-sm font-bold">{p.title}</span>
+            <span className="text-xs text-muted-foreground">
+              {price(p.price)} · Qty {qty}
+            </span>
+          </span>
+          <Button
+            className="bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+            onClick={() => addToCart(p.id, qty)}
+          >
+            <ShoppingCart className="h-4 w-4" /> Add to cart
+          </Button>
+          <Button variant="outline" className="hidden sm:inline-flex" onClick={buyNow}>
+            <Zap className="h-4 w-4" /> Buy now
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

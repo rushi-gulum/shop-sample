@@ -1,19 +1,103 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronRight, Home, Package, ShoppingCart } from "lucide-react";
+import {
+  ChevronRight,
+  ClipboardList,
+  Home,
+  Navigation,
+  Package,
+  PackageCheck,
+  ShoppingCart,
+  Truck,
+} from "lucide-react";
 import { usePrice, useZShop } from "@/lib/zshop/store";
 import type { Order } from "@/lib/zshop/types";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
+import { cn } from "@/lib/utils";
 
-const STATUS_STEPS: Record<Order["status"], number> = {
-  Processing: 25,
-  Shipped: 55,
-  "Out for delivery": 80,
-  Delivered: 100,
+const STATUS_INDEX: Record<Order["status"], number> = {
+  Processing: 0,
+  Shipped: 1,
+  "Out for delivery": 2,
+  Delivered: 3,
 };
+
+const TIMELINE_STEPS = [
+  { label: "Processing", icon: ClipboardList, hint: "Order confirmed" },
+  { label: "Shipped", icon: Truck, hint: "On the way" },
+  { label: "Out for delivery", icon: Navigation, hint: "Almost there" },
+  { label: "Delivered", icon: PackageCheck, hint: "Enjoy!" },
+] as const;
+
+function TrackingTimeline({ status }: { status: Order["status"] }) {
+  const current = STATUS_INDEX[status];
+  const progress = (current / (TIMELINE_STEPS.length - 1)) * 100;
+
+  return (
+    <div>
+      <ol className="relative flex" aria-label="Delivery progress">
+        {/* base line */}
+        <div aria-hidden className="absolute left-[12.5%] right-[12.5%] top-[17px] h-0.5 rounded bg-border" />
+        {/* filled line */}
+        <div
+          aria-hidden
+          className={cn(
+            "absolute left-[12.5%] top-[17px] h-0.5 rounded transition-all duration-700",
+            status === "Delivered" ? "bg-emerald-500" : "bg-amber-400"
+          )}
+          style={{ width: `calc((100% - 25%) * ${progress / 100})` }}
+        />
+        {TIMELINE_STEPS.map((step, i) => {
+          const done = i < current;
+          const active = i === current;
+          const Icon = step.icon;
+          return (
+            <li
+              key={step.label}
+              aria-current={active ? "step" : undefined}
+              className="relative z-10 flex flex-1 flex-col items-center gap-1.5 text-center"
+            >
+              <span
+                className={cn(
+                  "flex h-9 w-9 items-center justify-center rounded-full border-2 shadow-sm transition-colors",
+                  done && "border-emerald-500 bg-emerald-500 text-white",
+                  active &&
+                    (status === "Delivered"
+                      ? "border-emerald-500 bg-emerald-500 text-white ring-4 ring-emerald-500/20"
+                      : "border-amber-400 bg-amber-400 text-neutral-950 ring-4 ring-amber-400/25"),
+                  !done && !active && "border-border bg-background text-muted-foreground/60"
+                )}
+              >
+                <Icon className="h-4 w-4" aria-hidden />
+              </span>
+              <span
+                className={cn(
+                  "text-[10px] font-semibold uppercase tracking-wide sm:text-[11px]",
+                  done && "text-emerald-600 dark:text-emerald-400",
+                  active && (status === "Delivered" ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400"),
+                  !done && !active && "text-muted-foreground/60"
+                )}
+              >
+                {step.label}
+              </span>
+              <span className="hidden text-[10px] text-muted-foreground/70 sm:block">{step.hint}</span>
+            </li>
+          );
+        })}
+      </ol>
+      {/* courier line */}
+      <p className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground">
+        <Truck className="h-3 w-3" aria-hidden />
+        Z Express Logistics · Tracking ID
+        <span className="font-mono font-semibold text-foreground">
+          ZS-{status.slice(0, 2).toUpperCase()}-{current + 1}0{TIMELINE_STEPS.length}
+        </span>
+      </p>
+    </div>
+  );
+}
 
 export function OrdersView() {
   const orders = useZShop((s) => s.orders);
@@ -102,15 +186,9 @@ export function OrdersView() {
                 </div>
               </div>
 
-              {/* tracking */}
-              <div className="border-b px-4 py-3">
-                <Progress value={STATUS_STEPS[order.status]} className="h-1.5" />
-                <div className="mt-1.5 flex justify-between text-[10px] uppercase tracking-wide text-muted-foreground">
-                  <span>Processing</span>
-                  <span>Shipped</span>
-                  <span>Out for delivery</span>
-                  <span>Delivered</span>
-                </div>
+              {/* tracking timeline */}
+              <div className="border-b px-4 py-4">
+                <TrackingTimeline status={order.status} />
               </div>
 
               {/* items */}

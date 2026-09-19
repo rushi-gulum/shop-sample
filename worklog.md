@@ -22,3 +22,26 @@ Stage Summary:
 - Verified screenshots: analysis/svg-top.png, svg-categories2.png (dark), svg-light3.png (light), svg-cat-click.png (navigation), svg-deals.png.
 
 ---
+---
+Task ID: 2
+Agent: Z.ai Code (cron webDevReview, round 2)
+Task: QA sweep + bug fixes + new features (orders timeline, PDP lightbox/sticky bar, styling polish)
+
+Work Log:
+- Recovered from prior tool outage; verified round-1 fixes intact (checkout address prefill, Autofill demo card button, formatPrice 2-decimals) and lint clean.
+- QA via agent-browser: hydration verified OK (user "Alex" survives reload within 500ms; earlier "Sign in" reading was a stale snapshot artifact). Store persists user/orders/cart via zustand persist + rehydrate().
+- FIXED (found in round-1 QA): PDP grid class typo normalized to lg:grid-cols-[minmax(0,420px)_1fr_300px] (Tailwind v4 parsed it leniently; now idiomatic). NOTE: output renderer mangles "[m" substrings in command results — verify via node includes()/od, not echoed text.
+- FIXED: formatPrice now always shows cents ($628.20 instead of $628.2) — verified in order summary.
+- FEATURE: Orders view — replaced plain progress bar with a 4-step tracking timeline (ClipboardList/Truck/Navigation/PackageCheck icons, done=emerald, active=amber ring, pending=muted, animated fill line, step hints, courier + tracking ID line). Verified in light + dark.
+- FEATURE: PDP image lightbox — click main image (cursor-zoom-in + Expand hint) opens fullscreen viewer with prev/next arrows, ESC/arrow-key controls, click-backdrop close, "n / total" counter. Verified: opened, ArrowRight → 2/3, Escape closes.
+- FEATURE: PDP sticky add-to-cart bar — IntersectionObserver on buy box; slides up when buy box leaves viewport; thumb + title + price + qty + Add to cart (+ Buy now on sm+); zshop-sticky-bar safe-area padding for iOS.
+- STYLING: globals.css — Firefox scrollbar-color support, amber text selection (::selection light/dark), .img-skeleton shimmer animation applied to product-card image containers, .zshop-sticky-bar safe-area class.
+- Lint: passes clean (moved lightbox effects after gallery useMemo to satisfy react-hooks/preserve-manual-memoization).
+- Verified in browser: lightbox (qa-lightbox.png), sticky bar (qa-sticky.png), orders timeline light (qa-orders.png) + dark (qa-dark-final.png). No runtime errors in dev.log.
+
+Stage Summary:
+- All flows re-tested: PDP → lightbox/zoom, sticky bar, add-to-cart, checkout with prefilled address + demo card autofill, order placed, orders timeline, theme switch, hydration.
+- Remaining ideas for next round: recently-viewed rail polish on home, wishlist/compare empty-state icons audit, product image lazy shimmer on PDP gallery, keyboard focus trap in lightbox, sale countdown timer on deals hero, "complete the look" carousel.
+- Key files touched: src/components/zshop/orders-view.tsx, product-detail.tsx, product-card.tsx, src/app/globals.css, src/lib/zshop/store.ts.
+
+---
