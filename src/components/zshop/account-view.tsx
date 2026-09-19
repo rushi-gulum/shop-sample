@@ -117,11 +117,11 @@ export function AccountView() {
           <p className="text-sm">
             <span className="font-semibold">{user.name}</span>
             <br />
-            123 Main Street, Apt 4B
+            Flat 402, Sunrise Apartments, Linking Road
             <br />
-            San Francisco, CA 94105
+            Mumbai, Maharashtra 400050
             <br />
-            United States
+            India · +91 98200 12345
           </p>
           <Button variant="outline" size="sm" className="mt-4">
             Edit address

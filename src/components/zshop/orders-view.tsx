@@ -90,7 +90,7 @@ function TrackingTimeline({ status }: { status: Order["status"] }) {
       {/* courier line */}
       <p className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground">
         <Truck className="h-3 w-3" aria-hidden />
-        Z Express Logistics · Tracking ID
+        Delhivery Express · Tracking ID
         <span className="font-mono font-semibold text-foreground">
           ZS-{status.slice(0, 2).toUpperCase()}-{current + 1}0{TIMELINE_STEPS.length}
         </span>

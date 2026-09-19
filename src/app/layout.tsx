@@ -15,17 +15,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Z Shop — Shop Smarter, Live Better",
+  title: "Z Shop India — Phones, Accessories & More",
   description:
-    "Z Shop is your one-stop shop for everything you love. Shop electronics, audio, fashion, home & kitchen and more — with today's hottest deals.",
-  keywords: ["Z Shop", "online shopping", "deals", "electronics", "fashion", "e-commerce"],
-  authors: [{ name: "Z Shop" }],
+    "Z Shop is India's trusted online mobile store. Buy the latest smartphones, iPhones, earbuds, smartwatches, chargers and accessories with COD, UPI & EMI — delivered PAN-India.",
+  keywords: [
+    "Z Shop",
+    "online shopping India",
+    "mobile phones",
+    "smartphones",
+    "iPhone",
+    "earbuds",
+    "accessories",
+    "COD",
+    "best deals",
+  ],
+  authors: [{ name: "Z Shop India" }],
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#fbbf24",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
@@ -34,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en-IN" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >

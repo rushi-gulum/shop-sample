@@ -3,12 +3,12 @@
 import { useState } from "react";
 import {
   ArrowUp,
-  CreditCard,
+  BadgePercent,
+  Banknote,
   Facebook,
   Instagram,
-  RefreshCcw,
+  PackageCheck,
   ShieldCheck,
-  Truck,
   Twitter,
   Youtube,
   Wallet,
@@ -17,27 +17,28 @@ import { useZShop } from "@/lib/zshop/store";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import type { CategoryId } from "@/lib/zshop/types";
 
 const TRUST = [
-  { icon: Truck, title: "Free Shipping", sub: "On orders $99+" },
-  { icon: RefreshCcw, title: "30-Day Returns", sub: "No questions asked" },
-  { icon: ShieldCheck, title: "Secure Payment", sub: "256-bit encryption" },
-  { icon: Wallet, title: "Flexible Payment", sub: "Cards, wallets & more" },
+  { icon: Banknote, title: "COD Available", sub: "Pay cash on delivery" },
+  { icon: PackageCheck, title: "7-Day Replacement", sub: "Easy returns & refunds" },
+  { icon: ShieldCheck, title: "100% Genuine", sub: "Brand warranty & GST invoice" },
+  { icon: Wallet, title: "Flexible Payment", sub: "UPI, cards, EMI & more" },
 ];
 
-const HELP_LINKS = [
-  "Your orders",
+const SERVICE_LINKS = [
+  "Track your order",
   "Your wishlist",
   "Your account",
-  "Customer service",
-  "Returns & refunds",
-  "Privacy policy",
+  "Repair & service booking",
+  "EMI & financing",
+  "Trade-in / buyback",
 ];
 const ABOUT_LINKS = [
   "Our story",
   "Careers",
-  "Press",
-  "Sustainability",
+  "Store locator",
+  "Bulk & corporate orders",
   "Affiliate program",
   "Terms of service",
 ];
@@ -48,14 +49,14 @@ export function Footer() {
   const user = useZShop((s) => s.user);
   const requestSignIn = useZShop((s) => s.requestSignIn);
 
-  function goShop(label: string, category?: "electronics" | "computers" | "audio" | "fashion") {
+  function goShop(label: string, category?: CategoryId) {
     if (category) navigate({ name: "shop", category });
     else if (label === "All products") navigate({ name: "shop", category: "all" });
     else navigate({ name: "deals" });
   }
 
-  function goHelp(label: string) {
-    if (label === "Your orders") {
+  function goService(label: string) {
+    if (label === "Track your order") {
       navigate({ name: "orders" });
     } else if (label === "Your wishlist") {
       if (user) navigate({ name: "wishlist" });
@@ -63,7 +64,9 @@ export function Footer() {
     } else if (label === "Your account") {
       if (user) navigate({ name: "account" });
       else requestSignIn("account");
-    } else if (label === "Customer service") {
+    } else if (label === "EMI & financing" || label === "Trade-in / buyback") {
+      navigate({ name: "shop", category: "refurbished" });
+    } else if (label === "Repair & service booking") {
       useZShop.getState().setChatOpen(true);
     } else {
       toast.info(`${label} — demo link`, { description: "This page is illustrative in the demo." });
@@ -119,7 +122,7 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-black text-white">Z Shop</h3>
             <p className="mt-2 max-w-xs text-sm leading-relaxed text-neutral-400">
-              Your one-stop shop for everything you love. Shop smarter, live better.
+              India&apos;s trusted mobile store — phones, accessories &amp; more, delivered PAN-India.
             </p>
             <div className="mt-4 flex items-center gap-2">
               {[
@@ -146,10 +149,11 @@ export function Footer() {
               {[
                 "All products",
                 "Today's Deals",
-                "Electronics",
-                "Computers",
+                "Smartphones",
+                "iPhone",
                 "Audio",
-                "Fashion",
+                "Accessories",
+                "Refurbished",
               ].map((label) => (
                 <li key={label}>
                   <button
@@ -157,15 +161,17 @@ export function Footer() {
                     onClick={() =>
                       goShop(
                         label,
-                        label === "Electronics"
-                          ? "electronics"
-                          : label === "Computers"
-                            ? "computers"
+                        label === "Smartphones"
+                          ? "smartphones"
+                          : label === "iPhone"
+                            ? "iphone"
                             : label === "Audio"
                               ? "audio"
-                              : label === "Fashion"
-                                ? "fashion"
-                                : undefined
+                              : label === "Accessories"
+                                ? "cases"
+                                : label === "Refurbished"
+                                  ? "refurbished"
+                                  : undefined
                       )
                     }
                   >
@@ -178,12 +184,12 @@ export function Footer() {
 
           <div>
             <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-white">
-              Help & Settings
+              Help & Services
             </h4>
             <ul className="space-y-2 text-sm">
-              {HELP_LINKS.map((label) => (
+              {SERVICE_LINKS.map((label) => (
                 <li key={label}>
-                  <button className="transition hover:text-brand-400" onClick={() => goHelp(label)}>
+                  <button className="transition hover:text-brand-400" onClick={() => goService(label)}>
                     {label}
                   </button>
                 </li>
@@ -208,10 +214,10 @@ export function Footer() {
 
           <div>
             <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-white">
-              Get exclusive deals in your inbox
+              Get exclusive deals on WhatsApp & email
             </h4>
             <p className="mb-3 text-sm text-neutral-400">
-              Join 50,000+ shoppers. Unsubscribe anytime.
+              Join 5,00,000+ shoppers across India. Unsubscribe anytime.
             </p>
             <form className="flex gap-2" onSubmit={subscribe}>
               <Input
@@ -226,9 +232,9 @@ export function Footer() {
               </Button>
             </form>
             <div className="mt-4 flex items-center gap-2">
-              <CreditCard className="h-4 w-4 text-neutral-500" />
+              <BadgePercent className="h-4 w-4 text-neutral-500" />
               <span className="text-[11px] text-neutral-500">
-                VISA · Mastercard · AMEX · PayPal · Apple Pay
+                UPI · PhonePe · Paytm · RuPay · Visa · Mastercard · EMI · COD
               </span>
             </div>
           </div>
@@ -236,7 +242,7 @@ export function Footer() {
 
         <div className="border-t border-neutral-800">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs text-neutral-500 sm:flex-row sm:px-6">
-            <span>© 2025 Z Shop. Shop smarter, live better. All rights reserved. Demo storefront.</span>
+            <span>© 2025 Z Shop India. Phones, accessories & more — delivered PAN-India. Demo storefront.</span>
             <span className="flex items-center gap-1">
               <ArrowUp className="h-3 w-3" /> Built with Next.js & shadcn/ui
             </span>

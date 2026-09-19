@@ -1,14 +1,24 @@
 export type CategoryId =
+  | "smartphones"
+  | "iphone"
+  | "feature-phones"
+  | "tablets"
+  | "wearables"
   | "audio"
-  | "beauty"
-  | "books"
-  | "computers"
-  | "electronics"
-  | "fashion"
-  | "grocery"
-  | "home-kitchen"
-  | "sports-outdoors"
-  | "toys-games";
+  | "chargers"
+  | "cables"
+  | "powerbanks"
+  | "cases"
+  | "screen-protection"
+  | "stands-mounts"
+  | "creator-gear"
+  | "car-accessories"
+  | "storage"
+  | "gaming"
+  | "productivity"
+  | "connectivity"
+  | "cleaning-care"
+  | "refurbished";
 
 export interface Category {
   id: CategoryId;
@@ -26,8 +36,8 @@ export interface Product {
   title: string;
   brand: string;
   category: CategoryId;
-  price: number; // USD base price
-  compareAt?: number; // original price (list)
+  price: number; // INR (₹) — prices are always rupees on the India store
+  compareAt?: number; // original MRP (list)
   rating: number; // 0 - 5
   ratingCount: number;
   description: string;
@@ -42,15 +52,6 @@ export interface Product {
 export interface CartItem {
   id: string;
   qty: number;
-}
-
-export type CurrencyCode = "USD" | "EUR" | "GBP" | "CNY" | "JPY";
-
-export interface CurrencyInfo {
-  code: CurrencyCode;
-  label: string;
-  symbol: string;
-  rate: number; // vs USD
 }
 
 export interface OrderLine {
@@ -76,8 +77,9 @@ export interface Order {
     street: string;
     city: string;
     state: string;
-    zip: string;
+    zip: string; // 6-digit PIN code
     country: string;
+    phone?: string;
   };
 }
 

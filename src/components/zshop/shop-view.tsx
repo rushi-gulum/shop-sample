@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Check, ChevronDown, ChevronRight, Flame, Home, Search, SlidersHorizontal, X } from "lucide-react";
 import {
   BRANDS,
@@ -9,13 +9,12 @@ import {
   PRODUCTS,
   dealProducts,
 } from "@/lib/zshop/data";
-import { usePrice, useZShop } from "@/lib/zshop/store";
+import { useZShop } from "@/lib/zshop/store";
 import type { CategoryId } from "@/lib/zshop/types";
 import { ProductCard } from "./product-card";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
 import {
   Select,
   SelectContent,
@@ -30,6 +29,22 @@ import { cn } from "@/lib/utils";
 type SortKey = "featured" | "price-asc" | "price-desc" | "rating" | "discount";
 
 const PAGE_SIZE = 12;
+
+/** India price bands — mirrors the store taxonomy (Under ₹5,000 … Above ₹1,00,000) */
+const PRICE_BANDS = [
+  { id: "all", label: "All prices", min: 0, max: Number.POSITIVE_INFINITY },
+  { id: "u5k", label: "Under ₹5,000", min: 0, max: 4999 },
+  { id: "5-10k", label: "₹5,000 – ₹10,000", min: 5000, max: 9999 },
+  { id: "10-15k", label: "₹10,000 – ₹15,000", min: 10000, max: 14999 },
+  { id: "15-20k", label: "₹15,000 – ₹20,000", min: 15000, max: 19999 },
+  { id: "20-30k", label: "₹20,000 – ₹30,000", min: 20000, max: 29999 },
+  { id: "30-50k", label: "₹30,000 – ₹50,000", min: 30000, max: 49999 },
+  { id: "50-75k", label: "₹50,000 – ₹75,000", min: 50000, max: 74999 },
+  { id: "75k-1l", label: "₹75,000 – ₹1,00,000", min: 75000, max: 100000 },
+  { id: "1l+", label: "Above ₹1,00,000", min: 100001, max: Number.POSITIVE_INFINITY },
+] as const;
+
+type BandId = (typeof PRICE_BANDS)[number]["id"];
 
 const SORT_LABELS: Record<SortKey, string> = {
   featured: "Featured first",
@@ -46,19 +61,22 @@ interface ShopViewProps {
 
 export function ShopView({ category = "all", query }: ShopViewProps) {
   const navigate = useZShop((s) => s.navigate);
-  const price = usePrice();
   const [sort, setSort] = useState<SortKey>("featured");
-  const [maxPrice, setMaxPrice] = useState(5000);
+  const [band, setBand] = useState<BandId>("all");
   const [minRating, setMinRating] = useState(0);
   const [onlyDeals, setOnlyDeals] = useState(false);
   const [brands, setBrands] = useState<string[]>([]);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const [visible, setVisible] = useState(PAGE_SIZE);
+  const [pagesAdded, setPagesAdded] = useState(0);
 
-  // reset pagination whenever the result set changes
-  useEffect(() => {
-    setVisible(PAGE_SIZE);
-  }, [category, query, sort, maxPrice, minRating, onlyDeals, brands]);
+  // pagination resets whenever the result set changes (render-time state adjustment)
+  const filterKey = `${category}|${query ?? ""}|${sort}|${band}|${minRating}|${onlyDeals}|${brands.join(",")}`;
+  const [lastFilterKey, setLastFilterKey] = useState(filterKey);
+  if (filterKey !== lastFilterKey) {
+    setLastFilterKey(filterKey);
+    setPagesAdded(0);
+  }
+  const visible = PAGE_SIZE * (1 + pagesAdded);
 
   const isSearch = !!query;
   const activeCategory: CategoryId | "all" = category;
@@ -69,6 +87,8 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
     if (activeCategory !== "all") list = list.filter((p) => p.category === activeCategory);
     return list;
   }, [activeCategory, isSearch]);
+
+  const activeBand = PRICE_BANDS.find((b) => b.id === band) ?? PRICE_BANDS[0];
 
   const results = useMemo(() => {
     let list = base;
@@ -84,7 +104,11 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
       });
     }
     list = list.filter(
-      (p) => p.price <= maxPrice && p.rating >= minRating && (brands.length === 0 || brands.includes(p.brand))
+      (p) =>
+        p.price >= activeBand.min &&
+        p.price <= activeBand.max &&
+        p.rating >= minRating &&
+        (brands.length === 0 || brands.includes(p.brand))
     );
     if (onlyDeals) list = list.filter((p) => p.compareAt && p.compareAt > p.price);
 
@@ -112,7 +136,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
         );
     }
     return sorted;
-  }, [base, query, maxPrice, minRating, brands, onlyDeals, sort]);
+  }, [base, query, activeBand, minRating, brands, onlyDeals, sort]);
 
   const title = isSearch
     ? `Results for "${query}"`
@@ -126,10 +150,10 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
       : CATEGORY_MAP[activeCategory]?.blurb;
 
   const activeFilterCount =
-    (maxPrice < 5000 ? 1 : 0) + (minRating > 0 ? 1 : 0) + (onlyDeals ? 1 : 0) + brands.length;
+    (band !== "all" ? 1 : 0) + (minRating > 0 ? 1 : 0) + (onlyDeals ? 1 : 0) + brands.length;
 
   function clearFilters() {
-    setMaxPrice(5000);
+    setBand("all");
     setMinRating(0);
     setOnlyDeals(false);
     setBrands([]);
@@ -149,7 +173,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
               Clear
             </button>
           </div>
-          <ul className="space-y-0.5">
+          <ul className="max-h-72 space-y-0.5 overflow-y-auto pr-1">
             <li>
               <button
                 className={cn(
@@ -180,21 +204,25 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
         </div>
       )}
 
-      {/* price */}
+      {/* price bands */}
       <div>
-        <h3 className="mb-2 text-sm font-bold uppercase tracking-wide">Price range</h3>
-        <Slider
-          value={[maxPrice]}
-          min={10}
-          max={5000}
-          step={10}
-          onValueChange={([v]) => setMaxPrice(v)}
-          aria-label="Maximum price"
-        />
-        <div className="mt-1.5 flex justify-between text-xs text-muted-foreground">
-          <span>{price(10)}</span>
-          <span className="font-semibold text-foreground">Up to {price(maxPrice)}</span>
-        </div>
+        <h3 className="mb-2 text-sm font-bold uppercase tracking-wide">Price</h3>
+        <ul className="space-y-0.5">
+          {PRICE_BANDS.map((b) => (
+            <li key={b.id}>
+              <button
+                className={cn(
+                  "flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 text-left text-sm transition hover:bg-muted",
+                  band === b.id && "bg-brand-50 font-semibold text-brand-700 dark:bg-brand-400/10 dark:text-brand-400"
+                )}
+                onClick={() => setBand(b.id)}
+              >
+                {b.label}
+                {band === b.id && <Check className="h-3.5 w-3.5 text-brand-500" aria-hidden />}
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
 
       {/* rating */}
@@ -341,8 +369,8 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
               onRemove={() => navigate({ name: "shop", category: "all" })}
             />
           )}
-          {maxPrice < 5000 && (
-            <FilterChip label={`Under ${price(maxPrice)}`} onRemove={() => setMaxPrice(5000)} />
+          {band !== "all" && (
+            <FilterChip label={activeBand.label} onRemove={() => setBand("all")} />
           )}
           {minRating > 0 && (
             <FilterChip
@@ -413,7 +441,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
                   <Button
                     variant="outline"
                     className="min-w-48 border-neutral-300 font-bold transition hover:border-neutral-950 hover:bg-neutral-950 hover:text-white"
-                    onClick={() => setVisible((v) => v + PAGE_SIZE)}
+                    onClick={() => setPagesAdded((p) => p + 1)}
                   >
                     Load more products
                     <ChevronDown className="ml-1.5 h-4 w-4" aria-hidden />

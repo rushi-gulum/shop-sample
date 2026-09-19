@@ -20,7 +20,7 @@ export function PromoCards() {
           </span>
           <h3 className="mt-3 text-2xl font-black sm:text-3xl">Join Z Prime</h3>
           <p className="mt-1.5 max-w-sm text-sm text-white/90">
-            Free same-day delivery, exclusive deals, and more.
+            Free same-day delivery in metros, exclusive festive deals, and more.
           </p>
           <button
             className="mt-5 flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-neutral-950 shadow transition hover:gap-3"
@@ -41,15 +41,15 @@ export function PromoCards() {
           </span>
           <h3 className="mt-3 text-2xl font-black sm:text-3xl">Trade & Save</h3>
           <p className="mt-1.5 max-w-sm text-sm text-neutral-600">
-            Get up to 50% back when you trade in eligible devices.
+            Exchange your old phone and get up to 50% back — or grab a certified refurbished flagship.
           </p>
           <button
             className="mt-5 flex items-center gap-2 rounded-lg bg-neutral-950 px-5 py-2.5 text-sm font-bold text-white shadow transition hover:gap-3"
             onClick={() =>
-              useZShop.getState().navigate({ name: "shop", category: "electronics" })
+              useZShop.getState().navigate({ name: "shop", category: "refurbished" })
             }
           >
-            <Sparkles className="h-4 w-4" /> See trade-in offers
+            <Sparkles className="h-4 w-4" /> See refurbished offers
           </button>
         </div>
       </div>

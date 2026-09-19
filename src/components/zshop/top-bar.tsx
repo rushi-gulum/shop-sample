@@ -12,10 +12,10 @@ interface Announcement {
 }
 
 const MESSAGES: Announcement[] = [
-  { icon: Truck, text: "Free shipping on orders over $99" },
-  { icon: BadgePercent, text: "Use code", highlight: "WELCOME15", suffix: "for 15% off" },
-  { icon: RotateCcw, text: "30-day free returns, no questions asked" },
-  { icon: ShieldCheck, text: "Secure checkout — 256-bit encryption" },
+  { icon: Truck, text: "FREE delivery on orders above", highlight: "₹499" },
+  { icon: BadgePercent, text: "Use code", highlight: "FESTIVE10", suffix: "for an extra 10% off" },
+  { icon: RotateCcw, text: "7-day easy returns & replacement, no questions asked" },
+  { icon: ShieldCheck, text: "COD, UPI, Cards & EMI available across India" },
 ];
 
 export function TopBar() {
@@ -65,8 +65,8 @@ export function TopBar() {
           </span>
         </div>
         <div className="flex shrink-0 items-center gap-1.5 whitespace-nowrap">
-          <span className="text-neutral-400">Ship to:</span>
-          <span className="font-semibold text-white">US</span>
+          <span className="text-neutral-400">Delivering across:</span>
+          <span className="font-semibold text-white">India 🇮🇳</span>
         </div>
       </div>
     </div>

@@ -35,14 +35,13 @@ const QUICK_QUESTIONS = [
 
 const WELCOME: ChatMessage = {
   role: "bot",
-  text: "Hi there! I'm Zoe, your Z Shop assistant. How can I help you today? You can ask me about products, orders, shipping, returns, or anything else!",
+  text: "Hi there! I'm Zoe, your Z Shop India assistant. How can I help you today? You can ask me about products, orders, delivery, COD, returns, or anything else!",
   ts: 0,
 };
 
 function botReply(userText: string): ChatMessage {
   const q = userText.toLowerCase();
   const state = useZShop.getState();
-  const currency = state.currency;
 
   // order tracking
   if (/(track|order status|my order|where.*(package|delivery))/.test(q)) {
@@ -57,7 +56,7 @@ function botReply(userText: string): ChatMessage {
     const latest = orders[0];
     return {
       role: "bot",
-      text: `Your latest order ${latest.id} (${formatPrice(latest.total, currency)}) is currently ${latest.status} and is estimated to arrive on ${latest.eta}. You can see all orders in “Your Orders”.`,
+      text: `Your latest order ${latest.id} (${formatPrice(latest.total)}) is currently ${latest.status} and is estimated to arrive on ${latest.eta}. You can see all orders in “Your Orders”.`,
       ts: Date.now(),
     };
   }
@@ -66,7 +65,7 @@ function botReply(userText: string): ChatMessage {
   if (/(shipping|delivery|deliver|arrive|ship)/.test(q)) {
     return {
       role: "bot",
-      text: "We offer FREE standard shipping on orders over $99 (otherwise $9.99), arriving in 3–5 business days. Z Prime members get free same-day delivery in select cities.",
+      text: "We deliver PAN-India with FREE shipping on orders above ₹499 (otherwise just ₹79), arriving in 2–5 days. Z Prime members get free same-day delivery in metros like Mumbai, Delhi & Bengaluru.",
       ts: Date.now(),
     };
   }
@@ -75,7 +74,7 @@ function botReply(userText: string): ChatMessage {
   if (/(return|refund|exchange)/.test(q)) {
     return {
       role: "bot",
-      text: "We have a 30-day, no-questions-asked return policy. Items in original condition get a full refund within 2 business days of us receiving the return.",
+      text: "We have a 7-day easy replacement and no-questions-asked return policy on eligible items. Refunds reach your UPI or bank account within 2–4 business days of pickup.",
       ts: Date.now(),
     };
   }
@@ -90,10 +89,10 @@ function botReply(userText: string): ChatMessage {
   }
 
   // payment
-  if (/(payment|pay|card|wallet|cod|cash)/.test(q)) {
+  if (/(payment|pay|card|upi|phonepe|paytm|gpay|emi|cod|cash|wallet)/.test(q)) {
     return {
       role: "bot",
-      text: "We accept credit/debit cards, Z Wallet, and cash on delivery. All payments are processed with 256-bit SSL encryption.",
+      text: "We accept UPI (GPay, PhonePe, Paytm), credit/debit cards, net banking, EMI and Cash on Delivery. All payments are secured with 256-bit SSL encryption.",
       ts: Date.now(),
     };
   }
@@ -145,7 +144,6 @@ function botReply(userText: string): ChatMessage {
 export function ChatWidget() {
   const open = useZShop((s) => s.chatOpen);
   const setOpen = useZShop((s) => s.setChatOpen);
-  const currency = useZShop((s) => s.currency);
   const [messages, setMessages] = useState<ChatMessage[]>([WELCOME]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
@@ -253,7 +251,7 @@ export function ChatWidget() {
                           <span className="min-w-0 flex-1">
                             <span className="block truncate text-xs font-semibold">{p.title}</span>
                             <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
-                              {formatPrice(p.price, currency)} ·
+                              {formatPrice(p.price)} ·
                               <Star className="h-3 w-3 fill-rating text-rating" aria-hidden />
                               {p.rating}
                             </span>

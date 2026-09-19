@@ -1,12 +1,12 @@
 "use client";
 
-import { CreditCard, Headset, ShieldCheck, Truck } from "lucide-react";
+import { Banknote, Headset, RotateCcw, ShieldCheck } from "lucide-react";
 
 const ITEMS = [
-  { icon: Truck, title: "Free Shipping", sub: "On orders over $99" },
-  { icon: ShieldCheck, title: "Secure Payment", sub: "256-bit encryption" },
-  { icon: Headset, title: "24/7 Support", sub: "Always here for you" },
-  { icon: CreditCard, title: "Easy Returns", sub: "30-day money back" },
+  { icon: Banknote, title: "COD Available", sub: "Cash on delivery PAN-India" },
+  { icon: ShieldCheck, title: "100% Genuine", sub: "Brand warranty & GST invoice" },
+  { icon: Headset, title: "24/7 Support", sub: "In English & Hindi" },
+  { icon: RotateCcw, title: "7-Day Replacement", sub: "Easy returns & refunds" },
 ];
 
 export function TrustBadges() {

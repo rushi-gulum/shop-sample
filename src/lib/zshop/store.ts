@@ -4,16 +4,13 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { toast } from "sonner";
 import {
-  CURRENCIES,
   FREE_SHIPPING_THRESHOLD,
   PRODUCT_MAP,
-  PRODUCTS,
   PROMO_CODES,
   STANDARD_SHIPPING,
 } from "./data";
 import type {
   CartItem,
-  CurrencyCode,
   Order,
   Product,
   User,
@@ -65,13 +62,13 @@ function sanitizeStringList(raw: unknown, max: number): string[] {
 
 export interface Totals {
   itemCount: number;
-  subtotal: number; // USD
-  listTotal: number; // USD (sum of compareAt)
-  bundleSavings: number; // USD
-  promoDiscount: number; // USD
-  shipping: number; // USD
-  total: number; // USD
-  freeShippingRemaining: number; // USD
+  subtotal: number; // ₹
+  listTotal: number; // ₹ (sum of compareAt)
+  bundleSavings: number; // ₹
+  promoDiscount: number; // ₹
+  shipping: number; // ₹
+  total: number; // ₹
+  freeShippingRemaining: number; // ₹
   promoApplied: string | null;
   promoLabel: string | null;
   bundleBrand: string | null;
@@ -85,7 +82,6 @@ interface ZShopState {
   compare: string[];
   recentlyViewed: string[];
   recentSearches: string[];
-  currency: CurrencyCode;
   user: User | null;
   orders: Order[];
   promo: string | null;
@@ -113,7 +109,6 @@ interface ZShopState {
   addRecentSearch: (term: string) => void;
   removeRecentSearch: (term: string) => void;
   clearRecentSearches: () => void;
-  setCurrency: (c: CurrencyCode) => void;
   applyPromo: (code: string) => boolean;
   removePromo: () => void;
   signIn: (user: User) => void;
@@ -139,7 +134,6 @@ export const useZShop = create<ZShopState>()(
       compare: [],
       recentlyViewed: [],
       recentSearches: [],
-      currency: "USD",
       user: null,
       orders: [],
       promo: null,
@@ -263,8 +257,6 @@ export const useZShop = create<ZShopState>()(
       },
 
       clearRecentSearches: () => set({ recentSearches: [] }),
-
-      setCurrency: (c) => set({ currency: c }),
 
       applyPromo: (code) => {
         const norm = code.trim().toUpperCase();
@@ -392,8 +384,8 @@ export const useZShop = create<ZShopState>()(
       isInCompare: (id) => get().compare.includes(id),
     }),
     {
-      name: "zshop-store-v3",
-      version: 3,
+      name: "zshop-store-v4",
+      version: 4,
       storage: createJSONStorage(() => localStorage),
       skipHydration: true,
       partialize: (s) => ({
@@ -402,7 +394,6 @@ export const useZShop = create<ZShopState>()(
         compare: s.compare,
         recentlyViewed: s.recentlyViewed,
         recentSearches: s.recentSearches,
-        currency: s.currency,
         user: s.user,
         orders: s.orders,
         promo: s.promo,
@@ -416,12 +407,6 @@ export const useZShop = create<ZShopState>()(
           base.compare = sanitizeIdList(p.compare, MAX_COMPARE);
           base.recentlyViewed = sanitizeIdList(p.recentlyViewed, 8);
           base.recentSearches = sanitizeStringList(p.recentSearches, 6);
-          if (
-            typeof p.currency === "string" &&
-            p.currency in CURRENCIES
-          ) {
-            base.currency = p.currency as CurrencyCode;
-          }
           if (p.user && typeof p.user === "object") {
             const u = p.user as Record<string, unknown>;
             if (typeof u.email === "string" && u.email.includes("@")) {
@@ -454,25 +439,19 @@ export const useZShop = create<ZShopState>()(
 
 // ---------- helpers ----------
 
-export function formatPrice(usd: number, currency: CurrencyCode): string {
-  const info = CURRENCIES[currency];
-  const value = usd * info.rate;
-  const rounded = Math.round(value * 100) / 100;
-  let decimals: number;
-  if (currency === "JPY" || Number.isInteger(rounded)) {
-    decimals = 0;
-  } else {
-    decimals = 2; // always show cents for non-integers (e.g. $628.20)
-  }
-  return `${info.symbol}${rounded.toLocaleString("en-US", {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  })}`;
+const INR_FORMATTER = new Intl.NumberFormat("en-IN", {
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+
+/** All prices on Z Shop India are rupees (₹), lakh-grouped: ₹1,09,999 */
+export function formatPrice(inr: number): string {
+  const rounded = Math.round(inr);
+  return `₹${INR_FORMATTER.format(rounded)}`;
 }
 
 export function usePrice() {
-  const currency = useZShop((s) => s.currency);
-  return (usd: number) => formatPrice(usd, currency);
+  return (inr: number) => formatPrice(inr);
 }
 
 export function productById(id: string): Product | undefined {

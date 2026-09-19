@@ -1,0 +1,983 @@
+     1→import type { Category, CurrencyCode, CurrencyInfo, Product } from "./types";
+     2→
+     3→export const CATEGORIES: Category[] = [
+     4→  { id: "audio", name: "Audio", blurb: "Headphones, speakers and audio gear" },
+     5→  { id: "beauty", name: "Beauty", blurb: "Skincare, makeup and personal care" },
+     6→  { id: "books", name: "Books", blurb: "Bestsellers, new releases and classics" },
+     7→  { id: "computers", name: "Computers", blurb: "Laptops, accessories and peripherals" },
+     8→  { id: "electronics", name: "Electronics", blurb: "Phones, drones, TVs and smart tech" },
+     9→  { id: "fashion", name: "Fashion", blurb: "Everyday carry, footwear and style" },
+    10→  { id: "grocery", name: "Grocery", blurb: "Gourmet food, drinks and pantry staples" },
+    11→  { id: "home-kitchen", name: "Home & Kitchen", blurb: "Appliances and essentials for the home" },
+    12→  { id: "sports-outdoors", name: "Sports & Outdoors", blurb: "Training gear and outdoor equipment" },
+    13→  { id: "toys-games", name: "Toys & Games", blurb: "Play, build and learn" },
+    14→];
+    15→
+    16→export const CATEGORY_MAP: Record<string, Category> = Object.fromEntries(
+    17→  CATEGORIES.map((c) => [c.id, c])
+    18→);
+    19→
+    20→export const CURRENCIES: Record<CurrencyCode, CurrencyInfo> = {
+    21→  USD: { code: "USD", label: "US Dollar", symbol: "$", rate: 1 },
+    22→  EUR: { code: "EUR", label: "Euro", symbol: "€", rate: 0.93 },
+    23→  GBP: { code: "GBP", label: "British Pound", symbol: "£", rate: 0.8 },
+    24→  CNY: { code: "CNY", label: "Chinese Yuan", symbol: "¥", rate: 7.24 },
+    25→  JPY: { code: "JPY", label: "Japanese Yen", symbol: "¥", rate: 156.4 },
+    26→};
+    27→
+    28→export const FREE_SHIPPING_THRESHOLD = 99;
+    29→export const STANDARD_SHIPPING = 9.99;
+    30→
+    31→export const PROMO_CODES: Record<string, { type: "percent"; value: number; label: string }> = {
+    32→  WELCOME15: { type: "percent", value: 15, label: "Welcome offer — 15% off your order" },
+    33→  ZPRIME5: { type: "percent", value: 5, label: "Z Prime member — extra 5% off" },
+    34→};
+    35→
+    36→const P = "/products";
+    37→
+    38→export const PRODUCTS: Product[] = [
+    39→  // ---------- Audio ----------
+    40→  {
+    41→    id: "a1",
+    42→    title: "AirSound Pro Max Wireless Headphones",
+    43→    brand: "Soundwave",
+    44→    category: "audio",
+    45→    price: 349,
+    46→    compareAt: 449,
+    47→    rating: 4.7,
+    48→    ratingCount: 8231,
+    49→    description:
+    50→      "Active noise cancellation, 40-hour battery, spatial audio, lossless audio via USB-C. Studio-grade sound with plush memory-foam ear cushions.",
+    51→    image: `${P}/headphones.jpg`,
+    52→    gallery: [`${P}/headphones.jpg`, `${P}/headphones2.jpg`, `${P}/earbuds.jpg`],
+    53→    tags: ["headphones", "anc", "wireless", "bestseller"],
+    54→    featured: true,
+    55→    specs: [
+    56→      { label: "Battery life", value: "40 hours" },
+    57→      { label: "Noise cancelling", value: "Adaptive ANC" },
+    58→      { label: "Connectivity", value: "Bluetooth 5.4 / USB-C" },
+    59→      { label: "Weight", value: "268 g" },
+    60→    ],
+    61→  },
+    62→  {
+    63→    id: "a2",
+    64→    title: "Earbuds X3 Pro Wireless Earbuds",
+    65→    brand: "Soundwave",
+    66→    category: "audio",
+    67→    price: 129.99,
+    68→    compareAt: 179.99,
+    69→    rating: 4.6,
+    70→    ratingCount: 5634,
+    71→    description:
+    72→      "True wireless earbuds with adaptive ANC, wireless charging case, 30-hour total battery, IPX5 water resistance and crystal-clear calls.",
+    73→    image: `${P}/earbuds.jpg`,
+    74→    gallery: [`${P}/earbuds.jpg`, `${P}/headphones.jpg`],
+    75→    tags: ["earbuds", "anc", "wireless"],
+    76→    featured: true,
+    77→    specs: [
+    78→      { label: "Battery life", value: "8 h + 22 h case" },
+    79→      { label: "Water resistance", value: "IPX5" },
+    80→      { label: "Charging", value: "USB-C / Qi wireless" },
+    81→    ],
+    82→  },
+    83→  {
+    84→    id: "a3",
+    85→    title: "BoomBox 360 Bluetooth Speaker",
+    86→    brand: "JBLab",
+    87→    category: "audio",
+    88→    price: 129.99,
+    89→    compareAt: 159.99,
+    90→    rating: 4.5,
+    91→    ratingCount: 3421,
+    92→    description:
+    93→      "Portable 360° speaker with deep bass, 24-hour playtime, IP67 waterproof rating and party-link pairing for up to 100 speakers.",
+    94→    image: `${P}/speaker.jpg`,
+    95→    tags: ["speaker", "bluetooth", "party"],
+    96→    specs: [
+    97→      { label: "Battery life", value: "24 hours" },
+    98→      { label: "Water resistance", value: "IP67" },
+    99→      { label: "Output", value: "60 W" },
+   100→    ],
+   101→  },
+   102→  {
+   103→    id: "a4",
+   104→    title: "Studio Monitor Speakers (Pair)",
+   105→    brand: "Presonus",
+   106→    category: "audio",
+   107→    price: 299,
+   108→    compareAt: 379,
+   109→    rating: 4.8,
+   110→    ratingCount: 521,
+   111→    description:
+   112→      "Active studio monitors with woven-composite woofers, 100W class-AB amplification and accurate, mix-ready sound for creators.",
+   113→    image: `${P}/studiospeakers.jpg`,
+   114→    tags: ["studio", "monitors", "producer"],
+   115→    specs: [
+   116→      { label: "Power", value: "2 × 50 W" },
+   117→      { label: "Frequency response", value: "45 Hz – 22 kHz" },
+   118→      { label: "Inputs", value: "XLR / TRS / RCA" },
+   119→    ],
+   120→  },
+   121→
+   122→  // ---------- Beauty ----------
+   123→  {
+   124→    id: "b1",
+   125→    title: "HydraBoost Vitamin C Serum",
+   126→    brand: "TruSkin",
+   127→    category: "beauty",
+   128→    price: 24.99,
+   129→    compareAt: 39.99,
+   130→    rating: 4.6,
+   131→    ratingCount: 18734,
+   132→    description:
+   133→      "20% Vitamin C with Hyaluronic Acid and Vitamin E. Brightens, hydrates, and reduces fine lines.",
+   134→    image: `${P}/serum.jpg`,
+   135→    tags: ["skincare", "vitamin-c", "bestseller"],
+   136→    featured: true,
+   137→    specs: [
+   138→      { label: "Volume", value: "30 ml" },
+   139→      { label: "Key actives", value: "20% Vit C, HA, Vit E" },
+   140→      { label: "Skin type", value: "All" },
+   141→    ],
+   142→  },
+   143→  {
+   144→    id: "b2",
+   145→    title: "Luxe Matte Lipstick Set (6 shades)",
+   146→    brand: "Maybelline",
+   147→    category: "beauty",
+   148→    price: 34.99,
+   149→    compareAt: 49.99,
+   150→    rating: 4.4,
+   151→    ratingCount: 5432,
+   152→    description:
+   153→      "Long-lasting matte finish, hydrating formula, six everyday shades. Cruelty-free and vegan.",
+   154→    image: `${P}/lipstick.jpg`,
+   155→    tags: ["makeup", "lipstick", "matte"],
+   156→    newArrival: true,
+   157→    specs: [
+   158→      { label: "Shades", value: "6" },
+   159→      { label: "Finish", value: "Matte" },
+   160→      { label: "Vegan", value: "Yes" },
+   161→    ],
+   162→  },
+   163→  {
+   164→    id: "b3",
+   165→    title: "Glow Ritual Face Mask Set",
+   166→    brand: "Apricot",
+   167→    category: "beauty",
+   168→    price: 29,
+   169→    compareAt: 39,
+   170→    rating: 4.5,
+   171→    ratingCount: 987,
+   172→    description:
+   173→      "Twelve sheet masks with niacinamide, green tea and ceramides for an instant hydrated, lit-from-within glow.",
+   174→    image: `${P}/facemask.jpg`,
+   175→    tags: ["skincare", "masks", "glow"],
+   176→    newArrival: true,
+   177→    specs: [
+   178→      { label: "Count", value: "12 masks" },
+   179→      { label: "Key actives", value: "Niacinamide, ceramides" },
+   180→    ],
+   181→  },
+   182→
+   183→  // ---------- Books ----------
+   184→  {
+   185→    id: "k1",
+   186→    title: "Atomic Habits Hardcover",
+   187→    brand: "Penguin",
+   188→    category: "books",
+   189→    price: 14.99,
+   190→    compareAt: 27,
+   191→    rating: 4.8,
+   192→    ratingCount: 28743,
+   193→    description:
+   194→      "An Easy & Proven Way to Build Good Habits & Break Bad Ones. The #1 New York Times bestseller by James Clear.",
+   195→    image: `${P}/book.jpg`,
+   196→    tags: ["book", "self-help", "bestseller"],
+   197→    featured: true,
+   198→    specs: [
+   199→      { label: "Pages", value: "320" },
+   200→      { label: "Format", value: "Hardcover" },
+   201→      { label: "Publisher", value: "Avery / Penguin" },
+   202→    ],
+   203→  },
+   204→  {
+   205→    id: "k2",
+   206→    title: "Sapiens: A Brief History of Humankind",
+   207→    brand: "Harper",
+   208→    category: "books",
+   209→    price: 19.99,
+   210→    compareAt: 29.99,
+   211→    rating: 4.7,
+   212→    ratingCount: 15632,
+   213→    description:
+   214→      "Yuval Noah Harari explores how biology and history have defined us — from Stone Age bands to the age of AI.",
+   215→    image: `${P}/book2.jpg`,
+   216→    tags: ["book", "history", "bestseller"],
+   217→    specs: [
+   218→      { label: "Pages", value: "464" },
+   219→      { label: "Format", value: "Paperback" },
+   220→    ],
+   221→  },
+   222→  {
+   223→    id: "k3",
+   224→    title: "The Pragmatic Programmer, 20th Anniversary",
+   225→    brand: "Addison-Wesley",
+   226→    category: "books",
+   227→    price: 39.99,
+   228→    compareAt: 59.99,
+   229→    rating: 4.7,
+   230→    ratingCount: 3210,
+   231→    description:
+   232→      "The definitive guide to modern software craftsmanship — updated with new topics, tips and career advice.",
+   233→    image: `${P}/book3.jpg`,
+   234→    tags: ["book", "coding", "career"],
+   235→    specs: [
+   236→      { label: "Pages", value: "352" },
+   237→      { label: "Format", value: "Paperback" },
+   238→    ],
+   239→  },
+   240→
+   241→  // ---------- Computers ----------
+   242→  {
+   243→    id: "c1",
+   244→    title: "UltraBook Pro 14\" Laptop, 16GB RAM / 1TB SSD",
+   245→    brand: "AsusROG",
+   246→    category: "computers",
+   247→    price: 1499,
+   248→    compareAt: 1699,
+   249→    rating: 4.6,
+   250→    ratingCount: 4312,
+   251→    description:
+   252→      "Feather-light aluminum unibody with a 14\" 3K OLED display, latest-gen CPU, 16-hour battery and silent vapor-chamber cooling.",
+   253→    image: `${P}/laptop.jpg`,
+   254→    tags: ["laptop", "oled", "ultrabook"],
+   255→    featured: true,
+   256→    specs: [
+   257→      { label: "Display", value: "14\" 3K OLED 120Hz" },
+   258→      { label: "Memory", value: "16 GB LPDDR5" },
+   259→      { label: "Storage", value: "1 TB NVMe SSD" },
+   260→      { label: "Battery", value: "Up to 16 hours" },
+   261→    ],
+   262→  },
+   263→  {
+   264→    id: "c2",
+   265→    title: "MechType RGB Mechanical Keyboard",
+   266→    brand: "AsusROG",
+   267→    category: "computers",
+   268→    price: 149,
+   269→    compareAt: 199,
+   270→    rating: 4.5,
+   271→    ratingCount: 2341,
+   272→    description:
+   273→      "Hot-swappable tactile switches, per-key RGB, gasket mount, tri-mode connectivity and a knurled aluminum volume knob.",
+   274→    image: `${P}/keyboard.jpg`,
+   275→    tags: ["keyboard", "mechanical", "rgb"],
+   276→    specs: [
+   277→      { label: "Layout", value: "75%" },
+   278→      { label: "Switches", value: "Hot-swap tactile" },
+   279→      { label: "Connectivity", value: "USB-C / 2.4G / BT" },
+   280→    ],
+   281→  },
+   282→  {
+   283→    id: "c3",
+   284→    title: "GlideMaster Wireless Mouse",
+   285→    brand: "AsusROG",
+   286→    category: "computers",
+   287→    price: 69,
+   288→    compareAt: 89,
+   289→    rating: 4.4,
+   290→    ratingCount: 5432,
+   291→    description:
+   292→      "26K DPI optical sensor, 8 programmable buttons, 90-hour battery and silent clicks in an ergonomic shell.",
+   293→    image: `${P}/mouse.jpg`,
+   294→    tags: ["mouse", "wireless", "ergonomic"],
+   295→    specs: [
+   296→      { label: "Sensor", value: "26,000 DPI" },
+   297→      { label: "Battery", value: "90 hours" },
+   298→    ],
+   299→  },
+   300→  {
+   301→    id: "c4",
+   302→    title: "ViewMax 27\" 4K IPS Monitor",
+   303→    brand: "ViewMax",
+   304→    category: "computers",
+   305→    price: 399,
+   306→    compareAt: 499,
+   307→    rating: 4.6,
+   308→    ratingCount: 1873,
+   309→    description:
+   310→      "27-inch 4K UHD IPS panel with 99% DCI-P3, USB-C 90W power delivery, height-adjustable stand and factory calibration.",
+   311→    image: `${P}/monitor.jpg`,
+   312→    tags: ["monitor", "4k", "usb-c"],
+   313→    specs: [
+   314→      { label: "Panel", value: "27\" IPS 4K" },
+   315→      { label: "Color", value: "99% DCI-P3" },
+   316→      { label: "Hub", value: "USB-C 90 W" },
+   317→    ],
+   318→  },
+   319→
+   320→  // ---------- Electronics ----------
+   321→  {
+   322→    id: "e1",
+   323→    title: "Galaxy S24 Ultra Smartphone",
+   324→    brand: "Samsong",
+   325→    category: "electronics",
+   326→    price: 1299,
+   327→    compareAt: 1499,
+   328→    rating: 4.7,
+   329→    ratingCount: 5432,
+   330→    description:
+   331→      "6.8\" QHD+ AMOLED, Snapdragon 8 Gen 3, 12GB RAM, 512GB storage, 200MP camera with AI-powered editing and S Pen.",
+   332→    image: `${P}/smartphone.jpg`,
+   333→    tags: ["phone", "android", "flagship"],
+   334→    featured: true,
+   335→    specs: [
+   336→      { label: "Display", value: "6.8\" QHD+ AMOLED" },
+   337→      { label: "Camera", value: "200 MP quad" },
+   338→      { label: "Storage", value: "512 GB" },
+   339→      { label: "Battery", value: "5,000 mAh" },
+   340→    ],
+   341→  },
+   342→  {
+   343→    id: "e2",
+   344→    title: "RC Drone Pro 4K with GPS",
+   345→    brand: "DJI",
+   346→    category: "electronics",
+   347→    price: 449,
+   348→    compareAt: 599,
+   349→    rating: 4.6,
+   350→    ratingCount: 892,
+   351→    description:
+   352→      "4K camera drone with 3-axis gimbal, 30-min flight, GPS return-to-home, foldable design.",
+   353→    image: `${P}/drone.jpg`,
+   354→    tags: ["drone", "camera", "gps"],
+   355→    newArrival: true,
+   356→    specs: [
+   357→      { label: "Camera", value: "4K/60 with 3-axis gimbal" },
+   358→      { label: "Flight time", value: "30 minutes" },
+   359→      { label: "Range", value: "10 km" },
+   360→    ],
+   361→  },
+   362→  {
+   363→    id: "e3",
+   364→    title: "FitTrack Smartwatch Series 9",
+   365→    brand: "Samsong",
+   366→    category: "electronics",
+   367→    price: 399,
+   368→    compareAt: 449,
+   369→    rating: 4.5,
+   370→    ratingCount: 6543,
+   371→    description:
+   372→      "Always-on LTPO display, ECG and SpO2 tracking, dual-band GPS, crash detection and 36-hour battery in titanium.",
+   373→    image: `${P}/smartwatch.jpg`,
+   374→    tags: ["watch", "fitness", "wearable"],
+   375→    specs: [
+   376→      { label: "Display", value: "1.9\" always-on LTPO" },
+   377→      { label: "Battery", value: "36 hours" },
+   378→      { label: "Sensors", value: "ECG, SpO2, GPS" },
+   379→    ],
+   380→  },
+   381→  {
+   382→    id: "e4",
+   383→    title: "TabPro 11\" Tablet 256GB",
+   384→    brand: "Samsong",
+   385→    category: "electronics",
+   386→    price: 799,
+   387→    compareAt: 899,
+   388→    rating: 4.6,
+   389→    ratingCount: 2109,
+   390→    description:
+   391→      "11-inch 120Hz LCD, quad speakers, desktop-class chipset and stylus support — a laptop alternative in tablet form.",
+   392→    image: `${P}/tablet.jpg`,
+   393→    tags: ["tablet", "stylus", "120hz"],
+   394→    specs: [
+   395→      { label: "Display", value: "11\" 120 Hz" },
+   396→      { label: "Storage", value: "256 GB" },
+   397→      { label: "Audio", value: "Quad speakers" },
+   398→    ],
+   399→  },
+   400→  {
+   401→    id: "e5",
+   402→    title: "Cinema 65\" 4K OLED TV",
+   403→    brand: "ViewMax",
+   404→    category: "electronics",
+   405→    price: 1299,
+   406→    compareAt: 1799,
+   407→    rating: 4.8,
+   408→    ratingCount: 987,
+   409→    description:
+   410→      "Self-lit OLED with infinite contrast, 144Hz gaming mode, Dolby Vision IQ and an ultra-slim Gallery design.",
+   411→    image: `${P}/tv.jpg`,
+   412→    tags: ["tv", "oled", "4k"],
+   413→    specs: [
+   414→      { label: "Panel", value: "65\" 4K OLED" },
+   415→      { label: "Refresh", value: "144 Hz" },
+   416→      { label: "HDR", value: "Dolby Vision IQ" },
+   417→    ],
+   418→  },
+   419→  {
+   420→    id: "e6",
+   421→    title: "AquaFresh Sonic Toothbrush",
+   422→    brand: "Philips",
+   423→    category: "electronics",
+   424→    price: 79.99,
+   425→    compareAt: 99.99,
+   426→    rating: 4.5,
+   427→    ratingCount: 15432,
+   428→    description:
+   429→      "Sonic electric toothbrush with smart pressure sensor, 5 modes, 2-week battery and travel case.",
+   430→    image: `${P}/toothbrush.jpg`,
+   431→    tags: ["toothbrush", "sonic", "care"],
+   432→    newArrival: true,
+   433→    specs: [
+   434→      { label: "Modes", value: "5" },
+   435→      { label: "Battery", value: "2 weeks" },
+   436→      { label: "Timer", value: "2-min smart" },
+   437→    ],
+   438→  },
+   439→
+   440→  // ---------- Fashion ----------
+   441→  {
+   442→    id: "f1",
+   443→    title: "Classic Leather Sneakers",
+   444→    brand: "Feather",
+   445→    category: "fashion",
+   446→    price: 89.99,
+   447→    compareAt: 129.99,
+   448→    rating: 4.5,
+   449→    ratingCount: 3421,
+   450→    description:
+   451→      "Full-grain leather sneakers with cushioned insole, breathable lining, durable rubber outsole. Goes with everything.",
+   452→    image: `${P}/sneakers.jpg`,
+   453→    tags: ["sneakers", "leather", "unisex"],
+   454→    featured: true,
+   455→    specs: [
+   456→      { label: "Upper", value: "Full-grain leather" },
+   457→      { label: "Sole", value: "Vulcanized rubber" },
+   458→      { label: "Sizes", value: "US 6 – 13" },
+   459→    ],
+   460→  },
+   461→  {
+   462→    id: "f2",
+   463→    title: "Metro Organizer Backpack 20L",
+   464→    brand: "Bellroy",
+   465→    category: "fashion",
+   466→    price: 139,
+   467→    compareAt: 169,
+   468→    rating: 4.7,
+   469→    ratingCount: 2156,
+   470→    description:
+   471→      "Water-resistant woven fabric, padded 16\" laptop bay, quick-access pockets and a comfy contoured back panel.",
+   472→    image: `${P}/backpack.jpg`,
+   473→    tags: ["backpack", "commute", "laptop"],
+   474→    specs: [
+   475→      { label: "Capacity", value: "20 L" },
+   476→      { label: "Laptop", value: "Up to 16\"" },
+   477→      { label: "Material", value: "Recycled weave" },
+   478→    ],
+   479→  },
+   480→  {
+   481→    id: "f3",
+   482→    title: "Slimline Leather Wallet",
+   483→    brand: "Bellroy",
+   484→    category: "fashion",
+   485→    price: 59,
+   486→    compareAt: 79,
+   487→    rating: 4.6,
+   488→    ratingCount: 4321,
+   489→    description:
+   490→      "Premium vegetable-tanned leather with quick-draw card access, RFID protection and slim everyday profile.",
+   491→    image: `${P}/wallet.jpg`,
+   492→    tags: ["wallet", "leather", "rfid"],
+   493→    specs: [
+   494→      { label: "Cards", value: "Up to 12" },
+   495→      { label: "Material", value: "Veg-tanned leather" },
+   496→    ],
+   497→  },
+   498→
+   499→  // ---------- Home & Kitchen ----------
+   500→  {
+   501→    id: "h1",
+   502→    title: "AirFry Max XL Air Fryer",
+   503→    brand: "Ninja",
+   504→    category: "home-kitchen",
+   505→    price: 119.99,
+   506→    compareAt: 159.99,
+   507→    rating: 4.7,
+   508→    ratingCount: 8901,
+   509→    description:
+   510→      "6-quart digital air fryer with 8 presets, dual-fan technology, dishwasher-safe basket. Healthier frying with up to 75% less fat.",
+   511→    image: `${P}/airfryer.jpg`,
+   512→    tags: ["airfryer", "kitchen", "healthy"],
+   513→    featured: true,
+   514→    specs: [
+   515→      { label: "Capacity", value: "6 qt" },
+   516→      { label: "Presets", value: "8" },
+   517→      { label: "Power", value: "1,750 W" },
+   518→    ],
+   519→  },
+   520→  {
+   521→    id: "h2",
+   522→    title: "Barista Express Espresso Machine",
+   523→    brand: "BrewMaster",
+   524→    category: "home-kitchen",
+   525→    price: 549,
+   526→    compareAt: 699,
+   527→    rating: 4.8,
+   528→    ratingCount: 3421,
+   529→    description:
+   530→      "Built-in conical burr grinder, PID temperature control, microfoam steam wand and 15-bar Italian pump for café-quality espresso.",
+   531→    image: `${P}/espresso.jpg`,
+   532→    tags: ["espresso", "coffee", "cafe"],
+   533→    specs: [
+   534→      { label: "Grinder", value: "Conical burr, 30 settings" },
+   535→      { label: "Pressure", value: "15 bar" },
+   536→      { label: "Water tank", value: "2 L" },
+   537→    ],
+   538→  },
+   539→  {
+   540→    id: "h3",
+   541→    title: "CleanBot Robot Vacuum X20",
+   542→    brand: "Ninja",
+   543→    category: "home-kitchen",
+   544→    price: 429,
+   545→    compareAt: 599,
+   546→    rating: 4.5,
+   547→    ratingCount: 6543,
+   548→    description:
+   549→      "LiDAR navigation, 5,000 Pa suction, self-emptying base, mopping module and app scheduling with room mapping.",
+   550→    image: `${P}/vacuum.jpg`,
+   551→    tags: ["vacuum", "robot", "smart-home"],
+   552→    specs: [
+   553→      { label: "Suction", value: "5,000 Pa" },
+   554→      { label: "Base", value: "Self-empty 60 days" },
+   555→      { label: "Runtime", value: "180 minutes" },
+   556→    ],
+   557→  },
+   558→  {
+   559→    id: "h4",
+   560→    title: "ChefPro 10-Piece Knife Set",
+   561→    brand: "BrewMaster",
+   562→    category: "home-kitchen",
+   563→    price: 129,
+   564→    compareAt: 179,
+   565→    rating: 4.6,
+   566→    ratingCount: 1234,
+   567→    description:
+   568→      "German stainless steel knives with full-tang balance, ergonomic handles, acacia wood block and built-in sharpener.",
+   569→    image: `${P}/knives.jpg`,
+   570→    tags: ["knives", "kitchen", "steel"],
+   571→    specs: [
+   572→      { label: "Pieces", value: "10" },
+   573→      { label: "Steel", value: "German X50CrMoV15" },
+   574→    ],
+   575→  },
+   576→
+   577→  // ---------- Sports & Outdoors ----------
+   578→  {
+   579→    id: "s1",
+   580→    title: "Adjustable Dumbbell Set 5-52.5 lbs",
+   581→    brand: "Bowflex",
+   582→    category: "sports-outdoors",
+   583→    price: 429,
+   584→    compareAt: 529,
+   585→    rating: 4.8,
+   586→    ratingCount: 3421,
+   587→    description:
+   588→      "Space-saving adjustable dumbbells, replaces 15 sets. Quick-select weight dial system.",
+   589→    image: `${P}/dumbbells.jpg`,
+   590→    tags: ["dumbbells", "strength", "home-gym"],
+   591→    featured: true,
+   592→    specs: [
+   593→      { label: "Weight range", value: "5 – 52.5 lbs" },
+   594→      { label: "Increments", value: "2.5 lbs" },
+   595→      { label: "Replaces", value: "15 dumbbell sets" },
+   596→    ],
+   597→  },
+   598→  {
+   599→    id: "s2",
+   600→    title: "ZenFlow Premium Yoga Mat",
+   601→    brand: "Bowflex",
+   602→    category: "sports-outdoors",
+   603→    price: 39,
+   604→    compareAt: 59,
+   605→    rating: 4.6,
+   606→    ratingCount: 8765,
+   607→    description:
+   608→      "6mm natural rubber mat with non-slip texture, alignment lines, carry strap and closed-cell sweat-proof surface.",
+   609→    image: `${P}/yogamat.jpg`,
+   610→    tags: ["yoga", "mat", "fitness"],
+   611→    specs: [
+   612→      { label: "Thickness", value: "6 mm" },
+   613→      { label: "Material", value: "Natural rubber" },
+   614→    ],
+   615→  },
+   616→  {
+   617→    id: "s3",
+   618→    title: "AeroShell Cycling Helmet",
+   619→    brand: "Feather",
+   620→    category: "sports-outdoors",
+   621→    price: 89,
+   622→    compareAt: 119,
+   623→    rating: 4.5,
+   624→    ratingCount: 987,
+   625→    description:
+   626→      "In-mold polycarbonate shell with rotational impact protection, 18 vents, dial fit system and rear LED light.",
+   627→    image: `${P}/helmet.jpg`,
+   628→    tags: ["helmet", "cycling", "safety"],
+   629→    specs: [
+   630→      { label: "Vents", value: "18" },
+   631→      { label: "Safety", value: "Rotational impact" },
+   632→      { label: "Light", value: "Rear LED" },
+   633→    ],
+   634→  },
+   635→
+   636→  // ---------- Grocery ----------
+   637→  {
+   638→    id: "g1",
+   639→    title: "Artisan Olive Oil Trio Gift Set",
+   640→    brand: "Brightland",
+   641→    category: "grocery",
+   642→    price: 79,
+   643→    compareAt: 99,
+   644→    rating: 4.7,
+   645→    ratingCount: 432,
+   646→    description:
+   647→      "Three premium extra-virgin olive oils from California, Italy, and Spain. Beautifully packaged.",
+   648→    image: `${P}/oliveoil.jpg`,
+   649→    tags: ["olive-oil", "gourmet", "gift"],
+   650→    newArrival: true,
+   651→    featured: true,
+   652→    specs: [
+   653→      { label: "Bottles", value: "3 × 375 ml" },
+   654→      { label: "Origin", value: "CA / IT / ES" },
+   655→    ],
+   656→  },
+   657→  {
+   658→    id: "g2",
+   659→    title: "Premium Matcha Green Tea Powder 100g",
+   660→    brand: "Encha",
+   661→    category: "grocery",
+   662→    price: 39,
+   663→    compareAt: 49,
+   664→    rating: 4.6,
+   665→    ratingCount: 1876,
+   666→    description:
+   667→      "Ceremonial-grade Japanese matcha from Uji. Stone-ground, vibrant green, smooth flavor.",
+   668→    image: `${P}/matcha.jpg`,
+   669→    tags: ["matcha", "tea", "organic"],
+   670→    newArrival: true,
+   671→    specs: [
+   672→      { label: "Grade", value: "Ceremonial" },
+   673→      { label: "Origin", value: "Uji, Japan" },
+   674→      { label: "Net weight", value: "100 g" },
+   675→    ],
+   676→  },
+   677→  {
+   678→    id: "g3",
+   679→    title: "Organic Cold Brew Coffee Concentrate 32oz",
+   680→    brand: "Grady's",
+   681→    category: "grocery",
+   682→    price: 24.99,
+   683→    compareAt: 29.99,
+   684→    rating: 4.5,
+   685→    ratingCount: 3421,
+   686→    description:
+   687→      "Smooth, low-acid cold brew concentrate. Just add water or milk. Makes 16 servings.",
+   688→    image: `${P}/coldbrew.jpg`,
+   689→    tags: ["coffee", "cold-brew", "organic"],
+   690→    newArrival: true,
+   691→    specs: [
+   692→      { label: "Volume", value: "32 oz" },
+   693→      { label: "Servings", value: "16" },
+   694→      { label: "Roast", value: "Medium" },
+   695→    ],
+   696→  },
+   697→
+   698→  // ---------- Toys & Games ----------
+   699→  {
+   700→    id: "t1",
+   701→    title: "BrainBoost STEM Robot Kit",
+   702→    brand: "Makeblock",
+   703→    category: "toys-games",
+   704→    price: 89.99,
+   705→    compareAt: 109.99,
+   706→    rating: 4.6,
+   707→    ratingCount: 567,
+   708→    description:
+   709→      "Build and code your own robot with 50+ parts, sensors, and app-based programming in Scratch and Python.",
+   710→    image: `${P}/robotkit.jpg`,
+   711→    tags: ["stem", "robot", "coding"],
+   712→    newArrival: true,
+   713→    specs: [
+   714→      { label: "Parts", value: "50+" },
+   715→      { label: "Coding", value: "Scratch / Python" },
+   716→      { label: "Age", value: "8+" },
+   717→    ],
+   718→  },
+   719→  {
+   720→    id: "t2",
+   721→    title: "BuildBlox Space Station 1200pc",
+   722→    brand: "LEGO",
+   723→    category: "toys-games",
+   724→    price: 99.99,
+   725→    compareAt: 129.99,
+   726→    rating: 4.8,
+   727→    ratingCount: 2341,
+   728→    description:
+   729→      "Build an epic space station with 1200 pieces, 6 minifigures, motorized parts. Hours of creative play.",
+   730→    image: `${P}/lego.jpg`,
+   731→    tags: ["building", "space", "creative"],
+   732→    newArrival: true,
+   733→    specs: [
+   734→      { label: "Pieces", value: "1200" },
+   735→      { label: "Minifigures", value: "6" },
+   736→      { label: "Age", value: "9+" },
+   737→    ],
+   738→  },
+   739→  {
+   740→    id: "t3",
+   741→    title: "CuddleCloud Teddy Bear 18\"",
+   742→    brand: "Playful Co.",
+   743→    category: "toys-games",
+   744→    price: 29.99,
+   745→    compareAt: 39.99,
+   746→    rating: 4.7,
+   747→    ratingCount: 4321,
+   748→    description:
+   749→      "Ultra-soft plush teddy bear with embroidered eyes, recycled filling and a machine-washable hug-ready body.",
+   750→    image: `${P}/teddy.jpg`,
+   751→    tags: ["plush", "teddy", "gift"],
+   752→    specs: [
+   753→      { label: "Height", value: "18 inches" },
+   754→      { label: "Material", value: "Recycled plush" },
+   755→    ],
+   756→  },
+   757→  {
+   758→    id: "t4",
+   759→    title: "Quest Realms Strategy Board Game",
+   760→    brand: "Playful Co.",
+   761→    category: "toys-games",
+   762→    price: 34.99,
+   763→    compareAt: 49.99,
+   764→    rating: 4.7,
+   765→    ratingCount: 876,
+   766→    description:
+   767→      "A cooperative adventure board game with modular maps, 5 heroes, 60-minute sessions and endless replayability.",
+   768→    image: `${P}/boardgame.jpg`,
+   769→    tags: ["boardgame", "strategy", "family"],
+   770→    specs: [
+   771→      { label: "Players", value: "1 – 5" },
+   772→      { label: "Play time", value: "45 – 60 min" },
+   773→      { label: "Age", value: "10+" },
+   774→    ],
+   775→  },
+   776→];
+   777→
+   778→export const PRODUCT_MAP: Record<string, Product> = Object.fromEntries(
+   779→  PRODUCTS.map((p) => [p.id, p])
+   780→);
+   781→
+   782→export const BRANDS: string[] = Array.from(new Set(PRODUCTS.map((p) => p.brand))).sort();
+   783→
+   784→export function productsByCategory(categoryId: string): Product[] {
+   785→  return PRODUCTS.filter((p) => p.category === categoryId);
+   786→}
+   787→
+   788→export function featuredProducts(): Product[] {
+   789→  return PRODUCTS.filter((p) => p.featured);
+   790→}
+   791→
+   792→export function newArrivals(): Product[] {
+   793→  return PRODUCTS.filter((p) => p.newArrival);
+   794→}
+   795→
+   796→export function dealProducts(): Product[] {
+   797→  return PRODUCTS.filter((p) => p.compareAt && p.compareAt > p.price).sort((a, b) => {
+   798→    const da = 1 - a.price / (a.compareAt || 1);
+   799→    const db = 1 - b.price / (b.compareAt || 1);
+   800→    return db - da;
+   801→  });
+   802→}
+   803→
+   804→export function discountPercent(p: Product): number | null {
+   805→  if (!p.compareAt || p.compareAt <= p.price) return null;
+   806→  return Math.round((1 - p.price / p.compareAt) * 100);
+   807→}
+   808→
+   809→export function relatedProducts(p: Product, count = 4): Product[] {
+   810→  const same = PRODUCTS.filter((x) => x.category === p.category && x.id !== p.id);
+   811→  const others = PRODUCTS.filter((x) => x.category !== p.category && x.id !== p.id);
+   812→  return [...same, ...others].slice(0, count);
+   813→}
+   814→
+   815→export function bundleFor(p: Product): Product[] {
+   816→  const same = PRODUCTS.filter(
+   817→    (x) => x.category === p.category && x.id !== p.id
+   818→  ).slice(0, 2);
+   819→  if (same.length >= 2) return same;
+   820→  return PRODUCTS.filter((x) => x.id !== p.id).slice(0, 2);
+   821→}
+   822→
+   823→export function searchProducts(query: string): Product[] {
+   824→  const q = query.trim().toLowerCase();
+   825→  if (!q) return [];
+   826→  const terms = q.split(/\s+/);
+   827→  return PRODUCTS.filter((p) => {
+   828→    const cat = CATEGORY_MAP[p.category];
+   829→    const haystack = [p.title, p.brand, cat?.name ?? "", ...(p.tags ?? []), p.description]
+   830→      .join(" ")
+   831→      .toLowerCase();
+   832→    return terms.every((t) => haystack.includes(t));
+   833→  }).sort((a, b) => b.rating - a.rating);
+   834→}
+   835→
+   836→// ---------- Reviews (deterministic mock) ----------
+   837→
+   838→export interface Review {
+   839→  id: string;
+   840→  author: string;
+   841→  rating: number; // 1..5
+   842→  date: string; // relative display date
+   843→  title: string;
+   844→  body: string;
+   845→  verified: boolean;
+   846→  helpful: number;
+   847→}
+   848→
+   849→const REVIEW_AUTHORS = [
+   850→  "Priya Sharma",
+   851→  "Marcus Chen",
+   852→  "Elena Rodriguez",
+   853→  "Tom Okafor",
+   854→  "Hana Kim",
+   855→  "Jonas Müller",
+   856→  "Ava Thompson",
+   857→  "Leo Fernández",
+   858→  "Mei Lin",
+   859→  "Sam Patel",
+   860→  "Nora Haddad",
+   861→  "Chris Novak",
+   862→];
+   863→
+   864→const REVIEW_CONTENT: Record<number, { title: string; body: string }[]> = {
+   865→  5: [
+   866→    { title: "Exceeded expectations", body: "Quality is outstanding and it arrived a day early. The details feel premium and it does exactly what it promises. Would happily buy again." },
+   867→    { title: "Absolutely love it", body: "I was a bit skeptical at this price, but after two weeks of daily use I am impressed. It has become part of my routine and I cannot imagine going back." },
+   868→    { title: "Best purchase this year", body: "Does everything advertised and then some. Friends have already asked where I got it. Zero regrets — five stars well earned." },
+   869→    { title: "Fantastic quality", body: "You can tell real thought went into the design. Everything just works, straight out of the box. Highly recommended." },
+   870→  ],
+   871→  4: [
+   872→    { title: "Great overall", body: "Really solid for the price. Docking one star only because the packaging was a bit flimsy — the product itself is excellent and I would buy it again." },
+   873→    { title: "Very happy with it", body: "Been using it for a month now with no complaints. A small learning curve at first, but once set up it performs beautifully." },
+   874→    { title: "Close to perfect", body: "Nearly flawless experience. I wish it came in more colors, but performance and build quality are genuinely impressive for the money." },
+   875→  ],
+   876→  3: [
+   877→    { title: "Does the job", body: "It works as described, but I expected slightly better finishing at this price point. Fine if you catch it on sale; hard to recommend at full price." },
+   878→    { title: "Good, not great", body: "Halfway through my first week and it is fine so far. Nothing spectacular, nothing broken. A safe middle-of-the-road choice." },
+   879→  ],
+   880→  2: [
+   881→    { title: "Not for me", body: "Had higher hopes based on the other reviews. A couple of small issues appeared within the first week, though customer support was responsive and polite." },
+   882→  ],
+   883→  1: [
+   884→    { title: "Disappointed", body: "Stopped working properly within days of arriving. The return process was easy at least, but I expected much better quality control." },
+   885→  ],
+   886→};
+   887→
+   888→const REVIEW_DAY_GAPS = [2, 4, 9, 14, 21, 33, 47, 62, 88, 120];
+   889→
+   890→function hashString(s: string): number {
+   891→  let h = 2166136261;
+   892→  for (let i = 0; i < s.length; i++) {
+   893→    h ^= s.charCodeAt(i);
+   894→    h = Math.imul(h, 16777619);
+   895→  }
+   896→  return h >>> 0;
+   897→}
+   898→
+   899→function relativeDate(daysAgo: number): string {
+   900→  if (daysAgo <= 1) return "yesterday";
+   901→  if (daysAgo < 7) return `${daysAgo} days ago`;
+   902→  if (daysAgo < 30) {
+   903→    const w = Math.floor(daysAgo / 7);
+   904→    return w === 1 ? "1 week ago" : `${w} weeks ago`;
+   905→  }
+   906→  const m = Math.floor(daysAgo / 30);
+   907→  return m === 1 ? "1 month ago" : `${m} months ago`;
+   908→}
+   909→
+   910→/** Deterministic pseudo-random reviews for a product (same output every render/SSR). */
+   911→export function reviewsFor(productId: string): Review[] {
+   912→  const p = PRODUCT_MAP[productId];
+   913→  if (!p) return [];
+   914→  const seed = hashString(productId);
+   915→  const count = 4 + (seed % 3); // 4..6 reviews
+   916→  const rating = p.rating;
+   917→
+   918→  const reviews: { review: Review; daysAgo: number }[] = [];
+   919→  const usedAuthorIdx = new Set<number>();
+   920→  const usedContentKeys = new Set<string>();
+   921→  for (let i = 0; i < count; i++) {
+   922→    // deterministic star pick biased by the product rating
+   923→    const roll = ((seed >>> (i * 3 + 1)) % 100) / 100;
+   924→    let stars: number;
+   925→    if (rating >= 4.5) stars = roll < 0.68 ? 5 : roll < 0.94 ? 4 : 3;
+   926→    else if (rating >= 4.0) stars = roll < 0.52 ? 5 : roll < 0.9 ? 4 : 3;
+   927→    else if (rating >= 3.5) stars = roll < 0.34 ? 5 : roll < 0.74 ? 4 : roll < 0.94 ? 3 : 2;
+   928→    else stars = roll < 0.2 ? 5 : roll < 0.55 ? 4 : roll < 0.85 ? 3 : 2;
+   929→
+   930→    const pool = REVIEW_CONTENT[stars];
+   931→    let cIdx = (seed >>> (i * 5 + 2)) % pool.length;
+   932→    let guard = 0;
+   933→    while (usedContentKeys.has(`${stars}:${cIdx}`) && guard < pool.length * 2) {
+   934→      cIdx = (cIdx + 1) % pool.length;
+   935→      guard++;
+   936→    }
+   937→    usedContentKeys.add(`${stars}:${cIdx}`);
+   938→    const content = pool[cIdx];
+   939→
+   940→    let aIdx = (seed >>> (i * 4 + 3)) % REVIEW_AUTHORS.length;
+   941→    guard = 0;
+   942→    while (usedAuthorIdx.has(aIdx) && guard < REVIEW_AUTHORS.length) {
+   943→      aIdx = (aIdx + 1) % REVIEW_AUTHORS.length;
+   944→      guard++;
+   945→    }
+   946→    usedAuthorIdx.add(aIdx);
+   947→    const author = REVIEW_AUTHORS[aIdx];
+   948→
+   949→    const daysAgo = REVIEW_DAY_GAPS[(seed >>> (i * 3 + 5)) % REVIEW_DAY_GAPS.length];
+   950→
+   951→    reviews.push({
+   952→      daysAgo,
+   953→      review: {
+   954→        id: `${productId}-r${i}`,
+   955→        author,
+   956→        rating: stars,
+   957→        date: relativeDate(daysAgo),
+   958→        title: content.title,
+   959→        body: content.body,
+   960→        verified: i % 4 !== 3,
+   961→        helpful: 3 + ((seed >>> (i * 6 + 4)) % 46),
+   962→      },
+   963→    });
+   964→  }
+   965→  // newest first
+   966→  return reviews.sort((a, b) => a.daysAgo - b.daysAgo).map((r) => r.review);
+   967→}
+   968→
+   969→/** Deterministic 5→1 star distribution that averages roughly to the product rating. */
+   970→export function ratingBreakdown(p: Product): { stars: number; pct: number; count: number }[] {
+   971→  const r = p.rating;
+   972→  const five = Math.round(Math.min(82, Math.max(25, (r - 2.2) * 34)));
+   973→  const one = Math.round(Math.min(18, Math.max(1, (5 - r) * 7)));
+   974→  const four = Math.round((100 - five - one) * 0.52);
+   975→  const three = Math.round((100 - five - one - four) * 0.55);
+   976→  const two = Math.max(0, 100 - five - four - three - one);
+   977→  return [five, four, three, two, one].map((pct, i) => ({
+   978→    stars: 5 - i,
+   979→    pct,
+   980→    count: Math.round((pct / 100) * p.ratingCount),
+   981→  }));
+   982→}
+   983→

@@ -4,17 +4,17 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import {
   BadgeCheck,
+  Banknote,
   CreditCard,
-  Landmark,
   Lock,
   MapPin,
   PackageCheck,
   PartyPopper,
   ShieldCheck,
   ShoppingCart,
+  Smartphone,
   Sparkles,
   Truck,
-  Wallet,
 } from "lucide-react";
 import { toast } from "sonner";
 import { PRODUCT_MAP } from "@/lib/zshop/data";
@@ -26,9 +26,43 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
-type PaymentMethod = "card" | "wallet" | "cod";
+type PaymentMethod = "upi" | "card" | "cod";
+
+const INDIAN_STATES = [
+  "Andhra Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Delhi",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Tamil Nadu",
+  "Telangana",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
+  "Jammu & Kashmir",
+  "Other",
+];
 
 function makeOrderId() {
   return `ZS-${Date.now().toString(36).toUpperCase().slice(-6)}-${Math.floor(Math.random() * 900 + 100)}`;
@@ -45,17 +79,18 @@ export function CheckoutView() {
   const [form, setForm] = useState({
     name: user?.name ?? "",
     email: user?.email ?? "",
-    street: user ? "123 Market Street, Apt 4B" : "",
-    city: user ? "San Francisco" : "",
-    state: user ? "CA" : "",
-    zip: user ? "94105" : "",
-    country: "United States",
+    phone: user ? "98200 12345" : "",
+    street: user ? "Flat 402, Sunrise Apartments, Linking Road" : "",
+    city: user ? "Mumbai" : "",
+    state: user ? "Maharashtra" : "",
+    zip: user ? "400050" : "",
+    upiId: "",
     cardName: "",
     cardNumber: "",
     expiry: "",
     cvv: "",
   });
-  const [payment, setPayment] = useState<PaymentMethod>("card");
+  const [payment, setPayment] = useState<PaymentMethod>("upi");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [placing, setPlacing] = useState(false);
 
@@ -86,26 +121,40 @@ export function CheckoutView() {
     return `${digits.slice(0, 2)}/${digits.slice(2)}`;
   }
 
-  function autofillDemoCard() {
+  function autofillDemo() {
     setForm((f) => ({
       ...f,
-      cardName: (f.name || "Alex Shopper").toUpperCase(),
+      name: f.name || "Aarav Sharma",
+      email: f.email || "aarav.sharma@example.in",
+      phone: f.phone || "98200 12345",
+      street: f.street || "Flat 402, Sunrise Apartments, Linking Road",
+      city: f.city || "Mumbai",
+      state: f.state || "Maharashtra",
+      zip: f.zip || "400050",
+      upiId: f.upiId || "aarav@okzshop",
+      cardName: (f.name || "Aarav Sharma").toUpperCase(),
       cardNumber: "4242 4242 4242 4242",
       expiry: "12/28",
       cvv: "123",
     }));
     setErrors({});
-    toast.success("Demo card details filled");
+    toast.success("Demo address & payment details filled");
   }
 
   function validate(): boolean {
     const e: Record<string, string> = {};
     if (!form.name.trim()) e.name = "Full name is required";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Valid email is required";
-    if (!form.street.trim()) e.street = "Street address is required";
+    if (!/^[6-9]\d{4}\s?\d{5}$/.test(form.phone.trim()))
+      e.phone = "Enter a valid 10-digit Indian mobile number";
+    if (!form.street.trim()) e.street = "Address (house no, street, area) is required";
     if (!form.city.trim()) e.city = "City is required";
     if (!form.state.trim()) e.state = "State is required";
-    if (!/^\d{4,10}$/.test(form.zip.trim())) e.zip = "Valid ZIP is required";
+    if (!/^\d{6}$/.test(form.zip.trim())) e.zip = "Enter a valid 6-digit PIN code";
+    if (payment === "upi") {
+      if (!/^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test(form.upiId.trim()))
+        e.upiId = "Enter a valid UPI ID (e.g. name@okbank)";
+    }
     if (payment === "card") {
       if (form.cardNumber.replace(/\s/g, "").length !== 16) e.cardNumber = "Enter a 16-digit card number";
       if (!/^\d{2}\/\d{2}$/.test(form.expiry)) e.expiry = "MM/YY format";
@@ -137,10 +186,10 @@ export function CheckoutView() {
         shipping: t.shipping,
         total: t.total,
         status: "Processing",
-        eta: new Date(Date.now() + 3 * 86400000).toLocaleDateString("en-US", {
+        eta: new Date(Date.now() + 3 * 86400000).toLocaleDateString("en-IN", {
           weekday: "long",
-          month: "short",
           day: "numeric",
+          month: "long",
         }),
         address: {
           name: form.name,
@@ -148,7 +197,8 @@ export function CheckoutView() {
           city: form.city,
           state: form.state,
           zip: form.zip,
-          country: form.country,
+          country: "India",
+          phone: form.phone,
         },
       };
       placeOrder(order);
@@ -175,8 +225,9 @@ export function CheckoutView() {
                 <PartyPopper className="h-6 w-6 text-brand-500" aria-hidden />
               </h1>
               <p className="mt-1 text-sm text-muted-foreground">
-                Thanks, {placedOrder.address.name.split(" ")[0]}. Your order{" "}
-                <span className="font-bold text-foreground">{placedOrder.id}</span> is being packed.
+                Shukriya, {placedOrder.address.name.split(" ")[0]}. Your order{" "}
+                <span className="font-bold text-foreground">{placedOrder.id}</span> is being packed —
+                GST invoice will be emailed to you.
               </p>
             </div>
             <div className="w-full rounded-xl bg-muted/50 p-4 text-left text-sm">
@@ -268,7 +319,14 @@ export function CheckoutView() {
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-sm font-black text-primary-foreground">
                   1
                 </span>
-                <MapPin className="h-4.5 w-4.5 text-brand-600" /> Shipping address
+                <MapPin className="h-4.5 w-4.5 text-brand-600" /> Delivery address
+                <button
+                  type="button"
+                  onClick={autofillDemo}
+                  className="ml-auto flex items-center gap-1 rounded-full border border-dashed border-brand-400 px-2.5 py-1 text-xs font-semibold text-brand-600 transition hover:bg-brand-50 dark:text-brand-400 dark:hover:bg-brand-400/10"
+                >
+                  <Sparkles className="h-3 w-3" /> Autofill demo details
+                </button>
               </h2>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="sm:col-span-2">
@@ -278,9 +336,24 @@ export function CheckoutView() {
                     className={inputCls("name")}
                     value={form.name}
                     onChange={(e) => set("name", e.target.value)}
-                    placeholder="Alex Shopper"
+                    placeholder="Aarav Sharma"
                   />
                   {errors.name && <p className="mt-1 text-xs text-destructive">{errors.name}</p>}
+                </div>
+                <div className="sm:col-span-2">
+                  <Label htmlFor="co-phone">Mobile number</Label>
+                  <Input
+                    id="co-phone"
+                    inputMode="tel"
+                    className={inputCls("phone")}
+                    value={form.phone}
+                    onChange={(e) => set("phone", e.target.value)}
+                    placeholder="98200 12345"
+                  />
+                  {errors.phone && <p className="mt-1 text-xs text-destructive">{errors.phone}</p>}
+                  <p className="mt-1 text-[11px] text-muted-foreground">
+                    Delivery updates will be sent to this number on WhatsApp & SMS.
+                  </p>
                 </div>
                 <div className="sm:col-span-2">
                   <Label htmlFor="co-email">Email</Label>
@@ -290,59 +363,65 @@ export function CheckoutView() {
                     className={inputCls("email")}
                     value={form.email}
                     onChange={(e) => set("email", e.target.value)}
-                    placeholder="you@example.com"
+                    placeholder="you@example.in"
                   />
                   {errors.email && <p className="mt-1 text-xs text-destructive">{errors.email}</p>}
                 </div>
                 <div className="sm:col-span-2">
-                  <Label htmlFor="co-street">Street address</Label>
+                  <Label htmlFor="co-street">House no., building & area</Label>
                   <Input
                     id="co-street"
                     className={inputCls("street")}
                     value={form.street}
                     onChange={(e) => set("street", e.target.value)}
-                    placeholder="123 Main Street, Apt 4B"
+                    placeholder="Flat 402, Sunrise Apartments, Linking Road"
                   />
                   {errors.street && <p className="mt-1 text-xs text-destructive">{errors.street}</p>}
                 </div>
                 <div>
-                  <Label htmlFor="co-city">City</Label>
+                  <Label htmlFor="co-city">City / Town</Label>
                   <Input
                     id="co-city"
                     className={inputCls("city")}
                     value={form.city}
                     onChange={(e) => set("city", e.target.value)}
-                    placeholder="San Francisco"
+                    placeholder="Mumbai"
                   />
                   {errors.city && <p className="mt-1 text-xs text-destructive">{errors.city}</p>}
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <Label htmlFor="co-state">State</Label>
-                    <Input
-                      id="co-state"
-                      className={inputCls("state")}
-                      value={form.state}
-                      onChange={(e) => set("state", e.target.value)}
-                      placeholder="CA"
-                    />
+                    <Select value={form.state} onValueChange={(v) => set("state", v)}>
+                      <SelectTrigger id="co-state" className={inputCls("state")} aria-label="State">
+                        <SelectValue placeholder="Select state" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {INDIAN_STATES.map((s) => (
+                          <SelectItem key={s} value={s}>
+                            {s}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     {errors.state && <p className="mt-1 text-xs text-destructive">{errors.state}</p>}
                   </div>
                   <div>
-                    <Label htmlFor="co-zip">ZIP</Label>
+                    <Label htmlFor="co-zip">PIN code</Label>
                     <Input
                       id="co-zip"
+                      inputMode="numeric"
                       className={inputCls("zip")}
                       value={form.zip}
-                      onChange={(e) => set("zip", e.target.value)}
-                      placeholder="94105"
+                      onChange={(e) => set("zip", e.target.value.replace(/\D/g, "").slice(0, 6))}
+                      placeholder="400050"
                     />
                     {errors.zip && <p className="mt-1 text-xs text-destructive">{errors.zip}</p>}
                   </div>
                 </div>
                 <div className="sm:col-span-2">
                   <Label htmlFor="co-country">Country</Label>
-                  <Input id="co-country" value={form.country} onChange={(e) => set("country", e.target.value)} />
+                  <Input id="co-country" value="India" readOnly aria-readonly className="bg-muted/50" />
                 </div>
               </div>
             </CardContent>
@@ -356,19 +435,12 @@ export function CheckoutView() {
                   2
                 </span>
                 <CreditCard className="h-4.5 w-4.5 text-brand-600" /> Payment method
-                <button
-                  type="button"
-                  onClick={autofillDemoCard}
-                  className="ml-auto flex items-center gap-1 rounded-full border border-dashed border-brand-400 px-2.5 py-1 text-xs font-semibold text-brand-600 transition hover:bg-brand-50 dark:text-brand-400 dark:hover:bg-brand-400/10"
-                >
-                  <Sparkles className="h-3 w-3" /> Autofill demo card
-                </button>
               </h2>
               <RadioGroup value={payment} onValueChange={(v) => setPayment(v as PaymentMethod)} className="grid gap-3 sm:grid-cols-3">
                 {[
-                  { value: "card", label: "Credit / Debit card", icon: CreditCard },
-                  { value: "wallet", label: "Z Wallet", icon: Wallet },
-                  { value: "cod", label: "Cash on delivery", icon: Landmark },
+                  { value: "upi", label: "UPI", icon: Smartphone },
+                  { value: "card", label: "Card (EMI available)", icon: CreditCard },
+                  { value: "cod", label: "Cash on delivery", icon: Banknote },
                 ].map(({ value, label, icon: Icon }) => (
                   <Label
                     key={value}
@@ -379,12 +451,29 @@ export function CheckoutView() {
                     )}
                   >
                     <RadioGroupItem id={`pay-${value}`} value={value} className="sr-only" />
-                    <Icon className="h-4.5 w-4.5 text-brand-600" />
+                    <Icon className="h-4.5 w-4.5 shrink-0 text-brand-600" />
                     {label}
                   </Label>
                 ))}
               </RadioGroup>
 
+              {payment === "upi" && (
+                <div className="mt-4">
+                  <Label htmlFor="upi-id">UPI ID</Label>
+                  <Input
+                    id="upi-id"
+                    className={cn("font-mono", inputCls("upiId"))}
+                    value={form.upiId}
+                    onChange={(e) => set("upiId", e.target.value.trim())}
+                    placeholder="yourname@okhdfcbank / @paytm / @ybl"
+                  />
+                  {errors.upiId && <p className="mt-1 text-xs text-destructive">{errors.upiId}</p>}
+                  <p className="mt-1.5 text-xs text-muted-foreground">
+                    You&apos;ll receive a collect request on GPay, PhonePe, Paytm or any UPI app.
+                    Demo only — no real money moves.
+                  </p>
+                </div>
+              )}
               {payment === "card" && (
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
                   <div className="sm:col-span-2">
@@ -394,7 +483,7 @@ export function CheckoutView() {
                       className={inputCls("cardName")}
                       value={form.cardName}
                       onChange={(e) => set("cardName", e.target.value)}
-                      placeholder="ALEX SHOPPER"
+                      placeholder="AARAV SHARMA"
                     />
                     {errors.cardName && <p className="mt-1 text-xs text-destructive">{errors.cardName}</p>}
                   </div>
@@ -435,16 +524,16 @@ export function CheckoutView() {
                     />
                     {errors.cvv && <p className="mt-1 text-xs text-destructive">{errors.cvv}</p>}
                   </div>
+                  <p className="text-xs text-muted-foreground sm:col-span-2">
+                    No-cost EMI available on select credit cards above ₹3,000. RuPay, Visa,
+                    Mastercard & Amex accepted.
+                  </p>
                 </div>
-              )}
-              {payment === "wallet" && (
-                <p className="mt-4 rounded-lg bg-muted/60 p-3 text-sm text-muted-foreground">
-                  Z Wallet balance is illustrative — the demo order will be marked as paid via wallet.
-                </p>
               )}
               {payment === "cod" && (
                 <p className="mt-4 rounded-lg bg-muted/60 p-3 text-sm text-muted-foreground">
-                  Pay in cash when your order arrives. A $2.99 handling fee may apply (waived in demo).
+                  Pay in cash or scan &amp; pay via UPI when your order arrives. A ₹49 handling fee
+                  may apply on COD orders (waived in this demo).
                 </p>
               )}
             </CardContent>
@@ -463,9 +552,9 @@ export function CheckoutView() {
                 <div className="flex items-center gap-3">
                   <BadgeCheck className="h-5 w-5 text-success-600 dark:text-success-400" />
                   <div>
-                    <p className="text-sm font-bold">FREE Standard Shipping</p>
+                    <p className="text-sm font-bold">FREE delivery by Delhivery</p>
                     <p className="text-xs text-muted-foreground">
-                      Arrives in 3–5 business days
+                      Arrives in 2–5 days · ships from Mumbai, Delhi &amp; Bengaluru warehouses
                     </p>
                   </div>
                 </div>
@@ -527,7 +616,7 @@ export function CheckoutView() {
                   </div>
                 )}
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Shipping</span>
+                  <span className="text-muted-foreground">Delivery</span>
                   <span className="font-semibold">
                     {t.shipping === 0 ? (
                       <span className="text-success-600 dark:text-success-400">FREE</span>
@@ -541,6 +630,9 @@ export function CheckoutView() {
                   <span className="font-bold">Order total</span>
                   <span className="font-black">{price(t.total)}</span>
                 </div>
+                <p className="pt-1 text-[11px] text-muted-foreground">
+                  Inclusive of all taxes · GST invoice included in the box
+                </p>
               </div>
               <Button
                 className="mt-4 h-12 w-full bg-brand-500 text-base font-bold text-primary-foreground hover:bg-brand-600 disabled:opacity-60"

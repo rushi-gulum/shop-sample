@@ -260,7 +260,13 @@ export function ProductDetail({ id }: { id: string }) {
                 </>
               )}
             </div>
-            <p className="mt-0.5 text-xs text-muted-foreground">Inclusive of all taxes</p>
+            <p className="mt-0.5 text-xs text-muted-foreground">
+              Inclusive of all taxes · EMI from{" "}
+              <span className="font-semibold text-foreground">
+                {price(Math.round(p.price / 12))}
+              </span>
+              /month · COD available
+            </p>
           </div>
 
           <p className="mt-4 leading-relaxed text-muted-foreground">{p.description}</p>

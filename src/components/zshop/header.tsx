@@ -20,9 +20,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
-import { CURRENCIES, PRODUCT_MAP, searchProducts } from "@/lib/zshop/data";
+import { PRODUCT_MAP, searchProducts } from "@/lib/zshop/data";
 import { usePrice, useZShop } from "@/lib/zshop/store";
-import type { CurrencyCode } from "@/lib/zshop/types";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -37,12 +36,12 @@ import {
 import { cn } from "@/lib/utils";
 
 const TRENDING = [
-  "wireless headphones",
-  "smartwatch",
-  "espresso machine",
-  "leather sneakers",
-  "yoga mat",
-  "air fryer",
+  "iphone 15",
+  "5g phones under 20000",
+  "boat airdopes",
+  "power bank 20000mah",
+  "s24 ultra",
+  "smartwatch under 3000",
 ];
 
 export function Header() {
@@ -56,8 +55,6 @@ export function Header() {
   const cartCount = useZShop((s) => s.cart.reduce((n, c) => n + c.qty, 0));
   const wishlistCount = useZShop((s) => s.wishlist.length);
   const compareCount = useZShop((s) => s.compare.length);
-  const currency = useZShop((s) => s.currency);
-  const setCurrency = useZShop((s) => s.setCurrency);
   const user = useZShop((s) => s.user);
   const navigate = useZShop((s) => s.navigate);
   const openProduct = useZShop((s) => s.openProduct);
@@ -136,7 +133,7 @@ export function Header() {
           <span className="hidden flex-col leading-tight sm:flex">
             <span className="text-lg font-black text-neutral-950">Z Shop</span>
             <span className="text-[11px] font-medium text-neutral-800/80">
-              Shop smarter, live better
+              India&apos;s mobile store
             </span>
           </span>
         </button>
@@ -146,48 +143,9 @@ export function Header() {
           <MapPin className="h-5 w-5" />
           <span className="flex flex-col leading-tight">
             <span className="text-[11px] text-neutral-800/70">Deliver to</span>
-            <span className="text-sm font-bold">United States</span>
+            <span className="text-sm font-bold">India</span>
           </span>
         </div>
-
-        {/* currency */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              aria-label="Switch currency"
-              className="hidden h-9 gap-1 rounded-md px-2 text-neutral-950 hover:bg-neutral-100 md:flex"
-            >
-              <span className="text-base font-bold">$</span>
-              <span className="text-sm font-bold">{currency}</span>
-              <ChevronDown className="h-3.5 w-3.5" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-60">
-            <DropdownMenuLabel>Display currency</DropdownMenuLabel>
-            <DropdownMenuRadioGroup
-              value={currency}
-              onValueChange={(v) => setCurrency(v as CurrencyCode)}
-            >
-              {Object.values(CURRENCIES).map((c) => (
-                <DropdownMenuRadioItem key={c.code} value={c.code}>
-                  <span className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-md bg-brand-100 text-xs font-bold text-neutral-900">
-                      {c.symbol}
-                    </span>
-                    <span className="flex flex-col">
-                      <span className="text-sm font-semibold">{c.code}</span>
-                      <span className="text-[11px] text-muted-foreground">{c.label}</span>
-                    </span>
-                  </span>
-                </DropdownMenuRadioItem>
-              ))}
-            </DropdownMenuRadioGroup>
-            <p className="px-2 pb-2 pt-1 text-[11px] leading-snug text-muted-foreground">
-              Rates are illustrative for demo only. Prices update instantly across the site.
-            </p>
-          </DropdownMenuContent>
-        </DropdownMenu>
 
         {/* search */}
         <div ref={searchRef} className="relative order-last flex w-full flex-1 sm:order-none sm:w-auto sm:min-w-[220px]">
@@ -205,7 +163,7 @@ export function Header() {
               onFocus={() => setFocused(true)}
               aria-label="Search Z Shop"
               aria-keyshortcuts="/ Meta+K Control+K"
-              placeholder="Search products, brands and categories..."
+              placeholder="Search for phones, earbuds, brands and more..."
               className="h-10 w-full bg-transparent px-3.5 text-sm text-neutral-900 outline-none placeholder:text-neutral-400"
             />
             {!focused && !query && (
