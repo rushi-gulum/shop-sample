@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, Home, ChevronRight, LogOut, MapPin, Package, Scale, ShieldCheck, User2 } from "lucide-react";
+import { CircleUserRound, Heart, Home, ChevronRight, LogOut, MapPin, Package, Scale, ShieldCheck, User2 } from "lucide-react";
 import { useZShop } from "@/lib/zshop/store";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,7 +18,9 @@ export function AccountView() {
   if (!user) {
     return (
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-3 px-3 py-20 text-center sm:px-6">
-        <span className="text-5xl">👤</span>
+        <span className="flex h-24 w-24 items-center justify-center rounded-full bg-muted">
+          <CircleUserRound className="h-11 w-11 text-muted-foreground/40" aria-hidden />
+        </span>
         <h1 className="text-2xl font-black">You&apos;re not signed in</h1>
         <p className="text-sm text-muted-foreground">
           Sign in to view your profile, orders and wishlist.

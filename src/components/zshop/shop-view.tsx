@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ChevronRight, Home, Search, SlidersHorizontal, X } from "lucide-react";
+import { Check, ChevronRight, Flame, Home, Search, SlidersHorizontal, X } from "lucide-react";
 import {
   BRANDS,
   CATEGORIES,
@@ -164,7 +164,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
                   onClick={() => navigate({ name: "shop", category: c.id })}
                 >
                   {c.name}
-                  {activeCategory === c.id && <span className="text-amber-500">✓</span>}
+                  {activeCategory === c.id && <Check className="h-3.5 w-3.5 text-amber-500" aria-hidden />}
                 </button>
               </li>
             ))}
@@ -325,7 +325,9 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
         <div className="min-w-0 flex-1">
           {results.length === 0 ? (
             <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed py-16 text-center">
-              <span className="text-4xl">🔍</span>
+              <span className="flex h-20 w-20 items-center justify-center rounded-full bg-muted">
+                <Search className="h-9 w-9 text-muted-foreground/50" aria-hidden />
+              </span>
               <h3 className="text-lg font-bold">No products found</h3>
               <p className="max-w-sm text-sm text-muted-foreground">
                 Try adjusting your search or filters. Clearing filters may help.
@@ -355,7 +357,10 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
             <div className="mt-8 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 p-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <h3 className="text-lg font-black text-white">🔥 Today&apos;s hottest deals</h3>
+                  <h3 className="flex items-center gap-2 text-lg font-black text-white">
+                    <Flame className="h-5 w-5" aria-hidden />
+                    Today&apos;s hottest deals
+                  </h3>
                   <p className="text-sm text-white/85">
                     Up to {Math.max(...dealProducts().map((d) => (d.compareAt ? Math.round((1 - d.price / d.compareAt) * 100) : 0)))}% off —
                     limited time only

@@ -9,7 +9,9 @@ import {
   Lock,
   MapPin,
   PackageCheck,
+  PartyPopper,
   ShieldCheck,
+  ShoppingCart,
   Truck,
   Wallet,
 } from "lucide-react";
@@ -154,7 +156,10 @@ export function CheckoutView() {
               <PackageCheck className="h-10 w-10 text-emerald-600 dark:text-emerald-400" />
             </span>
             <div>
-              <h1 className="text-2xl font-black">Order confirmed! 🎉</h1>
+              <h1 className="flex items-center justify-center gap-2 text-2xl font-black">
+                Order confirmed!
+                <PartyPopper className="h-6 w-6 text-amber-500" aria-hidden />
+              </h1>
               <p className="mt-1 text-sm text-muted-foreground">
                 Thanks, {placedOrder.address.name.split(" ")[0]}. Your order{" "}
                 <span className="font-bold text-foreground">{placedOrder.id}</span> is being packed.
@@ -214,7 +219,9 @@ export function CheckoutView() {
   if (lines.length === 0) {
     return (
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-3 px-3 py-20 text-center sm:px-6">
-        <span className="text-5xl">🛒</span>
+        <span className="flex h-24 w-24 items-center justify-center rounded-full bg-muted">
+          <ShoppingCart className="h-11 w-11 text-muted-foreground/40" aria-hidden />
+        </span>
         <h1 className="text-2xl font-black">Your cart is empty</h1>
         <p className="text-sm text-muted-foreground">Add a few products before checking out.</p>
         <Button

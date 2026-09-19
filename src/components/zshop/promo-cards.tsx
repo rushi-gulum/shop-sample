@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, RefreshCcw, Sparkles } from "lucide-react";
+import { ArrowRight, Crown, RefreshCcw, Recycle, Sparkles } from "lucide-react";
 import { useZShop } from "@/lib/zshop/store";
 
 export function PromoCards() {
@@ -11,9 +11,10 @@ export function PromoCards() {
       <div className="grid gap-4 md:grid-cols-2">
         {/* Z Prime */}
         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 p-6 text-white shadow-md sm:p-8">
-          <span className="pointer-events-none absolute -right-8 -top-8 text-[120px] leading-none opacity-15">
-            👑
-          </span>
+          <Crown
+            aria-hidden
+            className="pointer-events-none absolute -right-6 -top-6 h-32 w-32 opacity-15"
+          />
           <span className="w-fit rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
             Membership
           </span>
@@ -31,9 +32,10 @@ export function PromoCards() {
 
         {/* Trade & Save */}
         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 p-6 text-white shadow-md sm:p-8">
-          <span className="pointer-events-none absolute -right-8 -top-8 text-[120px] leading-none opacity-15">
-            ♻️
-          </span>
+          <Recycle
+            aria-hidden
+            className="pointer-events-none absolute -right-6 -top-6 h-32 w-32 opacity-15"
+          />
           <span className="flex w-fit items-center gap-1 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
             <RefreshCcw className="h-3 w-3" /> Trade-in
           </span>

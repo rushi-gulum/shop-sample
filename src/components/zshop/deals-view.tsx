@@ -23,9 +23,10 @@ export function DealsView() {
       </nav>
 
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-rose-600 via-orange-500 to-amber-500 p-6 text-white shadow-md sm:p-10">
-        <span className="pointer-events-none absolute -right-4 -top-6 text-[110px] leading-none opacity-15">
-          🔥
-        </span>
+        <Flame
+          aria-hidden
+          className="pointer-events-none absolute -right-4 -top-6 h-32 w-32 opacity-15"
+        />
         <span className="flex w-fit items-center gap-1 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
           <Flame className="h-3 w-3" /> Hot deals
         </span>

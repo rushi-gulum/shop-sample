@@ -1,16 +1,16 @@
 import type { Category, CurrencyCode, CurrencyInfo, Product } from "./types";
 
 export const CATEGORIES: Category[] = [
-  { id: "audio", name: "Audio", emoji: "🎧", blurb: "Headphones, speakers and audio gear" },
-  { id: "beauty", name: "Beauty", emoji: "✨", blurb: "Skincare, makeup and personal care" },
-  { id: "books", name: "Books", emoji: "📚", blurb: "Bestsellers, new releases and classics" },
-  { id: "computers", name: "Computers", emoji: "💻", blurb: "Laptops, accessories and peripherals" },
-  { id: "electronics", name: "Electronics", emoji: "📱", blurb: "Phones, drones, TVs and smart tech" },
-  { id: "fashion", name: "Fashion", emoji: "👕", blurb: "Everyday carry, footwear and style" },
-  { id: "grocery", name: "Grocery", emoji: "🛒", blurb: "Gourmet food, drinks and pantry staples" },
-  { id: "home-kitchen", name: "Home & Kitchen", emoji: "🏠", blurb: "Appliances and essentials for the home" },
-  { id: "sports-outdoors", name: "Sports & Outdoors", emoji: "🏋️", blurb: "Training gear and outdoor equipment" },
-  { id: "toys-games", name: "Toys & Games", emoji: "🎮", blurb: "Play, build and learn" },
+  { id: "audio", name: "Audio", blurb: "Headphones, speakers and audio gear" },
+  { id: "beauty", name: "Beauty", blurb: "Skincare, makeup and personal care" },
+  { id: "books", name: "Books", blurb: "Bestsellers, new releases and classics" },
+  { id: "computers", name: "Computers", blurb: "Laptops, accessories and peripherals" },
+  { id: "electronics", name: "Electronics", blurb: "Phones, drones, TVs and smart tech" },
+  { id: "fashion", name: "Fashion", blurb: "Everyday carry, footwear and style" },
+  { id: "grocery", name: "Grocery", blurb: "Gourmet food, drinks and pantry staples" },
+  { id: "home-kitchen", name: "Home & Kitchen", blurb: "Appliances and essentials for the home" },
+  { id: "sports-outdoors", name: "Sports & Outdoors", blurb: "Training gear and outdoor equipment" },
+  { id: "toys-games", name: "Toys & Games", blurb: "Play, build and learn" },
 ];
 
 export const CATEGORY_MAP: Record<string, Category> = Object.fromEntries(

@@ -10,6 +10,7 @@ import {
   Search,
   Send,
   Sparkles,
+  Star,
   Trash2,
   Truck,
   X,
@@ -34,7 +35,7 @@ const QUICK_QUESTIONS = [
 
 const WELCOME: ChatMessage = {
   role: "bot",
-  text: "Hi there! 👋 I'm Zoe, your Z Shop assistant. How can I help you today? You can ask me about products, orders, shipping, returns, or anything else!",
+  text: "Hi there! I'm Zoe, your Z Shop assistant. How can I help you today? You can ask me about products, orders, shipping, returns, or anything else!",
   ts: 0,
 };
 
@@ -65,7 +66,7 @@ function botReply(userText: string): ChatMessage {
   if (/(shipping|delivery|deliver|arrive|ship)/.test(q)) {
     return {
       role: "bot",
-      text: "We offer FREE standard shipping on orders over $99 (otherwise $9.99), arriving in 3–5 business days. Z Prime members get free same-day delivery in select cities. 🚚",
+      text: "We offer FREE standard shipping on orders over $99 (otherwise $9.99), arriving in 3–5 business days. Z Prime members get free same-day delivery in select cities.",
       ts: Date.now(),
     };
   }
@@ -74,7 +75,7 @@ function botReply(userText: string): ChatMessage {
   if (/(return|refund|exchange)/.test(q)) {
     return {
       role: "bot",
-      text: "We have a 30-day, no-questions-asked return policy. Items in original condition get a full refund within 2 business days of us receiving the return. ♻️",
+      text: "We have a 30-day, no-questions-asked return policy. Items in original condition get a full refund within 2 business days of us receiving the return.",
       ts: Date.now(),
     };
   }
@@ -83,7 +84,7 @@ function botReply(userText: string): ChatMessage {
   if (/(promo|coupon|code|discount|deal|sale|offer)/.test(q)) {
     return {
       role: "bot",
-      text: 'Psst — use code WELCOME15 for 15% off your order, or ZPRIME5 for an extra 5%. Check the "Today\'s Deals" page for up to 44% off selected products! 🏷️',
+      text: 'Psst — use code WELCOME15 for 15% off your order, or ZPRIME5 for an extra 5%. Check the "Today\'s Deals" page for up to 44% off selected products!',
       ts: Date.now(),
     };
   }
@@ -92,7 +93,7 @@ function botReply(userText: string): ChatMessage {
   if (/(payment|pay|card|wallet|cod|cash)/.test(q)) {
     return {
       role: "bot",
-      text: "We accept credit/debit cards, Z Wallet, and cash on delivery. All payments are processed with 256-bit SSL encryption. 💳",
+      text: "We accept credit/debit cards, Z Wallet, and cash on delivery. All payments are processed with 256-bit SSL encryption.",
       ts: Date.now(),
     };
   }
@@ -101,7 +102,7 @@ function botReply(userText: string): ChatMessage {
   if (/(hi|hello|hey|help|support|agent|human)/.test(q)) {
     return {
       role: "bot",
-      text: "Hello! 😊 I can help you find products, track orders, explain shipping & returns, or share the best deals. What would you like to do?",
+      text: "Hello! I can help you find products, track orders, explain shipping & returns, or share the best deals. What would you like to do?",
       ts: Date.now(),
     };
   }
@@ -136,7 +137,7 @@ function botReply(userText: string): ChatMessage {
 
   return {
     role: "bot",
-    text: "I'm not sure about that one — but I can help with products, orders, shipping, returns and deals. Try asking “recommend a product” or search for something like “headphones”. 🙌",
+    text: "I'm not sure about that one — but I can help with products, orders, shipping, returns and deals. Try asking “recommend a product” or search for something like “headphones”.",
     ts: Date.now(),
   };
 }
@@ -251,8 +252,10 @@ export function ChatWidget() {
                           <img src={p.image} alt="" className="h-9 w-9 rounded-lg object-cover" />
                           <span className="min-w-0 flex-1">
                             <span className="block truncate text-xs font-semibold">{p.title}</span>
-                            <span className="text-[11px] text-muted-foreground">
-                              {formatPrice(p.price, currency)} · ★ {p.rating}
+                            <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
+                              {formatPrice(p.price, currency)} ·
+                              <Star className="h-3 w-3 fill-amber-400 text-amber-400" aria-hidden />
+                              {p.rating}
                             </span>
                           </span>
                           <Search className="h-3.5 w-3.5 text-muted-foreground" />

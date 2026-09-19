@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import {
+  BadgeCheck,
+  Check,
   ChevronRight,
   Heart,
   Home,
@@ -208,8 +210,9 @@ export function ProductDetail({ id }: { id: string }) {
 
           <p className="mt-4 leading-relaxed text-muted-foreground">{p.description}</p>
 
-          <p className="mt-3 text-sm font-semibold text-emerald-600 dark:text-emerald-400">
-            ✓ In stock — ships within 24 hours
+          <p className="mt-3 flex items-center gap-1.5 text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+            <BadgeCheck className="h-4 w-4" aria-hidden />
+            In stock — ships within 24 hours
           </p>
 
           {/* qty + subtotal + actions */}
@@ -335,7 +338,7 @@ export function ProductDetail({ id }: { id: string }) {
                       <Image src={b.image} alt={b.title} fill sizes="160px" className="object-cover" />
                       {selectedIds.includes(b.id) && (
                         <span className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-white">
-                          ✓
+                          <Check className="h-3 w-3" aria-hidden />
                         </span>
                       )}
                     </span>

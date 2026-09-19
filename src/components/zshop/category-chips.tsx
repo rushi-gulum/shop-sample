@@ -3,6 +3,7 @@
 import { ChevronRight } from "lucide-react";
 import { CATEGORIES } from "@/lib/zshop/data";
 import { useZShop } from "@/lib/zshop/store";
+import { CategoryArt } from "./category-art";
 
 export function CategoryChips() {
   const navigate = useZShop((s) => s.navigate);
@@ -25,13 +26,17 @@ export function CategoryChips() {
         {CATEGORIES.map((c) => (
           <button
             key={c.id}
-            className="group flex flex-col items-center gap-2 rounded-xl border bg-card px-2 py-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-amber-400/60 hover:shadow-md"
+            aria-label={`Shop ${c.name}`}
+            title={c.blurb}
+            className="group flex flex-col items-center gap-2.5 rounded-2xl border bg-card px-2 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/70 hover:shadow-lg"
             onClick={() => navigate({ name: "shop", category: c.id })}
           >
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-2xl transition-transform group-hover:scale-110 dark:bg-amber-400/15">
-              {c.emoji}
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-b from-amber-50 to-orange-100 ring-1 ring-inset ring-amber-200/70 transition-transform duration-300 group-hover:scale-105 dark:from-amber-400/10 dark:to-orange-400/15 dark:ring-amber-400/20">
+              <span className="h-12 w-12">
+                <CategoryArt id={c.id} />
+              </span>
             </span>
-            <span className="text-center text-xs font-semibold leading-tight sm:text-sm">
+            <span className="text-center text-xs font-bold leading-tight sm:text-sm">
               {c.name}
             </span>
           </button>

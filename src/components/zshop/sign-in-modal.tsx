@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { KeyRound, Lock, Mail, ShieldCheck, Sparkles, User2 } from "lucide-react";
+import { Check, KeyRound, Lock, Mail, ShieldCheck, Sparkles, User2 } from "lucide-react";
 import { useZShop } from "@/lib/zshop/store";
 import {
   Dialog,
@@ -175,7 +175,10 @@ export function SignInModal() {
               </Button>
 
               <div className="rounded-lg bg-amber-50 p-3 text-xs dark:bg-amber-400/10">
-                <p className="font-bold text-amber-700 dark:text-amber-400">✓ Demo credentials</p>
+                <p className="flex items-center gap-1.5 font-bold text-amber-700 dark:text-amber-400">
+                  <Check className="h-3.5 w-3.5" aria-hidden />
+                  Demo credentials
+                </p>
                 <p className="mt-0.5 font-mono text-muted-foreground">
                   {DEMO.email} / {DEMO.password}
                 </p>

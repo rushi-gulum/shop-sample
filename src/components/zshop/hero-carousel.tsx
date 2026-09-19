@@ -2,7 +2,15 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Headphones,
+  House,
+  Sparkles,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
 import { useZShop } from "@/lib/zshop/store";
 import { cn } from "@/lib/utils";
 
@@ -14,7 +22,7 @@ interface Slide {
   category: string;
   gradient: string;
   image: string;
-  emoji: string;
+  deco: LucideIcon;
 }
 
 const SLIDES: Slide[] = [
@@ -26,7 +34,7 @@ const SLIDES: Slide[] = [
     category: "electronics",
     gradient: "from-orange-500 via-amber-500 to-orange-600",
     image: "/products/hero-tech.jpg",
-    emoji: "⚡",
+    deco: Zap,
   },
   {
     badge: "Sound Stage",
@@ -36,7 +44,7 @@ const SLIDES: Slide[] = [
     category: "audio",
     gradient: "from-rose-600 via-pink-600 to-rose-500",
     image: "/products/headphones2.jpg",
-    emoji: "🎧",
+    deco: Headphones,
   },
   {
     badge: "Cozy Home",
@@ -46,7 +54,7 @@ const SLIDES: Slide[] = [
     category: "home-kitchen",
     gradient: "from-teal-600 via-emerald-600 to-teal-500",
     image: "/products/hero-home.jpg",
-    emoji: "🏡",
+    deco: House,
   },
 ];
 
@@ -90,13 +98,15 @@ export function HeroCarousel() {
                 slide.gradient
               )}
             >
-              {/* decorative emojis */}
-              <span className="pointer-events-none absolute left-6 top-6 text-3xl opacity-20">
-                {slide.emoji}
-              </span>
-              <span className="pointer-events-none absolute bottom-10 right-[38%] text-5xl opacity-15">
-                {slide.emoji}
-              </span>
+              {/* decorative icon watermarks */}
+              <slide.deco
+                aria-hidden
+                className="pointer-events-none absolute left-6 top-6 h-10 w-10 text-white opacity-20"
+              />
+              <slide.deco
+                aria-hidden
+                className="pointer-events-none absolute bottom-10 right-[38%] h-20 w-20 text-white opacity-10"
+              />
 
               <div className="relative z-10 flex max-w-[60%] flex-col gap-3 p-6 sm:p-10 md:p-12">
                 <span className="w-fit rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">

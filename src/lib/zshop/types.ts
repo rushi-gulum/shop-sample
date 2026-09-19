@@ -13,7 +13,6 @@ export type CategoryId =
 export interface Category {
   id: CategoryId;
   name: string;
-  emoji: string;
   blurb: string;
 }
 

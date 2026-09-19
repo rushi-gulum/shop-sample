@@ -7,6 +7,7 @@ import {
   CheckCircle2,
   Gift,
   Minus,
+  PartyPopper,
   Plus,
   ShoppingBag,
   Tag,
@@ -100,8 +101,9 @@ export function CartDrawer() {
                   more for FREE shipping
                 </p>
               ) : (
-                <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                  🎉 You unlocked FREE shipping!
+                <p className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                  <PartyPopper className="h-3.5 w-3.5" aria-hidden />
+                  You unlocked FREE shipping!
                 </p>
               )}
               <Progress
@@ -240,8 +242,9 @@ export function CartDrawer() {
             {/* savings banners */}
             {t.bundleBrand && (
               <div className="mx-4 mb-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs dark:border-amber-500/30 dark:bg-amber-400/10">
-                <p className="font-bold text-amber-700 dark:text-amber-400">
-                  🎁 {t.bundleBrand} bundle — save 10%
+                <p className="flex items-center gap-1.5 font-bold text-amber-700 dark:text-amber-400">
+                  <Gift className="h-3.5 w-3.5" aria-hidden />
+                  {t.bundleBrand} bundle — save 10%
                 </p>
                 <p className="mt-0.5 text-muted-foreground">
                   {t.bundleCount} {t.bundleBrand} items qualify. You save {price(t.bundleSavings)}.
