@@ -61,7 +61,7 @@ export function CartDrawer() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent side="right" className="flex w-full flex-col p-0 sm:max-w-md">
-        <SheetHeader className="flex-row items-center justify-between border-b bg-amber-400 px-4 py-3 dark:bg-amber-400">
+        <SheetHeader className="flex-row items-center justify-between border-b bg-brand-400 px-4 py-3 dark:bg-brand-400">
           <SheetTitle className="flex items-center gap-2 text-neutral-950">
             <ShoppingBag className="h-5 w-5" />
             Your Cart
@@ -73,15 +73,15 @@ export function CartDrawer() {
 
         {cart.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-3 p-6 text-center">
-            <span className="flex h-20 w-20 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-400/10">
-              <ShoppingBag className="h-9 w-9 text-amber-500" />
+            <span className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-400/10">
+              <ShoppingBag className="h-9 w-9 text-brand-500" />
             </span>
             <h3 className="text-lg font-bold">Your cart is empty</h3>
             <p className="text-sm text-muted-foreground">
               Browse our catalog and add your favorite items.
             </p>
             <Button
-              className="mt-2 gap-2 bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+              className="mt-2 gap-2 bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
               onClick={() => navigate({ name: "shop", category: "all" })}
             >
               Start shopping <X className="hidden" />
@@ -93,9 +93,9 @@ export function CartDrawer() {
             <div className="border-b bg-muted/40 px-4 py-3">
               {t.freeShippingRemaining > 0 ? (
                 <p className="text-xs font-medium">
-                  <Truck className="mr-1 inline h-3.5 w-3.5 text-amber-500" />
+                  <Truck className="mr-1 inline h-3.5 w-3.5 text-brand-500" />
                   Add{" "}
-                  <span className="font-bold text-amber-600 dark:text-amber-400">
+                  <span className="font-bold text-brand-600 dark:text-brand-400">
                     {price(t.freeShippingRemaining)}
                   </span>{" "}
                   more for FREE shipping
@@ -134,7 +134,7 @@ export function CartDrawer() {
                       <Image src={p.image} alt={p.title} fill sizes="64px" className="object-cover" />
                     </button>
                     <div className="min-w-0 flex-1">
-                      <p className="text-[10px] font-bold tracking-widest text-amber-600 dark:text-amber-400">
+                      <p className="text-[10px] font-bold tracking-widest text-brand-600 dark:text-brand-400">
                         {p.brand.toUpperCase()}
                       </p>
                       <p className="truncate text-sm font-semibold">{p.title}</p>
@@ -204,7 +204,7 @@ export function CartDrawer() {
               </div>
               <div className="flex gap-2">
                 <div className="relative flex-1">
-                  <Gift className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-violet-500" />
+                  <Gift className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-electric-500" />
                   <Input
                     value={giftInput}
                     onChange={(e) => setGiftInput(e.target.value)}
@@ -241,8 +241,8 @@ export function CartDrawer() {
 
             {/* savings banners */}
             {t.bundleBrand && (
-              <div className="mx-4 mb-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs dark:border-amber-500/30 dark:bg-amber-400/10">
-                <p className="flex items-center gap-1.5 font-bold text-amber-700 dark:text-amber-400">
+              <div className="mx-4 mb-2 rounded-lg border border-brand-200 bg-brand-50 px-3 py-2 text-xs dark:border-brand-500/30 dark:bg-brand-400/10">
+                <p className="flex items-center gap-1.5 font-bold text-brand-700 dark:text-brand-400">
                   <Gift className="h-3.5 w-3.5" aria-hidden />
                   {t.bundleBrand} bundle — save 10%
                 </p>
@@ -290,7 +290,7 @@ export function CartDrawer() {
                 <span className="font-black">{price(t.total)}</span>
               </div>
               <Button
-                className="mt-2 w-full bg-amber-400 py-2.5 font-bold text-neutral-950 hover:bg-amber-500"
+                className="mt-2 w-full bg-brand-400 py-2.5 font-bold text-neutral-950 hover:bg-brand-500"
                 onClick={checkout}
                 data-testid="checkout-button"
               >

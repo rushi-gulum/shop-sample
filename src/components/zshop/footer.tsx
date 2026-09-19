@@ -102,7 +102,7 @@ export function Footer() {
           {TRUST.map(({ icon: Icon, title, sub }) => (
             <div key={title} className="flex items-center gap-3">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-800">
-                <Icon className="h-4.5 w-4.5 text-amber-400" />
+                <Icon className="h-4.5 w-4.5 text-brand-400" />
               </span>
               <span className="flex flex-col leading-tight">
                 <span className="text-sm font-bold text-white">{title}</span>
@@ -131,7 +131,7 @@ export function Footer() {
                 <button
                   key={label}
                   aria-label={label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-800 text-neutral-300 transition hover:bg-amber-400 hover:text-neutral-950"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-800 text-neutral-300 transition hover:bg-brand-400 hover:text-neutral-950"
                   onClick={() => toast.info(`${label} — demo link`)}
                 >
                   <Icon className="h-4 w-4" />
@@ -153,7 +153,7 @@ export function Footer() {
               ].map((label) => (
                 <li key={label}>
                   <button
-                    className="transition hover:text-amber-400"
+                    className="transition hover:text-brand-400"
                     onClick={() =>
                       goShop(
                         label,
@@ -183,7 +183,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               {HELP_LINKS.map((label) => (
                 <li key={label}>
-                  <button className="transition hover:text-amber-400" onClick={() => goHelp(label)}>
+                  <button className="transition hover:text-brand-400" onClick={() => goHelp(label)}>
                     {label}
                   </button>
                 </li>
@@ -198,7 +198,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               {ABOUT_LINKS.map((label) => (
                 <li key={label}>
-                  <button className="transition hover:text-amber-400" onClick={() => goAbout(label)}>
+                  <button className="transition hover:text-brand-400" onClick={() => goAbout(label)}>
                     {label}
                   </button>
                 </li>
@@ -221,7 +221,7 @@ export function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="h-10 border-neutral-700 bg-neutral-900 text-white placeholder:text-neutral-500"
               />
-              <Button type="submit" className="h-10 bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500">
+              <Button type="submit" className="h-10 bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500">
                 Subscribe
               </Button>
             </form>

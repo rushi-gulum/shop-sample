@@ -25,7 +25,7 @@ export function CompareView() {
       render: (id) => {
         const d = discountPercent(PRODUCT_MAP[id]);
         return d ? (
-          <span className="font-semibold text-rose-600 dark:text-rose-400">-{d}%</span>
+          <span className="font-semibold text-brand-600 dark:text-brand-400">-{d}%</span>
         ) : (
           <span className="text-muted-foreground">—</span>
         );
@@ -56,7 +56,7 @@ export function CompareView() {
     <div className="mx-auto max-w-7xl px-3 py-4 sm:px-6" data-testid="compare-view">
       <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground">
         <button
-          className="flex items-center gap-1 hover:text-amber-600 dark:hover:text-amber-400"
+          className="flex items-center gap-1 hover:text-brand-600 dark:hover:text-brand-400"
           onClick={() => navigate({ name: "home" })}
         >
           <Home className="h-3.5 w-3.5" /> Home
@@ -68,7 +68,7 @@ export function CompareView() {
       <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="flex items-center gap-2 text-2xl font-black sm:text-3xl">
-            <Scale className="h-6 w-6 text-amber-500" />
+            <Scale className="h-6 w-6 text-brand-500" />
             Compare Products
           </h1>
           <p className="mt-0.5 text-sm text-muted-foreground">
@@ -84,15 +84,15 @@ export function CompareView() {
 
       {items.length === 0 ? (
         <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed py-16 text-center">
-          <span className="flex h-20 w-20 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-400/10">
-            <Scale className="h-9 w-9 text-amber-500" />
+          <span className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-400/10">
+            <Scale className="h-9 w-9 text-brand-500" />
           </span>
           <h3 className="text-lg font-bold">Nothing to compare yet</h3>
           <p className="max-w-sm text-sm text-muted-foreground">
             Add up to 3 products using the scale icon on any product card.
           </p>
           <Button
-            className="bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+            className="bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
             onClick={() => navigate({ name: "shop", category: "all" })}
           >
             Browse products
@@ -112,7 +112,7 @@ export function CompareView() {
                       <div className="relative">
                         <button
                           aria-label={`Remove ${p.title} from comparison`}
-                          className="absolute -right-1 -top-1 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-rose-600 text-white shadow"
+                          className="absolute -right-1 -top-1 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-white shadow"
                           onClick={() => toggleCompare(p.id)}
                         >
                           <X className="h-3.5 w-3.5" />
@@ -147,7 +147,7 @@ export function CompareView() {
                     <td key={p.id} className="p-3">
                       <Button
                         size="sm"
-                        className="w-full bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+                        className="w-full bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
                         onClick={() => addToCart(p.id)}
                       >
                         <ShoppingCart className="mr-1 h-3.5 w-3.5" /> Add to cart

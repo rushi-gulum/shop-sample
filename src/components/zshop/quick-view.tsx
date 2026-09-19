@@ -43,14 +43,14 @@ export function QuickViewModal() {
                 className="object-cover"
               />
               {discountPercent(p) && (
-                <Badge className="absolute left-3 top-3 border-0 bg-rose-600 text-white">
+                <Badge className="absolute left-3 top-3 border-0 bg-brand-600 text-white">
                   -{discountPercent(p)}%
                 </Badge>
               )}
             </div>
             <div className="flex flex-col gap-2 p-5">
               <DialogHeader>
-                <p className="text-[11px] font-bold tracking-widest text-amber-600 dark:text-amber-400">
+                <p className="text-[11px] font-bold tracking-widest text-brand-600 dark:text-brand-400">
                   {p.brand.toUpperCase()}
                 </p>
                 <DialogTitle className="text-left text-xl leading-snug">{p.title}</DialogTitle>
@@ -84,7 +84,7 @@ export function QuickViewModal() {
               <div className="mt-auto flex flex-col gap-2 pt-2">
                 <div className="flex gap-2">
                   <Button
-                    className="flex-1 bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+                    className="flex-1 bg-brand-500 font-bold text-white hover:bg-brand-600"
                     onClick={() => addToCart(p.id)}
                   >
                     <ShoppingCart className="mr-1 h-4 w-4" /> Add to cart
@@ -93,7 +93,7 @@ export function QuickViewModal() {
                     variant="outline"
                     size="icon"
                     aria-label="Toggle wishlist"
-                    className={cn(inWishlist && "border-rose-300 text-rose-600")}
+                    className={cn(inWishlist && "border-brand-300 text-brand-600")}
                     onClick={() => toggleWishlist(p.id)}
                   >
                     <Heart className={cn("h-4 w-4", inWishlist && "fill-current")} />
@@ -102,7 +102,7 @@ export function QuickViewModal() {
                     variant="outline"
                     size="icon"
                     aria-label="Add to compare"
-                    className={cn(inCompare && "border-amber-400 bg-amber-100 dark:bg-amber-400/20")}
+                    className={cn(inCompare && "border-brand-400 bg-brand-100 dark:bg-brand-400/20")}
                     onClick={() => toggleCompare(p.id)}
                   >
                     <Scale className="h-4 w-4" />
@@ -110,7 +110,7 @@ export function QuickViewModal() {
                 </div>
                 <Button
                   variant="ghost"
-                  className="font-semibold text-amber-600 hover:text-amber-600 dark:text-amber-400"
+                  className="font-semibold text-brand-600 hover:text-brand-600 dark:text-brand-400"
                   onClick={() => openProduct(p.id)}
                 >
                   View full details

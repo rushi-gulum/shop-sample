@@ -79,7 +79,7 @@ export function Header() {
   }
 
   return (
-    <header className="bg-amber-400 dark:bg-amber-400">
+    <header className="bg-brand-400 dark:bg-brand-400">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-2 px-3 py-2.5 sm:gap-3 sm:px-6">
         {/* logo */}
         <button
@@ -87,7 +87,7 @@ export function Header() {
           className="flex items-center gap-2.5 rounded-md px-1 py-1 hover:opacity-90"
           onClick={() => navigate({ name: "home" })}
         >
-          <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-950 text-lg font-black text-amber-400 shadow-md">
+          <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-950 text-lg font-black text-brand-400 shadow-md">
             Z
           </span>
           <span className="hidden flex-col leading-tight sm:flex">
@@ -113,7 +113,7 @@ export function Header() {
             <Button
               variant="ghost"
               aria-label="Switch currency"
-              className="hidden h-9 gap-1 rounded-md px-2 text-neutral-950 hover:bg-amber-300 md:flex"
+              className="hidden h-9 gap-1 rounded-md px-2 text-neutral-950 hover:bg-brand-300 md:flex"
             >
               <span className="text-base font-bold">$</span>
               <span className="text-sm font-bold">{currency}</span>
@@ -129,7 +129,7 @@ export function Header() {
               {Object.values(CURRENCIES).map((c) => (
                 <DropdownMenuRadioItem key={c.code} value={c.code}>
                   <span className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-md bg-amber-100 text-xs font-bold text-neutral-900">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-md bg-brand-100 text-xs font-bold text-neutral-900">
                       {c.symbol}
                     </span>
                     <span className="flex flex-col">
@@ -149,7 +149,7 @@ export function Header() {
         {/* search */}
         <div ref={searchRef} className="relative order-last flex w-full flex-1 sm:order-none sm:w-auto sm:min-w-[220px]">
           <form
-            className="flex w-full overflow-hidden rounded-lg bg-white shadow-sm ring-2 ring-transparent focus-within:ring-amber-600/60"
+            className="flex w-full overflow-hidden rounded-lg bg-white shadow-sm ring-2 ring-transparent focus-within:ring-brand-600/60"
             onSubmit={(e) => {
               e.preventDefault();
               submitSearch();
@@ -166,7 +166,7 @@ export function Header() {
             <button
               type="submit"
               aria-label="Search"
-              className="flex w-12 items-center justify-center bg-amber-500 text-white transition hover:bg-amber-600"
+              className="flex w-12 items-center justify-center bg-brand-500 text-white transition hover:bg-brand-600"
             >
               <Search className="h-4.5 w-4.5" />
             </button>
@@ -197,7 +197,7 @@ export function Header() {
                 </button>
               ))}
               <button
-                className="w-full border-t bg-muted/40 px-3 py-2 text-center text-xs font-semibold text-amber-600 hover:bg-muted"
+                className="w-full border-t bg-muted/40 px-3 py-2 text-center text-xs font-semibold text-brand-600 hover:bg-muted"
                 onClick={submitSearch}
               >
                 See all results for &ldquo;{query.trim()}&rdquo;
@@ -212,7 +212,7 @@ export function Header() {
             <Button
               variant="ghost"
               aria-label="Hello, Sign in Account"
-              className="h-10 flex-col items-start justify-center gap-0 rounded-md px-2 text-neutral-950 hover:bg-amber-300"
+              className="h-10 flex-col items-start justify-center gap-0 rounded-md px-2 text-neutral-950 hover:bg-brand-300"
             >
               <span className="flex items-center gap-1 text-[11px] leading-tight text-neutral-800/80">
                 Hello, {user ? user.name : "Sign in"}
@@ -268,7 +268,7 @@ export function Header() {
               variant="ghost"
               size="icon"
               aria-label="Toggle theme"
-              className="h-10 w-10 rounded-md text-neutral-950 hover:bg-amber-300"
+              className="h-10 w-10 rounded-md text-neutral-950 hover:bg-brand-300"
             >
               <Sun className="h-5 w-5 dark:hidden" />
               <Moon className="hidden h-5 w-5 dark:block" />
@@ -293,12 +293,12 @@ export function Header() {
         {/* compare */}
         <button
           aria-label={`Compare ${compareCount} products`}
-          className="relative hidden h-10 w-10 items-center justify-center rounded-md text-neutral-950 transition hover:bg-amber-300 sm:flex"
+          className="relative hidden h-10 w-10 items-center justify-center rounded-md text-neutral-950 transition hover:bg-brand-300 sm:flex"
           onClick={() => navigate({ name: "compare" })}
         >
           <Scale className="h-5.5 w-5.5" />
           {compareCount > 0 && (
-            <span className="absolute -right-0.5 -top-0.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-rose-600 px-1 text-[10px] font-bold text-white">
+            <span className="absolute -right-0.5 -top-0.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-brand-600 px-1 text-[10px] font-bold text-white">
               {compareCount}
             </span>
           )}
@@ -307,12 +307,12 @@ export function Header() {
         {/* wishlist */}
         <button
           aria-label={`Wishlist with ${wishlistCount} items`}
-          className="relative flex h-10 w-10 items-center justify-center rounded-md text-neutral-950 transition hover:bg-amber-300"
+          className="relative flex h-10 w-10 items-center justify-center rounded-md text-neutral-950 transition hover:bg-brand-300"
           onClick={goWishlist}
         >
           <Heart className="h-5.5 w-5.5" />
           {wishlistCount > 0 && (
-            <span className="absolute -right-0.5 -top-0.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-rose-600 px-1 text-[10px] font-bold text-white">
+            <span className="absolute -right-0.5 -top-0.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-brand-600 px-1 text-[10px] font-bold text-white">
               {wishlistCount}
             </span>
           )}
@@ -322,14 +322,14 @@ export function Header() {
         <button
           aria-label={`Cart with ${cartCount} items`}
           className={cn(
-            "relative flex h-10 items-center gap-1.5 rounded-md px-2 text-neutral-950 transition hover:bg-amber-300"
+            "relative flex h-10 items-center gap-1.5 rounded-md px-2 text-neutral-950 transition hover:bg-brand-300"
           )}
           onClick={() => setCartOpen(true)}
         >
           <span className="relative">
             <ShoppingCart className="h-6 w-6" />
             {cartCount > 0 && (
-              <span className="absolute -right-2 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-600 px-1 text-[11px] font-bold text-white">
+              <span className="absolute -right-2 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-600 px-1 text-[11px] font-bold text-white">
                 {cartCount}
               </span>
             )}

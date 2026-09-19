@@ -89,8 +89,8 @@ export function SignInModal() {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="max-w-md p-0 overflow-hidden" data-testid="signin-modal">
-        <div className="bg-gradient-to-r from-amber-400 to-orange-500 px-6 pb-6 pt-7 text-white">
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-neutral-950 text-lg font-black text-amber-400">
+        <div className="bg-gradient-to-r from-brand-400 to-brand-500 px-6 pb-6 pt-7 text-white">
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-neutral-950 text-lg font-black text-brand-400">
             Z
           </span>
           <DialogHeader className="mt-3 space-y-1">
@@ -133,7 +133,7 @@ export function SignInModal() {
                 <div className="flex items-center justify-between">
                   <Label htmlFor="si-pass">Password</Label>
                   <button
-                    className="text-xs font-semibold text-amber-600 hover:underline dark:text-amber-400"
+                    className="text-xs font-semibold text-brand-600 hover:underline dark:text-brand-400"
                     onClick={() => setError("Password reset is illustrative in this demo.")}
                   >
                     Forgot password?
@@ -157,7 +157,7 @@ export function SignInModal() {
               </div>
 
               <Button
-                className="w-full bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+                className="w-full bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
                 onClick={submit}
                 data-testid="signin-submit"
               >
@@ -171,11 +171,11 @@ export function SignInModal() {
               </div>
 
               <Button variant="outline" className="w-full gap-2" onClick={tryDemo}>
-                <Sparkles className="h-4 w-4 text-amber-500" /> Try with demo account
+                <Sparkles className="h-4 w-4 text-brand-500" /> Try with demo account
               </Button>
 
-              <div className="rounded-lg bg-amber-50 p-3 text-xs dark:bg-amber-400/10">
-                <p className="flex items-center gap-1.5 font-bold text-amber-700 dark:text-amber-400">
+              <div className="rounded-lg bg-brand-50 p-3 text-xs dark:bg-brand-400/10">
+                <p className="flex items-center gap-1.5 font-bold text-brand-700 dark:text-brand-400">
                   <Check className="h-3.5 w-3.5" aria-hidden />
                   Demo credentials
                 </p>
@@ -238,7 +238,7 @@ export function SignInModal() {
               </div>
 
               <Button
-                className="w-full bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+                className="w-full bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
                 onClick={() => {
                   if (intent === "register") submit();
                   else submit();

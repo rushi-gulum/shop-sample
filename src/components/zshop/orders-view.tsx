@@ -45,7 +45,7 @@ function TrackingTimeline({ status }: { status: Order["status"] }) {
           aria-hidden
           className={cn(
             "absolute left-[12.5%] top-[17px] h-0.5 rounded transition-all duration-700",
-            status === "Delivered" ? "bg-emerald-500" : "bg-amber-400"
+            status === "Delivered" ? "bg-emerald-500" : "bg-brand-500"
           )}
           style={{ width: `calc((100% - 25%) * ${progress / 100})` }}
         />
@@ -66,7 +66,7 @@ function TrackingTimeline({ status }: { status: Order["status"] }) {
                   active &&
                     (status === "Delivered"
                       ? "border-emerald-500 bg-emerald-500 text-white ring-4 ring-emerald-500/20"
-                      : "border-amber-400 bg-amber-400 text-neutral-950 ring-4 ring-amber-400/25"),
+                      : "border-brand-500 bg-brand-500 text-white ring-4 ring-brand-500/25"),
                   !done && !active && "border-border bg-background text-muted-foreground/60"
                 )}
               >
@@ -76,7 +76,7 @@ function TrackingTimeline({ status }: { status: Order["status"] }) {
                 className={cn(
                   "text-[10px] font-semibold uppercase tracking-wide sm:text-[11px]",
                   done && "text-emerald-600 dark:text-emerald-400",
-                  active && (status === "Delivered" ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400"),
+                  active && (status === "Delivered" ? "text-emerald-600 dark:text-emerald-400" : "text-brand-600 dark:text-brand-400"),
                   !done && !active && "text-muted-foreground/60"
                 )}
               >
@@ -109,7 +109,7 @@ export function OrdersView() {
     <div className="mx-auto max-w-4xl px-3 py-4 sm:px-6" data-testid="orders-view">
       <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground">
         <button
-          className="flex items-center gap-1 hover:text-amber-600 dark:hover:text-amber-400"
+          className="flex items-center gap-1 hover:text-brand-600 dark:hover:text-brand-400"
           onClick={() => navigate({ name: "home" })}
         >
           <Home className="h-3.5 w-3.5" /> Home
@@ -125,15 +125,15 @@ export function OrdersView() {
 
       {orders.length === 0 ? (
         <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed py-16 text-center">
-          <span className="flex h-20 w-20 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-400/10">
-            <Package className="h-9 w-9 text-amber-500" />
+          <span className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-400/10">
+            <Package className="h-9 w-9 text-brand-500" />
           </span>
           <h3 className="text-lg font-bold">No orders yet</h3>
           <p className="max-w-sm text-sm text-muted-foreground">
             When you place an order it will show up here with live tracking.
           </p>
           <Button
-            className="bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+            className="bg-brand-500 font-bold text-white hover:bg-brand-600"
             onClick={() => navigate({ name: "shop", category: "all" })}
           >
             Start shopping
@@ -178,7 +178,7 @@ export function OrdersView() {
                     className={
                       order.status === "Delivered"
                         ? "border-0 bg-emerald-600 text-white"
-                        : "border-0 bg-amber-400 text-black"
+                        : "border-0 bg-brand-500 text-white"
                     }
                   >
                     {order.status}
@@ -204,7 +204,7 @@ export function OrdersView() {
                     </button>
                     <div className="min-w-0 flex-1">
                       <button
-                        className="block truncate text-sm font-semibold hover:text-amber-600 dark:hover:text-amber-400"
+                        className="block truncate text-sm font-semibold hover:text-brand-600 dark:hover:text-brand-400"
                         onClick={() => useZShop.getState().openProduct(l.id)}
                       >
                         {l.title}

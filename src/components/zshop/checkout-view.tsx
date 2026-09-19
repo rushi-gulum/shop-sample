@@ -172,7 +172,7 @@ export function CheckoutView() {
             <div>
               <h1 className="flex items-center justify-center gap-2 text-2xl font-black">
                 Order confirmed!
-                <PartyPopper className="h-6 w-6 text-amber-500" aria-hidden />
+                <PartyPopper className="h-6 w-6 text-brand-500" aria-hidden />
               </h1>
               <p className="mt-1 text-sm text-muted-foreground">
                 Thanks, {placedOrder.address.name.split(" ")[0]}. Your order{" "}
@@ -205,7 +205,7 @@ export function CheckoutView() {
             </div>
             <div className="flex gap-3">
               <Button
-                className="bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+                className="bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
                 onClick={() => {
                   useZShop.getState().setCheckoutOrderId(null);
                   navigate({ name: "orders" });
@@ -239,7 +239,7 @@ export function CheckoutView() {
         <h1 className="text-2xl font-black">Your cart is empty</h1>
         <p className="text-sm text-muted-foreground">Add a few products before checking out.</p>
         <Button
-          className="mt-2 bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+          className="mt-2 bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
           onClick={() => navigate({ name: "shop", category: "all" })}
         >
           Start shopping
@@ -265,10 +265,10 @@ export function CheckoutView() {
           <Card>
             <CardContent className="p-5">
               <h2 className="mb-4 flex items-center gap-2 text-lg font-bold">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-amber-400 text-sm font-black text-neutral-950">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-400 text-sm font-black text-neutral-950">
                   1
                 </span>
-                <MapPin className="h-4.5 w-4.5 text-amber-600" /> Shipping address
+                <MapPin className="h-4.5 w-4.5 text-brand-600" /> Shipping address
               </h2>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="sm:col-span-2">
@@ -352,14 +352,14 @@ export function CheckoutView() {
           <Card>
             <CardContent className="p-5">
               <h2 className="mb-4 flex items-center gap-2 text-lg font-bold">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-amber-400 text-sm font-black text-neutral-950">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-400 text-sm font-black text-neutral-950">
                   2
                 </span>
-                <CreditCard className="h-4.5 w-4.5 text-amber-600" /> Payment method
+                <CreditCard className="h-4.5 w-4.5 text-brand-600" /> Payment method
                 <button
                   type="button"
                   onClick={autofillDemoCard}
-                  className="ml-auto flex items-center gap-1 rounded-full border border-dashed border-amber-400 px-2.5 py-1 text-xs font-semibold text-amber-600 transition hover:bg-amber-50 dark:text-amber-400 dark:hover:bg-amber-400/10"
+                  className="ml-auto flex items-center gap-1 rounded-full border border-dashed border-brand-400 px-2.5 py-1 text-xs font-semibold text-brand-600 transition hover:bg-brand-50 dark:text-brand-400 dark:hover:bg-brand-400/10"
                 >
                   <Sparkles className="h-3 w-3" /> Autofill demo card
                 </button>
@@ -375,11 +375,11 @@ export function CheckoutView() {
                     htmlFor={`pay-${value}`}
                     className={cn(
                       "flex cursor-pointer items-center gap-2.5 rounded-xl border p-3.5 text-sm font-semibold transition",
-                      payment === value && "border-amber-400 bg-amber-50 dark:bg-amber-400/10"
+                      payment === value && "border-brand-400 bg-brand-50 dark:bg-brand-400/10"
                     )}
                   >
                     <RadioGroupItem id={`pay-${value}`} value={value} className="sr-only" />
-                    <Icon className="h-4.5 w-4.5 text-amber-600" />
+                    <Icon className="h-4.5 w-4.5 text-brand-600" />
                     {label}
                   </Label>
                 ))}
@@ -454,10 +454,10 @@ export function CheckoutView() {
           <Card>
             <CardContent className="p-5">
               <h2 className="mb-3 flex items-center gap-2 text-lg font-bold">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-amber-400 text-sm font-black text-neutral-950">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-400 text-sm font-black text-neutral-950">
                   3
                 </span>
-                <Truck className="h-4.5 w-4.5 text-amber-600" /> Delivery
+                <Truck className="h-4.5 w-4.5 text-brand-600" /> Delivery
               </h2>
               <div className="flex items-center justify-between rounded-xl border border-emerald-200 bg-emerald-50 p-4 dark:border-emerald-500/40 dark:bg-emerald-950/30">
                 <div className="flex items-center gap-3">
@@ -543,7 +543,7 @@ export function CheckoutView() {
                 </div>
               </div>
               <Button
-                className="mt-4 h-12 w-full bg-amber-400 text-base font-bold text-neutral-950 hover:bg-amber-500 disabled:opacity-60"
+                className="mt-4 h-12 w-full bg-brand-400 text-base font-bold text-neutral-950 hover:bg-brand-500 disabled:opacity-60"
                 onClick={confirmOrder}
                 disabled={placing}
                 data-testid="place-order"

@@ -57,7 +57,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
         {!hideBadges && (
           <div className="absolute left-2 top-2 flex flex-col items-start gap-1">
             {p.featured && (
-              <Badge className="border-0 bg-amber-400 text-black shadow-sm hover:bg-amber-400">
+              <Badge className="border-0 bg-brand-400 text-black shadow-sm hover:bg-brand-400">
                 Featured
               </Badge>
             )}
@@ -67,7 +67,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
               </Badge>
             )}
             {discount !== null && (
-              <Badge className="border-0 bg-rose-600 text-white shadow-sm hover:bg-rose-600">
+              <Badge className="border-0 bg-brand-600 text-white shadow-sm hover:bg-brand-600">
                 -{discount}%
               </Badge>
             )}
@@ -82,7 +82,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
             aria-label={inWishlist ? "Remove from wishlist" : "Toggle wishlist"}
             className={cn(
               "h-8 w-8 rounded-full shadow-sm",
-              inWishlist && "bg-rose-600 text-white hover:bg-rose-600 hover:text-white"
+              inWishlist && "bg-brand-600 text-white hover:bg-brand-600 hover:text-white"
             )}
             onClick={(e) => {
               e.stopPropagation();
@@ -109,7 +109,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
             aria-label={inCompare ? "Remove from compare" : "Add to compare"}
             className={cn(
               "h-8 w-8 rounded-full shadow-sm",
-              inCompare && "bg-amber-400 text-black hover:bg-amber-400"
+              inCompare && "bg-brand-400 text-black hover:bg-brand-400"
             )}
             onClick={(e) => {
               e.stopPropagation();
@@ -124,7 +124,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
       {/* body */}
       <div className="flex flex-1 flex-col gap-1.5 p-3">
         <div className="flex items-center justify-between gap-2">
-          <span className="text-[11px] font-bold tracking-widest text-amber-600 dark:text-amber-400">
+          <span className="text-[11px] font-bold tracking-widest text-brand-600 dark:text-brand-400">
             {p.brand.toUpperCase()}
           </span>
           <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
@@ -134,7 +134,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
         </div>
 
         <h3
-          className="line-clamp-2 cursor-pointer text-sm font-semibold leading-snug hover:text-amber-600 dark:hover:text-amber-400"
+          className="line-clamp-2 cursor-pointer text-sm font-semibold leading-snug hover:text-brand-600 dark:hover:text-brand-400"
           onClick={() => openProduct(p.id)}
         >
           {p.title}
@@ -155,7 +155,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
         </div>
 
         <Button
-          className="mt-1 w-full gap-2 bg-amber-400 font-semibold text-black hover:bg-amber-500"
+          className="mt-1 w-full gap-2 bg-brand-500 font-semibold text-white shadow-sm shadow-brand-500/25 hover:bg-brand-600"
           size="sm"
           onClick={() => addToCart(p.id)}
         >

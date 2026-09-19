@@ -133,14 +133,14 @@ export function ProductDetail({ id }: { id: string }) {
       {/* breadcrumb */}
       <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground">
         <button
-          className="flex items-center gap-1 hover:text-amber-600 dark:hover:text-amber-400"
+          className="flex items-center gap-1 hover:text-brand-600 dark:hover:text-brand-400"
           onClick={() => navigate({ name: "home" })}
         >
           <Home className="h-3.5 w-3.5" /> Home
         </button>
         <ChevronRight className="h-3.5 w-3.5" />
         <button
-          className="hover:text-amber-600 dark:hover:text-amber-400"
+          className="hover:text-brand-600 dark:hover:text-brand-400"
           onClick={() => navigate({ name: "shop", category: p.category })}
         >
           {category?.name}
@@ -163,13 +163,13 @@ export function ProductDetail({ id }: { id: string }) {
             />
             <div className="absolute left-3 top-3 z-[2] flex flex-col gap-1.5">
               {p.featured && (
-                <Badge className="border-0 bg-amber-400 text-black">Featured</Badge>
+                <Badge className="border-0 bg-brand-400 text-black">Featured</Badge>
               )}
               {p.newArrival && !p.featured && (
                 <Badge className="border-0 bg-emerald-500 text-white">New</Badge>
               )}
               {discount !== null && (
-                <Badge className="border-0 bg-rose-600 text-white">-{discount}%</Badge>
+                <Badge className="border-0 bg-brand-600 text-white">-{discount}%</Badge>
               )}
             </div>
             <button
@@ -188,7 +188,7 @@ export function ProductDetail({ id }: { id: string }) {
               aria-label="Toggle wishlist"
               className={cn(
                 "absolute right-3 top-3 z-[2] flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md transition hover:scale-105 dark:bg-neutral-800",
-                inWishlist && "text-rose-600"
+                inWishlist && "text-brand-600"
               )}
               onClick={() => toggleWishlist(p.id)}
             >
@@ -203,7 +203,7 @@ export function ProductDetail({ id }: { id: string }) {
                   aria-label={`View image ${i + 1}`}
                   className={cn(
                     "relative h-16 w-16 overflow-hidden rounded-lg border-2 transition",
-                    i === imgIdx ? "border-amber-400" : "border-transparent opacity-70 hover:opacity-100"
+                    i === imgIdx ? "border-brand-400" : "border-transparent opacity-70 hover:opacity-100"
                   )}
                   onClick={() => setImgIdx(i)}
                 >
@@ -216,7 +216,7 @@ export function ProductDetail({ id }: { id: string }) {
 
         {/* info */}
         <div className="min-w-0">
-          <p className="text-xs font-bold tracking-widest text-amber-600 dark:text-amber-400">
+          <p className="text-xs font-bold tracking-widest text-brand-600 dark:text-brand-400">
             {p.brand.toUpperCase()}
           </p>
           <h1 className="mt-1 text-2xl font-black leading-tight sm:text-3xl">{p.title}</h1>
@@ -224,7 +224,7 @@ export function ProductDetail({ id }: { id: string }) {
           <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
             <StarRating rating={p.rating} size={16} />
             <span className="font-semibold">{p.rating}</span>
-            <button className="text-amber-600 underline-offset-2 hover:underline dark:text-amber-400">
+            <button className="text-brand-600 underline-offset-2 hover:underline dark:text-brand-400">
               {p.ratingCount.toLocaleString()} ratings
             </button>
             {p.tags?.slice(0, 3).map((t) => (
@@ -242,7 +242,7 @@ export function ProductDetail({ id }: { id: string }) {
                   <span className="text-lg text-muted-foreground line-through">
                     {price(p.compareAt)}
                   </span>
-                  <Badge variant="destructive" className="bg-rose-600">
+                  <Badge variant="destructive" className="bg-brand-600">
                     -{discount}%
                   </Badge>
                   <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
@@ -291,7 +291,7 @@ export function ProductDetail({ id }: { id: string }) {
           <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <Button
               size="lg"
-              className="h-12 bg-amber-400 text-base font-bold text-neutral-950 hover:bg-amber-500"
+              className="h-12 bg-brand-500 text-base font-bold text-white shadow-sm shadow-brand-500/30 hover:bg-brand-600"
               onClick={() => addToCart(p.id, qty)}
               data-testid="detail-add-to-cart"
             >
@@ -299,7 +299,7 @@ export function ProductDetail({ id }: { id: string }) {
             </Button>
             <Button
               size="lg"
-              className="h-12 bg-orange-600 text-base font-bold text-white hover:bg-orange-700"
+              className="h-12 bg-electric-600 text-base font-bold text-white shadow-sm shadow-electric-600/30 hover:bg-electric-700"
               onClick={buyNow}
             >
               <Zap className="mr-2 h-5 w-5" /> Buy now
@@ -308,8 +308,8 @@ export function ProductDetail({ id }: { id: string }) {
 
           <button
             className={cn(
-              "mt-3 flex items-center gap-1.5 text-sm font-semibold text-muted-foreground transition hover:text-amber-600 dark:hover:text-amber-400",
-              inCompare && "text-amber-600 dark:text-amber-400"
+              "mt-3 flex items-center gap-1.5 text-sm font-semibold text-muted-foreground transition hover:text-brand-600 dark:hover:text-brand-400",
+              inCompare && "text-brand-600 dark:text-brand-400"
             )}
             onClick={() => toggleCompare(p.id)}
           >
@@ -342,17 +342,17 @@ export function ProductDetail({ id }: { id: string }) {
             </CardContent>
           </Card>
 
-          <Card className="border-violet-200 bg-violet-50 dark:border-violet-500/30 dark:bg-violet-950/40">
+          <Card className="border-electric-200 bg-electric-50 dark:border-electric-500/30 dark:bg-electric-950/40">
             <CardContent className="p-4">
-              <h3 className="text-sm font-bold text-violet-700 dark:text-violet-300">
+              <h3 className="text-sm font-bold text-electric-700 dark:text-electric-300">
                 Need help deciding?
               </h3>
-              <p className="mt-1.5 text-xs leading-relaxed text-violet-600/90 dark:text-violet-300/80">
+              <p className="mt-1.5 text-xs leading-relaxed text-electric-600/90 dark:text-electric-300/80">
                 Our 24/7 shopping concierge can help you choose.
               </p>
               <Button
                 variant="outline"
-                className="mt-3 w-full border-violet-300 text-violet-700 hover:bg-violet-100 dark:text-violet-300"
+                className="mt-3 w-full border-electric-300 text-electric-700 hover:bg-electric-100 dark:text-electric-300"
                 onClick={() => useZShop.getState().setChatOpen(true)}
               >
                 Chat with expert
@@ -376,7 +376,7 @@ export function ProductDetail({ id }: { id: string }) {
                     className={cn(
                       "flex w-40 cursor-pointer flex-col gap-1.5 rounded-xl border p-2 transition",
                       selectedIds.includes(b.id)
-                        ? "border-amber-400 bg-amber-50/50 dark:bg-amber-400/5"
+                        ? "border-brand-400 bg-brand-50/50 dark:bg-brand-400/5"
                         : "opacity-70 hover:opacity-100"
                     )}
                   >
@@ -388,7 +388,7 @@ export function ProductDetail({ id }: { id: string }) {
                         </span>
                       )}
                     </span>
-                    <span className="text-[10px] font-bold tracking-widest text-amber-600 dark:text-amber-400">
+                    <span className="text-[10px] font-bold tracking-widest text-brand-600 dark:text-brand-400">
                       {b.brand.toUpperCase()}
                     </span>
                     <span className="line-clamp-2 text-xs font-semibold leading-tight">
@@ -429,7 +429,7 @@ export function ProductDetail({ id }: { id: string }) {
                 {selectedIds.length} item{selectedIds.length === 1 ? "" : "s"} selected
               </p>
               <Button
-                className="mt-3 w-full bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+                className="mt-3 w-full bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
                 onClick={addSelectedBundle}
               >
                 <ShoppingCart className="mr-1.5 h-4 w-4" />
@@ -443,7 +443,7 @@ export function ProductDetail({ id }: { id: string }) {
       {/* popular in category */}
       <section className="mt-10" aria-labelledby="popular-in-category">
         <div className="mb-4 flex items-center gap-2">
-          <TrendingUp className="h-5 w-5 text-amber-500" />
+          <TrendingUp className="h-5 w-5 text-brand-500" />
           <h2 id="popular-in-category" className="text-xl font-black">
             Popular in this category
           </h2>
@@ -532,7 +532,7 @@ export function ProductDetail({ id }: { id: string }) {
             </span>
           </span>
           <Button
-            className="bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+            className="bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
             onClick={() => addToCart(p.id, qty)}
           >
             <ShoppingCart className="h-4 w-4" /> Add to cart

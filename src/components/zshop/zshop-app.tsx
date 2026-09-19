@@ -74,7 +74,7 @@ export function ZShopApp() {
       <button
         aria-label="Back to top"
         className={cn(
-          "fixed bottom-20 left-5 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-amber-400 text-neutral-950 shadow-lg transition-all hover:bg-amber-500",
+          "fixed bottom-20 left-5 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-brand-400 text-neutral-950 shadow-lg transition-all hover:bg-brand-500",
           showTop ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
         )}
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

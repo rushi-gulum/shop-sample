@@ -135,7 +135,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
           <div className="mb-2 flex items-center justify-between">
             <h3 className="text-sm font-bold uppercase tracking-wide">Category</h3>
             <button
-              className="text-xs font-semibold text-amber-600 hover:underline dark:text-amber-400"
+              className="text-xs font-semibold text-brand-600 hover:underline dark:text-brand-400"
               onClick={() => navigate({ name: "shop", category: "all" })}
             >
               Clear
@@ -146,7 +146,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
               <button
                 className={cn(
                   "w-full rounded-lg px-2.5 py-1.5 text-left text-sm transition hover:bg-muted",
-                  activeCategory === "all" && "bg-amber-50 font-semibold text-amber-700 dark:bg-amber-400/10 dark:text-amber-400"
+                  activeCategory === "all" && "bg-brand-50 font-semibold text-brand-700 dark:bg-brand-400/10 dark:text-brand-400"
                 )}
                 onClick={() => navigate({ name: "shop", category: "all" })}
               >
@@ -159,12 +159,12 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
                   className={cn(
                     "flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 text-left text-sm transition hover:bg-muted",
                     activeCategory === c.id &&
-                      "bg-amber-50 font-semibold text-amber-700 dark:bg-amber-400/10 dark:text-amber-400"
+                      "bg-brand-50 font-semibold text-brand-700 dark:bg-brand-400/10 dark:text-brand-400"
                   )}
                   onClick={() => navigate({ name: "shop", category: c.id })}
                 >
                   {c.name}
-                  {activeCategory === c.id && <Check className="h-3.5 w-3.5 text-amber-500" aria-hidden />}
+                  {activeCategory === c.id && <Check className="h-3.5 w-3.5 text-brand-500" aria-hidden />}
                 </button>
               </li>
             ))}
@@ -198,7 +198,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
               <button
                 className={cn(
                   "flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-sm transition hover:bg-muted",
-                  minRating === r && "bg-amber-50 font-semibold dark:bg-amber-400/10"
+                  minRating === r && "bg-brand-50 font-semibold dark:bg-brand-400/10"
                 )}
                 onClick={() => setMinRating((cur) => (cur === r ? 0 : r))}
               >
@@ -258,7 +258,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
       {/* breadcrumb */}
       <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground">
         <button
-          className="flex items-center gap-1 hover:text-amber-600 dark:hover:text-amber-400"
+          className="flex items-center gap-1 hover:text-brand-600 dark:hover:text-brand-400"
           onClick={() => navigate({ name: "home" })}
         >
           <Home className="h-3.5 w-3.5" /> Home
@@ -270,7 +270,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="flex items-center gap-2 text-2xl font-black sm:text-3xl">
-            {isSearch && <Search className="h-6 w-6 text-amber-500" />}
+            {isSearch && <Search className="h-6 w-6 text-brand-500" />}
             {title}
           </h1>
           <p className="mt-0.5 text-sm text-muted-foreground">
@@ -286,7 +286,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
                 <SlidersHorizontal className="mr-1 h-4 w-4" />
                 Filters
                 {activeFilterCount > 0 && (
-                  <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-amber-400 text-[11px] font-bold text-black">
+                  <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-400 text-[11px] font-bold text-black">
                     {activeFilterCount}
                   </span>
                 )}
@@ -337,7 +337,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
                   Clear filters
                 </Button>
                 <Button
-                  className="bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+                  className="bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
                   onClick={() => navigate({ name: "shop", category: "all" })}
                 >
                   Browse all products
@@ -354,7 +354,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
 
           {/* cross-sell: deals strip */}
           {!isSearch && activeCategory === "all" && (
-            <div className="mt-8 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 p-5">
+            <div className="mt-8 rounded-2xl bg-gradient-to-r from-brand-400 to-brand-500 p-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <h3 className="flex items-center gap-2 text-lg font-black text-white">
@@ -367,7 +367,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
                   </p>
                 </div>
                 <Button
-                  className="bg-white font-bold text-orange-600 hover:bg-white/90"
+                  className="bg-white font-bold text-brand-600 hover:bg-white/90"
                   onClick={() => navigate({ name: "deals" })}
                 >
                   See all deals

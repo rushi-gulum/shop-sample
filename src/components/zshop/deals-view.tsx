@@ -13,7 +13,7 @@ export function DealsView() {
     <div className="mx-auto max-w-7xl px-3 py-4 sm:px-6" data-testid="deals-view">
       <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground">
         <button
-          className="flex items-center gap-1 hover:text-amber-600 dark:hover:text-amber-400"
+          className="flex items-center gap-1 hover:text-brand-600 dark:hover:text-brand-400"
           onClick={() => navigate({ name: "home" })}
         >
           <Home className="h-3.5 w-3.5" /> Home
@@ -22,7 +22,7 @@ export function DealsView() {
         <span className="text-foreground">Today&apos;s Deals</span>
       </nav>
 
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-rose-600 via-orange-500 to-amber-500 p-6 text-white shadow-md sm:p-10">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-brand-700 via-brand-500 to-brand-400 p-6 text-white shadow-md sm:p-10">
         <Flame
           aria-hidden
           className="pointer-events-none absolute -right-4 -top-6 h-32 w-32 opacity-15"
@@ -39,7 +39,7 @@ export function DealsView() {
         </span>
       </div>
 
-      <p className="mb-4 mt-6 flex items-center gap-1.5 text-sm font-semibold text-rose-600 dark:text-rose-400">
+      <p className="mb-4 mt-6 flex items-center gap-1.5 text-sm font-semibold text-brand-600 dark:text-brand-400">
         <Timer className="h-4 w-4" aria-hidden />
         {deals.length} live deals — refreshed every morning at 6 AM
       </p>

@@ -18,8 +18,8 @@ export function TrustBadges() {
             key={title}
             className="flex items-center justify-center gap-3 rounded-xl border bg-card px-3 py-4 text-center shadow-sm"
           >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-400/15">
-              <Icon className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-400/15">
+              <Icon className="h-5 w-5 text-brand-600 dark:text-brand-400" />
             </span>
             <span className="flex flex-col items-start leading-tight">
               <span className="text-sm font-bold sm:text-base">{title}</span>

@@ -26,7 +26,7 @@ export function AccountView() {
           Sign in to view your profile, orders and wishlist.
         </p>
         <Button
-          className="mt-2 bg-amber-400 font-bold text-neutral-950 hover:bg-amber-500"
+          className="mt-2 bg-brand-400 font-bold text-neutral-950 hover:bg-brand-500"
           onClick={() => useZShop.getState().requestSignIn("account")}
         >
           Sign in
@@ -46,7 +46,7 @@ export function AccountView() {
     <div className="mx-auto max-w-4xl px-3 py-4 sm:px-6" data-testid="account-view">
       <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground">
         <button
-          className="flex items-center gap-1 hover:text-amber-600 dark:hover:text-amber-400"
+          className="flex items-center gap-1 hover:text-brand-600 dark:hover:text-brand-400"
           onClick={() => navigate({ name: "home" })}
         >
           <Home className="h-3.5 w-3.5" /> Home
@@ -60,14 +60,14 @@ export function AccountView() {
       <Card className="mt-6">
         <CardContent className="flex flex-wrap items-center gap-4 p-6">
           <Avatar className="h-16 w-16">
-            <AvatarFallback className="bg-amber-400 text-xl font-black text-neutral-950">
+            <AvatarFallback className="bg-brand-400 text-xl font-black text-neutral-950">
               {initials}
             </AvatarFallback>
           </Avatar>
           <div className="min-w-0 flex-1">
             <p className="flex items-center gap-2 text-lg font-bold">
               {user.name}
-              <Badge className="border-0 bg-amber-400 text-black">Z Prime</Badge>
+              <Badge className="border-0 bg-brand-400 text-black">Z Prime</Badge>
             </p>
             <p className="truncate text-sm text-muted-foreground">{user.email}</p>
             <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
@@ -86,7 +86,7 @@ export function AccountView() {
           className="group rounded-2xl border bg-card p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
           onClick={() => navigate({ name: "orders" })}
         >
-          <Package className="h-6 w-6 text-amber-500" />
+          <Package className="h-6 w-6 text-brand-500" />
           <p className="mt-2 font-bold">Your Orders</p>
           <p className="text-sm text-muted-foreground">{orders.length} placed</p>
         </button>
@@ -94,7 +94,7 @@ export function AccountView() {
           className="group rounded-2xl border bg-card p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
           onClick={() => navigate({ name: "wishlist" })}
         >
-          <Heart className="h-6 w-6 fill-rose-600 text-rose-600" />
+          <Heart className="h-6 w-6 fill-brand-600 text-brand-600" />
           <p className="mt-2 font-bold">Your Wishlist</p>
           <p className="text-sm text-muted-foreground">{wishlist.length} saved</p>
         </button>
@@ -102,7 +102,7 @@ export function AccountView() {
           className="group rounded-2xl border bg-card p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
           onClick={() => navigate({ name: "compare" })}
         >
-          <Scale className="h-6 w-6 text-amber-500" />
+          <Scale className="h-6 w-6 text-brand-500" />
           <p className="mt-2 font-bold">Compare</p>
           <p className="text-sm text-muted-foreground">Side-by-side specs</p>
         </button>
@@ -111,7 +111,7 @@ export function AccountView() {
       <Card className="mt-5">
         <CardContent className="p-6">
           <h2 className="flex items-center gap-2 text-lg font-bold">
-            <MapPin className="h-4.5 w-4.5 text-amber-600" /> Default address
+            <MapPin className="h-4.5 w-4.5 text-brand-600" /> Default address
           </h2>
           <Separator className="my-4" />
           <p className="text-sm">

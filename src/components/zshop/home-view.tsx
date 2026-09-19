@@ -25,14 +25,14 @@ export function HomeView() {
       <section aria-labelledby="todays-deals" className="mx-auto max-w-7xl px-3 pt-10 sm:px-6">
         <div className="mb-4 flex flex-wrap items-center gap-3">
           <h2 id="todays-deals" className="flex items-center gap-2 text-xl font-black sm:text-2xl">
-            <Flame className="h-5 w-5 text-rose-600" />
+            <Flame className="h-5 w-5 text-brand-600" />
             Today&apos;s Deals
           </h2>
-          <span className="rounded-full bg-rose-100 px-2.5 py-0.5 text-xs font-bold text-rose-600 dark:bg-rose-950/50 dark:text-rose-400">
+          <span className="rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-bold text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">
             Limited time
           </span>
           <button
-            className="ml-auto flex items-center gap-1 text-sm font-semibold text-amber-600 transition hover:gap-2 dark:text-amber-400"
+            className="ml-auto flex items-center gap-1 text-sm font-semibold text-brand-600 transition hover:gap-2 dark:text-brand-400"
             onClick={() => navigate({ name: "deals" })}
           >
             See all deals <ChevronRight className="h-4 w-4" />
@@ -52,7 +52,7 @@ export function HomeView() {
             Featured products
           </h2>
           <button
-            className="flex items-center gap-1 text-sm font-semibold text-amber-600 transition hover:gap-2 dark:text-amber-400"
+            className="flex items-center gap-1 text-sm font-semibold text-brand-600 transition hover:gap-2 dark:text-brand-400"
             onClick={() => navigate({ name: "shop", category: "all" })}
           >
             See more <ChevronRight className="h-4 w-4" />
@@ -77,7 +77,7 @@ export function HomeView() {
             New arrivals
           </h2>
           <button
-            className="flex items-center gap-1 text-sm font-semibold text-amber-600 transition hover:gap-2 dark:text-amber-400"
+            className="flex items-center gap-1 text-sm font-semibold text-brand-600 transition hover:gap-2 dark:text-brand-400"
             onClick={() => navigate({ name: "shop", category: "all" })}
           >
             See more <ChevronRight className="h-4 w-4" />
@@ -103,7 +103,7 @@ function RecentlyViewed() {
   return (
     <section aria-label="Recently viewed" className="mx-auto max-w-7xl px-3 pt-10 sm:px-6">
       <div className="mb-4 flex items-center gap-2">
-        <Sparkles className="h-5 w-5 text-amber-500" />
+        <Sparkles className="h-5 w-5 text-brand-500" />
         <h2 className="text-xl font-black">Recently viewed</h2>
       </div>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">

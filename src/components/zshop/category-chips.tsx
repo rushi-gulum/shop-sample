@@ -15,7 +15,7 @@ export function CategoryChips() {
           Shop by category
         </h2>
         <button
-          className="flex items-center gap-1 text-sm font-semibold text-amber-600 transition hover:gap-2 dark:text-amber-400"
+          className="flex items-center gap-1 text-sm font-semibold text-brand-600 transition hover:gap-2 dark:text-brand-400"
           onClick={() => navigate({ name: "shop", category: "all" })}
         >
           View all <ChevronRight className="h-4 w-4" />
@@ -28,10 +28,10 @@ export function CategoryChips() {
             key={c.id}
             aria-label={`Shop ${c.name}`}
             title={c.blurb}
-            className="group flex flex-col items-center gap-2.5 rounded-2xl border bg-card px-2 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/70 hover:shadow-lg"
+            className="group flex flex-col items-center gap-2.5 rounded-2xl border bg-card px-2 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-400/70 hover:shadow-lg"
             onClick={() => navigate({ name: "shop", category: c.id })}
           >
-            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-b from-amber-50 to-orange-100 ring-1 ring-inset ring-amber-200/70 transition-transform duration-300 group-hover:scale-105 dark:from-amber-400/10 dark:to-orange-400/15 dark:ring-amber-400/20">
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-b from-brand-50 to-brand-100 ring-1 ring-inset ring-brand-200/70 transition-transform duration-300 group-hover:scale-105 dark:from-brand-400/10 dark:to-brand-400/15 dark:ring-brand-400/20">
               <span className="h-12 w-12">
                 <CategoryArt id={c.id} />
               </span>
