@@ -51,8 +51,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 18423,
     description:
       "Galaxy AI meets the Snapdragon 8 Gen 3. Built-in S Pen, 200MP camera, titanium frame and 7 years of OS upgrades. 1-year brand warranty.",
-    image: `${P}/android-ultra.png`,
-    gallery: [`${P}/android-ultra.png`, `${P}/android-flagship.png`, `${P}/smartphone.jpg`],
+    image: `${P}/real/s1.jpg`,
+    gallery: [`${P}/real/s1.jpg`, `${P}/real/s1-2.jpg`, `${P}/real/s1-3.jpg`],
     tags: ["5g", "android", "flagship", "camera-phone", "s-pen", "premium", "dual-sim", "bestseller"],
     featured: true,
     specs: [
@@ -75,8 +75,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 9621,
     description:
       "Hasselblad-tuned triple camera, Snapdragon 8 Gen 3, 100W SUPERVOOC charging and a 2K 120Hz ProXDR display.",
-    image: `${P}/android-flagship.png`,
-    gallery: [`${P}/android-flagship.png`, `${P}/smartphone.jpg`],
+    image: `${P}/real/s2.jpg`,
+    gallery: [`${P}/real/s2.jpg`, `${P}/real/s2-2.jpg`, `${P}/real/s2-3.jpg`],
     tags: ["5g", "android", "flagship", "gaming-phone", "fast-charging", "dual-sim"],
     featured: true,
     specs: [
@@ -98,7 +98,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 4312,
     description:
       "Google Tensor G3 with 7 years of updates, best-in-class AI camera and Pixel's clean software experience.",
-    image: `${P}/smartphone.jpg`,
+    image: `${P}/real/s3.jpg`,
+    gallery: [`${P}/real/s3.jpg`, `${P}/real/s3-2.png`, `${P}/real/s3-3.jpg`],
     tags: ["5g", "android", "camera-phone", "mid-range", "compact", "ai"],
     specs: [
       { label: "Display", value: "6.1\" Actua 120Hz" },
@@ -118,8 +119,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 2893,
     description:
       "Iconic transparent Glyph design, 50MP dual camera and 3 years of Android updates. Made for India's creator generation.",
-    image: `${P}/nothing-phone.png`,
-    gallery: [`${P}/nothing-phone.png`, `${P}/smartphone.jpg`],
+    image: `${P}/real/s4.jpg`,
+    gallery: [`${P}/real/s4.jpg`, `${P}/real/s4-2.jpg`, `${P}/real/s4-3.jpg`],
     tags: ["5g", "android", "mid-range", "design", "glyph", "new"],
     newArrival: true,
     specs: [
@@ -140,7 +141,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 15782,
     description:
       "Dimensity 8300-Ultra beast with 120Hz CrystalRes AMOLED and 67W turbo charging — India's favourite performance phone.",
-    image: `${P}/android-budget.png`,
+    image: `${P}/real/s5.png`,
+    gallery: [`${P}/real/s5.png`, `${P}/real/s5-2.jpg`, `${P}/real/s5-3.jpg`],
     tags: ["5g", "android", "gaming-phone", "value-for-money", "mid-range", "fast-charging", "bestseller"],
     featured: true,
     specs: [
@@ -161,7 +163,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 24156,
     description:
       "108MP AI triple camera, 120Hz AMOLED and 33W fast charging. The value-for-money king under ₹20,000.",
-    image: `${P}/android-budget.png`,
+    image: `${P}/real/s6.png`,
+    gallery: [`${P}/real/s6.png`, `${P}/real/s6-2.jpg`, `${P}/real/s6-3.jpg`],
     tags: ["5g", "android", "value-for-money", "camera-phone", "budget", "bestseller"],
     specs: [
       { label: "Display", value: "6.67\" AMOLED 120Hz" },
@@ -181,7 +184,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 6210,
     description:
       "Periscope telephoto camera with 120x SuperZoom, luxury watch-inspired design and 5,000mAh battery.",
-    image: `${P}/smartphone.jpg`,
+    image: `${P}/real/s7.jpg`,
+    gallery: [`${P}/real/s7.jpg`, `${P}/real/s7-2.jpg`, `${P}/real/s7-3.jpg`],
     tags: ["5g", "android", "camera-phone", "mid-range", "telephoto"],
     specs: [
       { label: "Display", value: "6.7\" Curved AMOLED 120Hz" },
@@ -200,7 +204,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 3891,
     description:
       "125W turbo charging, Pantone-validated curved pOLED and near-stock Android 14 with 3 years of updates.",
-    image: `${P}/android-flagship.png`,
+    image: `${P}/real/s8.jpg`,
+    gallery: [`${P}/real/s8.jpg`, `${P}/real/s8-2.jpg`, `${P}/real/s8-3.jpg`],
     tags: ["5g", "android", "mid-range", "fast-charging", "stock-android"],
     specs: [
       { label: "Display", value: "6.7\" 1.5K pOLED 144Hz" },
@@ -219,7 +224,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 8934,
     description:
       "Dimensity 7200, Sony IMX882 OIS camera and IP54 rating — the gaming favourite under ₹20,000.",
-    image: `${P}/android-budget.png`,
+    image: `${P}/real/s9.jpg`,
+    gallery: [`${P}/real/s9.jpg`, `${P}/real/s9-2.jpg`, `${P}/real/s9-3.jpg`],
     tags: ["5g", "android", "gaming-phone", "value-for-money", "ois"],
     specs: [
       { label: "Display", value: "6.67\" AMOLED 120Hz" },
@@ -238,7 +244,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 4102,
     description:
       "Ultra-slim curved AMOLED with 50MP Eye AF selfie camera and 80W FlashCharge. Built for portraits.",
-    image: `${P}/smartphone.jpg`,
+    image: `${P}/real/s10.jpg`,
+    gallery: [`${P}/real/s10.jpg`, `${P}/real/s10-2.png`, `${P}/real/s10-3.jpg`],
     tags: ["5g", "android", "camera-phone", "selfie", "mid-range", "slim"],
     specs: [
       { label: "Display", value: "6.78\" Curved AMOLED" },
@@ -257,7 +264,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 1874,
     description:
       "Leica Summilux optical lens trio, Snapdragon 8 Gen 3 and a compact 6.36\" flagship you can use one-handed.",
-    image: `${P}/android-flagship.png`,
+    image: `${P}/real/s11.png`,
+    gallery: [`${P}/real/s11.png`, `${P}/real/s11-2.jpg`, `${P}/real/s11-3.jpg`],
     tags: ["5g", "android", "flagship", "compact", "camera-phone", "leica"],
     specs: [
       { label: "Display", value: "6.36\" 1.5K LTPO 120Hz" },
@@ -276,7 +284,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 11205,
     description:
       "Exynos 1380, 6000mAh battery and Super AMOLED 120Hz — Samsung's best value-for-money 5G under ₹20,000.",
-    image: `${P}/android-budget.png`,
+    image: `${P}/real/s12.jpg`,
+    gallery: [`${P}/real/s12.jpg`, `${P}/real/s12-2.jpg`, `${P}/real/s12-3.jpg`],
     tags: ["5g", "android", "value-for-money", "big-battery", "budget"],
     newArrival: true,
     specs: [
@@ -298,8 +307,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 32415,
     description:
       "A17 Pro chip, titanium design, Action button and 5x telephoto camera. Genuine Indian unit with 1-year Apple India warranty and GST invoice.",
-    image: `${P}/iphone-pro.png`,
-    gallery: [`${P}/iphone-pro.png`, `${P}/iphone.png`, `${P}/smartphone.jpg`],
+    image: `${P}/real/ip1.jpg`,
+    gallery: [`${P}/real/ip1.jpg`, `${P}/real/ip1-2.png`, `${P}/real/ip1-3.jpg`],
     tags: ["5g", "ios", "flagship", "titanium", "premium", "256gb", "bestseller"],
     featured: true,
     specs: [
@@ -321,8 +330,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 41230,
     description:
       "Dynamic Island, 48MP camera system and USB-C. The best-selling iPhone in India, now with festive pricing.",
-    image: `${P}/iphone.png`,
-    gallery: [`${P}/iphone.png`, `${P}/iphone-pro.png`],
+    image: `${P}/real/ip2.jpg`,
+    gallery: [`${P}/real/ip2.jpg`, `${P}/real/ip2-2.jpg`, `${P}/real/ip2-3.png`],
     tags: ["5g", "ios", "128gb", "usb-c", "bestseller", "latest-iphone"],
     featured: true,
     specs: [
@@ -343,7 +352,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 28491,
     description:
       "Previous-generation favourite with A15 Bionic, Dual-camera system with Photonic Engine and all-day battery life.",
-    image: `${P}/iphone.png`,
+    image: `${P}/real/ip3.jpg`,
+    gallery: [`${P}/real/ip3.jpg`, `${P}/real/ip3-2.png`, `${P}/real/ip3-3.png`],
     tags: ["5g", "ios", "previous-generation", "128gb", "value-for-money"],
     specs: [
       { label: "Display", value: "6.1\" Super Retina XDR" },
@@ -362,7 +372,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 52104,
     description:
       "India's most-loved iPhone — A15 Bionic, dual 12MP cameras and Ceramic Shield. Still a value-for-money monster.",
-    image: `${P}/iphone.png`,
+    image: `${P}/real/ip4.jpg`,
+    gallery: [`${P}/real/ip4.jpg`, `${P}/real/ip4-2.jpg`, `${P}/real/ip4-3.jpg`],
     tags: ["5g", "ios", "previous-generation", "128gb", "value-for-money", "bestseller"],
     specs: [
       { label: "Display", value: "6.1\" Super Retina XDR" },
@@ -381,7 +392,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 8342,
     description:
       "The most affordable iPhone with A15 Bionic, Touch ID home button and compact 4.7\" Retina HD display.",
-    image: `${P}/smartphone.jpg`,
+    image: `${P}/real/ip5.jpg`,
+    gallery: [`${P}/real/ip5.jpg`, `${P}/real/ip5-2.jpg`, `${P}/real/ip5-3.jpg`],
     tags: ["ios", "entry-model", "compact", "touch-id", "64gb"],
     specs: [
       { label: "Display", value: "4.7\" Retina HD" },
@@ -400,8 +412,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 12043,
     description:
       "Latest iPhone with Camera Control button, A18 chip and the biggest battery ever in an iPhone Plus.",
-    image: `${P}/iphone.png`,
-    gallery: [`${P}/iphone.png`, `${P}/iphone-pro.png`],
+    image: `${P}/real/ip6.jpg`,
+    gallery: [`${P}/real/ip6.jpg`, `${P}/real/ip6-2.jpg`, `${P}/real/ip6-3.jpg`],
     tags: ["5g", "ios", "latest-iphone", "128gb", "new", "camera-control"],
     newArrival: true,
     specs: [
@@ -423,7 +435,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 32041,
     description:
       "Classic keypad phone with wireless FM radio, long-lasting battery and durable polycarbonate body. Perfect backup or senior-citizen phone.",
-    image: `${P}/feature-phone.png`,
+    image: `${P}/real/f1.png`,
+    gallery: [`${P}/real/f1.png`, `${P}/real/f1-2.jpg`, `${P}/real/f1-3.jpg`],
     tags: ["basic", "keypad", "fm-radio", "senior-citizen", "dual-sim", "budget"],
     featured: true,
     specs: [
@@ -444,7 +457,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 15782,
     description:
       "Bright 2.4\" display, VGA camera with flash, MP3 player and weeks-long standby. The reliable everyday keypad phone.",
-    image: `${P}/feature-phone.png`,
+    image: `${P}/real/f2.jpg`,
+    gallery: [`${P}/real/f2.jpg`, `${P}/real/f2-2.png`, `${P}/real/f2-3.jpg`],
     tags: ["basic", "keypad", "fm-radio", "dual-sim", "camera"],
     specs: [
       { label: "Display", value: "2.4\" QQVGA" },
@@ -463,7 +477,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 4218,
     description:
       "Made-in-India 4G keypad phone with 2575mAh battery, bright torch, Bhojpuri & 23 language support and 1-year warranty with free home service.",
-    image: `${P}/feature-phone.png`,
+    image: `${P}/real/f3.jpg`,
+    gallery: [`${P}/real/f3.jpg`, `${P}/real/f3-2.jpg`, `${P}/real/f3-3.jpg`],
     tags: ["4g", "keypad", "big-battery", "dual-sim", "made-in-india", "senior-citizen"],
     specs: [
       { label: "Battery", value: "2575 mAh" },
@@ -484,7 +499,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 9842,
     description:
       "A14 Bionic, 10.9\" Liquid Retina display and landscape front camera. Great for students, note-taking and streaming.",
-    image: `${P}/tablet.jpg`,
+    image: `${P}/real/t1.jpg`,
+    gallery: [`${P}/real/t1.jpg`, `${P}/real/t1-2.jpg`, `${P}/real/t1-3.jpg`],
     tags: ["ipad", "student", "entertainment", "64gb", "wifi", "bestseller"],
     featured: true,
     specs: [
@@ -505,7 +521,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 3412,
     description:
       "M2 chip with Apple Pencil Pro support — the work-and-creation tablet for designers, students and creators.",
-    image: `${P}/tablet.jpg`,
+    image: `${P}/real/t2.jpg`,
+    gallery: [`${P}/real/t2.jpg`, `${P}/real/t2-2.jpg`, `${P}/real/t2-3.jpg`],
     tags: ["ipad", "work", "drawing", "creative", "m2", "new"],
     newArrival: true,
     specs: [
@@ -525,7 +542,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 6721,
     description:
       "Comes with S Pen in the box — perfect for online classes, note-taking and Doodle sessions on a 10.4\" display.",
-    image: `${P}/tablet.jpg`,
+    image: `${P}/real/t3.jpg`,
+    gallery: [`${P}/real/t3.jpg`, `${P}/real/t3-2.jpg`, `${P}/real/t3-3.jpg`],
     tags: ["android-tablet", "student", "s-pen", "stylus", "value-for-money"],
     specs: [
       { label: "Display", value: "10.4\" TFT 60Hz" },
@@ -544,7 +562,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 14210,
     description:
       "11\" 90Hz FHD+ display with Dolby Atmos quad speakers — the best budget entertainment tablet for the family.",
-    image: `${P}/tablet.jpg`,
+    image: `${P}/real/t4.jpg`,
+    gallery: [`${P}/real/t4.jpg`, `${P}/real/t4-2.jpg`, `${P}/real/t4-3.jpg`],
     tags: ["android-tablet", "entertainment", "kids", "budget", "value-for-money"],
     specs: [
       { label: "Display", value: "11\" FHD+ 90Hz" },
@@ -565,7 +584,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 8213,
     description:
       "Crash Detection, sleep tracking and all the essentials of an Apple Watch at the friendliest price in India.",
-    image: `${P}/smartwatch.jpg`,
+    image: `${P}/real/w1.jpg`,
+    gallery: [`${P}/real/w1.jpg`, `${P}/real/w1-2.jpg`, `${P}/real/w1-3.png`],
     tags: ["apple-watch", "fitness", "gps", "bestseller"],
     featured: true,
     specs: [
@@ -586,7 +606,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 4532,
     description:
       "Body composition analysis, sleep coaching and standalone LTE calling on a big sAMOLED round dial.",
-    image: `${P}/smartwatch-amoled.png`,
+    image: `${P}/real/w2.jpg`,
+    gallery: [`${P}/real/w2.jpg`, `${P}/real/w2-2.jpg`, `${P}/real/w2-3.png`],
     tags: ["smartwatch", "lte", "amosled", "android", "calling"],
     specs: [
       { label: "Display", value: "1.5\" Super AMOLED" },
@@ -605,7 +626,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 2187,
     description:
       "Wear OS 4 with dual-engine architecture, 100-hour battery in Smart Mode and stainless steel build.",
-    image: `${P}/smartwatch-amoled.png`,
+    image: `${P}/real/w3.jpg`,
+    gallery: [`${P}/real/w3.jpg`, `${P}/real/w3-2.jpg`, `${P}/real/w3-3.jpg`],
     tags: ["wear-os", "smartwatch", "gps", "amosled", "new"],
     newArrival: true,
     specs: [
@@ -625,7 +647,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 32187,
     description:
       "Bluetooth calling with Noise Buzz, 1.85\" AMOLED display, 7-day battery and 100+ sports modes. India's #1 smartwatch brand.",
-    image: `${P}/smartwatch.jpg`,
+    image: `${P}/real/w4.png`,
+    gallery: [`${P}/real/w4.png`, `${P}/real/w4-2.jpg`, `${P}/real/w4-3.png`],
     tags: ["smartwatch", "bluetooth-calling", "amosled", "value-for-money", "fitness", "bestseller"],
     featured: true,
     specs: [
@@ -645,7 +668,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 51402,
     description:
       "Dial Pad bluetooth calling, 1.83\" HD display, 700+ active modes and IPR68 dust & water resistance.",
-    image: `${P}/smartwatch.jpg`,
+    image: `${P}/real/w5.jpg`,
+    gallery: [`${P}/real/w5.jpg`, `${P}/real/w5-2.jpg`, `${P}/real/w5-3.jpg`],
     tags: ["smartwatch", "bluetooth-calling", "value-for-money", "budget"],
     specs: [
       { label: "Display", value: "1.83\" HD" },
@@ -664,7 +688,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 9231,
     description:
       "Bluetooth calling smartwatch from Fastrack with 1.85\" display, AI voice assistant andstress monitoring.",
-    image: `${P}/smartwatch.jpg`,
+    image: `${P}/real/w6.jpg`,
+    gallery: [`${P}/real/w6.jpg`, `${P}/real/w6-2.jpg`, `${P}/real/w6-3.jpg`],
     tags: ["smartwatch", "bluetooth-calling", "fitness", "value-for-money"],
     specs: [
       { label: "Display", value: "1.85\" TFT" },
@@ -685,8 +710,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 12403,
     description:
       "Industry-leading noise cancellation, 30-hour battery and crystal-clear calls. The gold standard for premium ANC headphones.",
-    image: `${P}/headphones.jpg`,
-    gallery: [`${P}/headphones.jpg`, `${P}/headphones2.jpg`],
+    image: `${P}/real/a1.jpg`,
+    gallery: [`${P}/real/a1.jpg`, `${P}/real/a1-2.jpg`, `${P}/real/a1-3.jpg`],
     tags: ["headphones", "anc", "wireless", "premium", "bestseller"],
     featured: true,
     specs: [
@@ -707,7 +732,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 21398,
     description:
       "Lightweight 192g ANC headphones with V1 processor, 35-hour battery and multipoint connection. Value-for-money ANC champion.",
-    image: `${P}/headphones2.jpg`,
+    image: `${P}/real/a2.jpg`,
+    gallery: [`${P}/real/a2.jpg`, `${P}/real/a2-2.jpg`, `${P}/real/a2-3.jpg`],
     tags: ["headphones", "anc", "wireless", "value-for-money"],
     specs: [
       { label: "Battery", value: "35 hours" },
@@ -726,7 +752,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 18722,
     description:
       "Adaptive Audio, up to 2x more Active Noise Cancellation, Conversation Awareness and MagSafe USB-C case.",
-    image: `${P}/earbuds-white.png`,
+    image: `${P}/real/a3.jpg`,
+    gallery: [`${P}/real/a3.jpg`, `${P}/real/a3-2.jpg`, `${P}/real/a3-3.jpg`],
     tags: ["tws", "earbuds", "anc", "premium", "apple", "bestseller"],
     featured: true,
     specs: [
@@ -747,7 +774,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 6521,
     description:
       "45dB Smart ANC, LDAC hi-res audio and 42.5-hour total battery in an iconic transparent design.",
-    image: `${P}/earbuds-white.png`,
+    image: `${P}/real/a4.jpg`,
+    gallery: [`${P}/real/a4.jpg`, `${P}/real/a4-2.jpg`, `${P}/real/a4-3.jpg`],
     tags: ["tws", "earbuds", "anc", "design", "new"],
     newArrival: true,
     specs: [
@@ -767,7 +795,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 84210,
     description:
       "50-hour playtime, Beast Mode low latency for gaming, ENx mic for clear calls and ASAP Charge. India's favourite TWS.",
-    image: `${P}/earbuds.jpg`,
+    image: `${P}/real/a5.jpg`,
+    gallery: [`${P}/real/a5.jpg`, `${P}/real/a5-2.png`, `${P}/real/a5-3.jpg`],
     tags: ["tws", "earbuds", "gaming-tws", "value-for-money", "bestseller", "budget"],
     featured: true,
     specs: [
@@ -788,7 +817,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 65231,
     description:
       "Neckband with 40-hour battery, ENx environmental noise cancellation, Beast Mode for gaming and magnetic earbuds.",
-    image: `${P}/neckband.png`,
+    image: `${P}/real/a6.jpg`,
+    gallery: [`${P}/real/a6.jpg`, `${P}/real/a6-2.jpg`, `${P}/real/a6-3.jpg`],
     tags: ["neckband", "bluetooth", "sports", "value-for-money", "budget"],
     specs: [
       { label: "Battery", value: "40 hours" },
@@ -807,7 +837,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 9214,
     description:
       "JBL Pure Bass sound with True Adaptive Noise Cancelling and 48-hour total battery. Splash-proof for workouts.",
-    image: `${P}/earbuds.jpg`,
+    image: `${P}/real/a7.jpg`,
+    gallery: [`${P}/real/a7.jpg`, `${P}/real/a7-2.jpg`, `${P}/real/a7-3.jpg`],
     tags: ["tws", "earbuds", "anc", "sports"],
     specs: [
       { label: "Battery", value: "12 h + 36 h case" },
@@ -826,7 +857,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 24189,
     description:
       "Ultra-portable speaker with JBL Pro Sound and IP67 waterproof rating — take the party anywhere, from balcony to Goa.",
-    image: `${P}/speaker.jpg`,
+    image: `${P}/real/a8.jpg`,
+    gallery: [`${P}/real/a8.jpg`, `${P}/real/a8-2.jpg`, `${P}/real/a8-3.jpg`],
     tags: ["speaker", "bluetooth", "portable", "waterproof", "mini-speaker"],
     specs: [
       { label: "Battery", value: "5 hours" },
@@ -845,7 +877,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 3410,
     description:
       "Dual drivers with 49dB ANC, 3D spatial audio and 44-hour battery. Tuned for bassheads and binge-watchers.",
-    image: `${P}/earbuds-white.png`,
+    image: `${P}/real/a9.jpg`,
+    gallery: [`${P}/real/a9.jpg`, `${P}/real/a9-2.jpg`, `${P}/real/a9-3.png`],
     tags: ["tws", "earbuds", "anc", "new"],
     newArrival: true,
     specs: [
@@ -867,7 +900,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 45210,
     description:
       "Fast-charge your iPhone to 50% in around 30 minutes. Compact, original Apple adapter with 1-year warranty.",
-    image: `${P}/charger.png`,
+    image: `${P}/real/c1.jpg`,
+    gallery: [`${P}/real/c1.jpg`, `${P}/real/c1-2.jpg`, `${P}/real/c1-3.jpg`],
     tags: ["wall-charger", "20w", "usb-c", "pd", "apple"],
     specs: [
       { label: "Output", value: "20W USB-C PD" },
@@ -886,7 +920,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 3210,
     description:
       "65W GaN II charger with two USB-C + one USB-A port — charge your phone, earbuds and laptop from one compact brick.",
-    image: `${P}/charger.png`,
+    image: `${P}/real/c2.jpg`,
+    gallery: [`${P}/real/c2.jpg`, `${P}/real/c2-2.png`, `${P}/real/c2-3.jpg`],
     tags: ["wall-charger", "65w", "gan", "pd", "pps", "multi-port", "fast-charging", "premium"],
     featured: true,
     specs: [
@@ -906,7 +941,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 18204,
     description:
       "Super Fast Charging 25W adapter for Galaxy smartphones and tablets, with detachable USB-C cable included.",
-    image: `${P}/charger.png`,
+    image: `${P}/real/c3.jpg`,
+    gallery: [`${P}/real/c3.jpg`, `${P}/real/c3-2.jpg`, `${P}/real/c3-3.jpg`],
     tags: ["wall-charger", "25w", "usb-c", "pd", "samsung"],
     specs: [
       { label: "Output", value: "25W Super Fast Charge" },
@@ -924,7 +960,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 26415,
     description:
       "25W PD + QC 3.0 dual-port adapter with smart IC protection and universal compatibility — value charger under ₹700.",
-    image: `${P}/charger.png`,
+    image: `${P}/real/c4.jpg`,
+    gallery: [`${P}/real/c4.jpg`, `${P}/real/c4-2.jpg`, `${P}/real/c4-3.jpg`],
     tags: ["wall-charger", "25w", "qc", "pd", "value-for-money", "budget"],
     specs: [
       { label: "Output", value: "25W (PD + QC 3.0)" },
@@ -943,7 +980,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 8213,
     description:
       "Qi-certified 15W wireless charging pad with anti-slip silicone surface and multi-colour LED indicator.",
-    image: `${P}/wireless-charger.png`,
+    image: `${P}/real/c5.jpg`,
+    gallery: [`${P}/real/c5.jpg`, `${P}/real/c5-2.jpg`, `${P}/real/c5-3.jpg`],
     tags: ["wireless", "qi", "15w", "charging-pad", "value-for-money"],
     specs: [
       { label: "Output", value: "15W Qi wireless" },
@@ -961,7 +999,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 1842,
     description:
       "Snap-on magnetic 15W wireless charger for iPhone 12 and above, with ActiveShield temperature monitoring.",
-    image: `${P}/wireless-charger.png`,
+    image: `${P}/real/c6.jpg`,
+    gallery: [`${P}/real/c6.jpg`, `${P}/real/c6-2.jpg`, `${P}/real/c6-3.jpg`],
     tags: ["wireless", "magsafe", "magnetic", "15w", "new", "iphone"],
     newArrival: true,
     specs: [
@@ -983,7 +1022,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 42310,
     description:
       "60W fast-charging braided cable with 480Mbps data transfer, aluminium housing and 10,000+ bend lifespan.",
-    image: `${P}/cable.png`,
+    image: `${P}/real/cb1.jpg`,
+    gallery: [`${P}/real/cb1.jpg`, `${P}/real/cb1-2.jpg`, `${P}/real/cb1-3.png`],
     tags: ["usb-c", "braided", "fast-charging", "charging-cable", "value-for-money", "60w"],
     specs: [
       { label: "Power", value: "60W EPR" },
@@ -1002,7 +1042,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 15203,
     description:
       "6A ultra-fast charging cable supporting 100W turbo charging with nylon braid and zinc-alloy connectors.",
-    image: `${P}/cable.png`,
+    image: `${P}/real/cb2.png`,
+    gallery: [`${P}/real/cb2.png`, `${P}/real/cb2-2.jpg`, `${P}/real/cb2-3.jpg`],
     tags: ["usb-c", "braided", "fast-charging", "100w", "high-wattage"],
     specs: [
       { label: "Current", value: "6A (100W charging)" },
@@ -1020,7 +1061,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 21032,
     description:
       "Original Apple cable for fast charging iPhones and AirPods from USB-C adapters and power banks. MFi certified.",
-    image: `${P}/cable.png`,
+    image: `${P}/real/cb3.jpg`,
+    gallery: [`${P}/real/cb3.jpg`, `${P}/real/cb3-2.jpg`, `${P}/real/cb3-3.jpg`],
     tags: ["lightning", "apple", "fast-charging", "1m"],
     specs: [
       { label: "Type", value: "USB-C to Lightning" },
@@ -1039,7 +1081,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 9312,
     description:
       "One cable for everything — Type-C, Lightning and Micro USB connectors with 3A fast charging. Perfect for travel.",
-    image: `${P}/cable.png`,
+    image: `${P}/real/cb4.jpg`,
+    gallery: [`${P}/real/cb4.jpg`, `${P}/real/cb4-2.jpg`, `${P}/real/cb4-3.jpg`],
     tags: ["multi-connector", "3-in-1", "lightning", "micro-usb", "fast-charging", "travel"],
     specs: [
       { label: "Connectors", value: "Type-C, Lightning, Micro USB" },
@@ -1059,7 +1102,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 5210,
     description:
       "22.5W fast-charging 20,000mAh power bank with PowerIQ and USB-C PD — charges an iPhone 4+ times. Flight-safe.",
-    image: `${P}/powerbank.png`,
+    image: `${P}/real/pb1.jpg`,
+    gallery: [`${P}/real/pb1.jpg`, `${P}/real/pb1-2.jpg`, `${P}/real/pb1-3.jpg`],
     tags: ["20000mah", "fast-charging", "pd", "premium", "laptop-power-bank"],
     featured: true,
     specs: [
@@ -1080,7 +1124,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 31204,
     description:
       "22.5W fast charging in a pocket-sized metal body with dual outputs and low-power mode for earbuds & watches.",
-    image: `${P}/powerbank.png`,
+    image: `${P}/real/pb2.jpg`,
+    gallery: [`${P}/real/pb2.jpg`, `${P}/real/pb2-2.jpg`, `${P}/real/pb2-3.jpg`],
     tags: ["10000mah", "fast-charging", "value-for-money", "compact"],
     specs: [
       { label: "Capacity", value: "10,000 mAh" },
@@ -1099,7 +1144,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 18420,
     description:
       "Made-in-India 20,000mAh power bank with 22.5W fast charging, triple output and sleek LED display.",
-    image: `${P}/powerbank.png`,
+    image: `${P}/real/pb3.jpg`,
+    gallery: [`${P}/real/pb3.jpg`, `${P}/real/pb3-2.png`, `${P}/real/pb3-3.jpg`],
     tags: ["20000mah", "fast-charging", "value-for-money", "made-in-india", "bisd-certified"],
     specs: [
       { label: "Capacity", value: "20,000 mAh" },
@@ -1118,7 +1164,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 4210,
     description:
       "MagSafe-compatible magnetic wireless power bank with 20W wired PD, snap-on charging and kickstand.",
-    image: `${P}/powerbank.png`,
+    image: `${P}/real/pb4.jpg`,
+    gallery: [`${P}/real/pb4.jpg`, `${P}/real/pb4-2.png`, `${P}/real/pb4-3.jpg`],
     tags: ["10000mah", "wireless", "magnetic", "magsafe", "new", "fast-charging"],
     newArrival: true,
     specs: [
@@ -1140,7 +1187,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 4210,
     description:
       "Military-grade drop protection with Air Cushion corners, raised lip for camera and built-in kickstand.",
-    image: `${P}/phone-case.png`,
+    image: `${P}/real/cs1.jpg`,
+    gallery: [`${P}/real/cs1.jpg`, `${P}/real/cs1-2.jpg`, `${P}/real/cs1-3.jpg`],
     tags: ["iphone-case", "rugged", "shockproof", "kickstand", "premium"],
     featured: true,
     specs: [
@@ -1160,7 +1208,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 8213,
     description:
       "Fingerprint-free matte frosted hard case with anti-slip texture — value-for-money daily cover.",
-    image: `${P}/phone-case.png`,
+    image: `${P}/real/cs2.jpg`,
+    gallery: [`${P}/real/cs2.jpg`, `${P}/real/cs2-2.jpg`, `${P}/real/cs2-3.jpg`],
     tags: ["redmi-case", "hard-case", "matte", "value-for-money", "budget"],
     specs: [
       { label: "Material", value: "PC frosted hard shell" },
@@ -1178,7 +1227,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 2103,
     description:
       "Vibrant designer printed case with dual-layer protection and raised edges — made in India, printed in India.",
-    image: `${P}/printed-case.png`,
+    image: `${P}/real/cs3.png`,
+    gallery: [`${P}/real/cs3.png`, `${P}/real/cs3-2.jpg`, `${P}/real/cs3-3.jpg`],
     tags: ["iphone-case", "printed", "designer", "made-in-india"],
     specs: [
       { label: "Print", value: "High-definition UV print" },
@@ -1196,7 +1246,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 1874,
     description:
       "Anti-yellowing clear back with shock-absorbing bumper and lanyard hole — show off your S24 in style.",
-    image: `${P}/phone-case.png`,
+    image: `${P}/real/cs4.jpg`,
+    gallery: [`${P}/real/cs4.jpg`, `${P}/real/cs4-2.jpg`, `${P}/real/cs4-3.jpg`],
     tags: ["samsung-case", "transparent", "clear", "shockproof"],
     specs: [
       { label: "Material", value: "PC + TPU hybrid" },
@@ -1216,7 +1267,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 6210,
     description:
       "9H hardness tempered glass with auto-align EZ Fit tray — bubble-free installation in 10 seconds, pack of 2.",
-    image: `${P}/tempered-glass.png`,
+    image: `${P}/real/sp1.jpg`,
+    gallery: [`${P}/real/sp1.jpg`, `${P}/real/sp1-2.jpg`, `${P}/real/sp1-3.jpg`],
     tags: ["tempered-glass", "iphone", "9h", "full-cover", "premium"],
     featured: true,
     specs: [
@@ -1236,7 +1288,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 12403,
     description:
       "0.33mm 9H tempered glass with anti-fingerprint oleophobic coating and complete edge coverage. Includes dust stickers.",
-    image: `${P}/tempered-glass.png`,
+    image: `${P}/real/sp2.jpg`,
+    gallery: [`${P}/real/sp2.jpg`, `${P}/real/sp2-2.jpg`, `${P}/real/sp2-3.jpg`],
     tags: ["tempered-glass", "redmi", "9h", "value-for-money", "budget"],
     specs: [
       { label: "Thickness", value: "0.33 mm" },
@@ -1254,7 +1307,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 932,
     description:
       "Keep your OTPs and chats private in the metro — 28° privacy filter with 9H tempered glass and full touch sensitivity.",
-    image: `${P}/tempered-glass.png`,
+    image: `${P}/real/sp3.jpg`,
+    gallery: [`${P}/real/sp3.jpg`, `${P}/real/sp3-2.jpg`, `${P}/real/sp3-3.jpg`],
     tags: ["privacy-glass", "samsung", "tempered-glass", "matte"],
     specs: [
       { label: "Privacy angle", value: "28°" },
@@ -1274,7 +1328,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 21043,
     description:
       "Adjustable aluminium desk stand for video calls, movies and recipes — fits all phones and small tablets.",
-    image: `${P}/phone-stand.png`,
+    image: `${P}/real/st1.jpg`,
+    gallery: [`${P}/real/st1.jpg`, `${P}/real/st1-2.jpg`, `${P}/real/st1-3.jpg`],
     tags: ["desk-stand", "adjustable", "foldable", "value-for-money", "budget"],
     specs: [
       { label: "Angle", value: "Adjustable" },
@@ -1292,7 +1347,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 1210,
     description:
       "Magnetic grip ring + kickstand that snaps on MagSafe — secure hold, rotatable viewing and magnetic car mount ready.",
-    image: `${P}/phone-stand.png`,
+    image: `${P}/real/st2.jpg`,
+    gallery: [`${P}/real/st2.jpg`, `${P}/real/st2-2.jpg`, `${P}/real/st2-3.jpg`],
     tags: ["ring-stand", "magsafe", "magnetic", "grip", "premium"],
     specs: [
       { label: "Rotation", value: "360° ring" },
@@ -1310,7 +1366,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 3204,
     description:
       "Credit-card sized foldable stand that slips into your wallet — perfect for flights, desk and bedside.",
-    image: `${P}/phone-stand.png`,
+    image: `${P}/real/st3.jpg`,
+    gallery: [`${P}/real/st3.jpg`, `${P}/real/st3-2.jpg`, `${P}/real/st3-3.jpg`],
     tags: ["foldable-stand", "travel", "pocket", "value-for-money"],
     specs: [
       { label: "Folded size", value: "Card-sized" },
@@ -1330,7 +1387,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 15203,
     description:
       "Dual-port 38W car charger with QC 3.0 + PD — fast-charge two phones together on your next road trip.",
-    image: `${P}/car-charger.png`,
+    image: `${P}/real/ca1.jpg`,
+    gallery: [`${P}/real/ca1.jpg`, `${P}/real/ca1-2.jpg`, `${P}/real/ca1-3.png`],
     tags: ["car-charger", "fast-car-charger", "multi-port", "qc", "value-for-money"],
     featured: false,
     specs: [
@@ -1350,7 +1408,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 3210,
     description:
       "One-hand magnetic vent mount with powerful neodymium magnets and 360° rotation — holds firm on Indian roads.",
-    image: `${P}/car-mount.png`,
+    image: `${P}/real/ca2.jpg`,
+    gallery: [`${P}/real/ca2.jpg`, `${P}/real/ca2-2.jpg`, `${P}/real/ca2-3.jpg`],
     tags: ["air-vent-mount", "magnetic-mount", "car-mount", "premium"],
     specs: [
       { label: "Mount type", value: "Air vent, magnetic" },
@@ -1368,7 +1427,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 5421,
     description:
       "Bluetooth FM transmitter with USB fast charging, hands-free calling and music streaming for older cars.",
-    image: `${P}/car-charger.png`,
+    image: `${P}/real/ca3.jpg`,
+    gallery: [`${P}/real/ca3.jpg`, `${P}/real/ca3-2.jpg`, `${P}/real/ca3-3.jpg`],
     tags: ["fm-transmitter", "bluetooth-receiver", "car-charger", "hands-free"],
     specs: [
       { label: "Bluetooth", value: "5.0" },
@@ -1389,7 +1449,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 2104,
     description:
       "3-axis stabilisation, magnetic quick-release clamp and ActiveTrack 6.0 — vlog-quality footage from any phone.",
-    image: `${P}/gimbal.png`,
+    image: `${P}/real/cg1.jpg`,
+    gallery: [`${P}/real/cg1.jpg`, `${P}/real/cg1-2.png`, `${P}/real/cg1-3.jpg`],
     tags: ["gimbal", "vlogging", "creator-kit", "new", "premium"],
     featured: true,
     newArrival: true,
@@ -1410,7 +1471,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 15203,
     description:
       "Lightweight 4.5ft tripod with 360° ball head, mobile holder and Bluetooth remote — India's best-selling starter tripod.",
-    image: `${P}/tripod.png`,
+    image: `${P}/real/cg2.jpg`,
+    gallery: [`${P}/real/cg2.jpg`, `${P}/real/cg2-2.jpg`, `${P}/real/cg2-3.jpg`],
     tags: ["tripod", "mini-tripod", "vlogging", "value-for-money", "remote"],
     specs: [
       { label: "Height", value: "Up to 4.5 ft" },
@@ -1429,7 +1491,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 1874,
     description:
       "Dual wireless lav mics with 8h battery, noise cancellation and 200m range — plug-and-play with USB-C and Lightning.",
-    image: `${P}/mic.png`,
+    image: `${P}/real/cg3.jpg`,
+    gallery: [`${P}/real/cg3.jpg`, `${P}/real/cg3-2.jpg`, `${P}/real/cg3-3.webp`],
     tags: ["wireless-microphone", "vlogging", "creator-kit", "premium"],
     featured: true,
     specs: [
@@ -1449,7 +1512,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 6210,
     description:
       "10-inch LED ring light with 3 colour temperatures, 10 brightness levels and adjustable tripod — for reels, classes and calls.",
-    image: `${P}/ring-light.png`,
+    image: `${P}/real/cg4.jpg`,
+    gallery: [`${P}/real/cg4.jpg`, `${P}/real/cg4-2.jpg`, `${P}/real/cg4-3.jpg`],
     tags: ["ring-light", "led", "vlogging", "video-light", "value-for-money"],
     specs: [
       { label: "Size", value: "10 inch, 3 colour modes" },
@@ -1469,7 +1533,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 42105,
     description:
       "128GB microSD with up to 120MB/s read speeds, A1 app performance and full-size SD adapter in the box.",
-    image: `${P}/microsd.png`,
+    image: `${P}/real/sg1.jpg`,
+    gallery: [`${P}/real/sg1.jpg`, `${P}/real/sg1-2.jpg`, `${P}/real/sg1-3.jpg`],
     tags: ["microsd", "128gb", "memory-card", "value-for-money", "bestseller"],
     featured: true,
     specs: [
@@ -1489,7 +1554,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 18722,
     description:
       "256GB EVO Plus with 4K UHD recording support, 130MB/s read and 10-year limited warranty.",
-    image: `${P}/microsd.png`,
+    image: `${P}/real/sg2.jpg`,
+    gallery: [`${P}/real/sg2.jpg`, `${P}/real/sg2-2.jpg`, `${P}/real/sg2-3.jpg`],
     tags: ["microsd", "256gb", "memory-card", "4k"],
     specs: [
       { label: "Capacity", value: "256 GB" },
@@ -1508,7 +1574,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 9214,
     description:
       "Dual connector OTG pen drive — USB-C and USB-A in one metal body. Free up phone storage in seconds.",
-    image: `${P}/pendrive.png`,
+    image: `${P}/real/sg3.png`,
+    gallery: [`${P}/real/sg3.png`, `${P}/real/sg3-2.jpg`, `${P}/real/sg3-3.png`],
     tags: ["pen-drive", "otg", "usb-c", "128gb", "flash-drive"],
     specs: [
       { label: "Connectors", value: "USB-C + USB-A" },
@@ -1529,7 +1596,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 8213,
     description:
       "Capacitive-conduction triggers for BGMI & Free Fire — squeeze to shoot without lifting your thumbs. Fits all phones.",
-    image: `${P}/gaming-trigger.png`,
+    image: `${P}/real/g1.jpg`,
+    gallery: [`${P}/real/g1.jpg`, `${P}/real/g1-2.jpg`, `${P}/real/g1-3.jpg`],
     tags: ["gaming-triggers", "bgmi", "free-fire", "value-for-money", "budget"],
     specs: [
       { label: "Type", value: "Capacitive triggers" },
@@ -1547,7 +1615,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 1240,
     description:
       "Console-grade telescopic controller with Hall-effect sticks and triggers — turn your phone into a handheld.",
-    image: `${P}/controller.png`,
+    image: `${P}/real/g2.jpg`,
+    gallery: [`${P}/real/g2.jpg`, `${P}/real/g2-2.jpg`, `${P}/real/g2-3.jpg`],
     tags: ["bluetooth-controller", "usb-c-controller", "gaming", "premium", "cloud-gaming"],
     featured: true,
     specs: [
@@ -1567,7 +1636,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 2104,
     description:
       "Semiconductor cooling fan drops phone temperature by up to 20°C during long BGMI sessions — with RGB and magnetic clamp.",
-    image: `${P}/phone-cooler.png`,
+    image: `${P}/real/g3.png`,
+    gallery: [`${P}/real/g3.png`, `${P}/real/g3-2.jpg`, `${P}/real/g3-3.jpg`],
     tags: ["phone-cooler", "cooling-fan", "gaming", "rgb", "new"],
     newArrival: true,
     specs: [
@@ -1587,7 +1657,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 10243,
     description:
       "50mm drivers, noise-cancelling boom mic and RGB lighting — India's favourite budget gaming headset.",
-    image: `${P}/headphones2.jpg`,
+    image: `${P}/real/g4.jpg`,
+    gallery: [`${P}/real/g4.jpg`, `${P}/real/g4-2.jpg`, `${P}/real/g4-3.jpg`],
     tags: ["gaming-headset", "rgb", "value-for-money", "gaming"],
     specs: [
       { label: "Drivers", value: "50 mm" },
@@ -1608,7 +1679,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 3210,
     description:
       "Pixel-perfect precision for iPad — attach magnetically, pair and charge via USB-C. Perfect for notes and sketches.",
-    image: `${P}/stylus.png`,
+    image: `${P}/real/pr1.jpg`,
+    gallery: [`${P}/real/pr1.jpg`, `${P}/real/pr1-2.jpg`, `${P}/real/pr1-3.png`],
     tags: ["stylus", "apple", "ipad", "drawing", "premium"],
     specs: [
       { label: "Compatibility", value: "iPad 10, iPad Air/Pro" },
@@ -1627,7 +1699,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 15420,
     description:
       "Type on 3 devices at once — phone, tablet and laptop — with 2-year battery and quiet laptop-style keys.",
-    image: `${P}/keyboard.jpg`,
+    image: `${P}/real/pr2.jpg`,
+    gallery: [`${P}/real/pr2.jpg`, `${P}/real/pr2-2.jpg`, `${P}/real/pr2-3.jpg`],
     tags: ["bluetooth-keyboard", "multi-device", "work", "bestseller"],
     featured: true,
     specs: [
@@ -1647,7 +1720,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 4210,
     description:
       "Turn one USB-C port into six — 4K HDMI, 100W PD passthrough, USB 3.0 ×2 and SD/microSD card reader.",
-    image: `${P}/usb-hub.png`,
+    image: `${P}/real/pr3.png`,
+    gallery: [`${P}/real/pr3.png`, `${P}/real/pr3-2.png`, `${P}/real/pr3-3.jpg`],
     tags: ["usb-c-hub", "card-reader", "hdmi", "work", "value-for-money"],
     specs: [
       { label: "Ports", value: "6-in-1" },
@@ -1666,7 +1740,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 3210,
     description:
       "MagSpeed scrolling, 8K DPI tracking on any surface and quiet clicks — the premium travel mouse for work anywhere.",
-    image: `${P}/mouse.jpg`,
+    image: `${P}/real/pr4.jpg`,
+    gallery: [`${P}/real/pr4.jpg`, `${P}/real/pr4-2.jpg`, `${P}/real/pr4-3.jpg`],
     tags: ["bluetooth-mouse", "work", "premium", "new"],
     newArrival: true,
     specs: [
@@ -1688,7 +1763,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 15203,
     description:
       "True 4G hotspot for up to 10 devices with 2300mAh battery — reliable internet for travel and work-from-anywhere.",
-    image: `${P}/hotspot.png`,
+    image: `${P}/real/cn1.jpg`,
+    gallery: [`${P}/real/cn1.jpg`, `${P}/real/cn1-2.jpg`, `${P}/real/cn1-3.png`],
     tags: ["4g-hotspot", "wifi", "portable", "value-for-money", "jio"],
     specs: [
       { label: "Devices", value: "Up to 10 connected" },
@@ -1707,7 +1783,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 6210,
     description:
       "Add Bluetooth 5.3 to any PC or laptop — pair your earbuds, keyboard and phone with stable, low-latency connections.",
-    image: `${P}/pendrive.png`,
+    image: `${P}/real/cn2.jpg`,
+    gallery: [`${P}/real/cn2.jpg`, `${P}/real/cn2-2.jpg`, `${P}/real/cn2-3.jpg`],
     tags: ["bluetooth-adapter", "usb", "pc", "bluetooth"],
     specs: [
       { label: "Version", value: "Bluetooth 5.3" },
@@ -1727,7 +1804,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 12403,
     description:
       "Cleaning pen for earbud meshes, soft brush, spray, microfiber cloth and dust-absorber sheets — keep every gadget spotless.",
-    image: `${P}/cleaning-kit.png`,
+    image: `${P}/real/cl1.jpg`,
+    gallery: [`${P}/real/cl1.jpg`, `${P}/real/cl1-2.jpg`, `${P}/real/cl1-3.jpg`],
     tags: ["cleaning-kit", "earbud-cleaning", "microfiber", "value-for-money"],
     newArrival: true,
     specs: [
@@ -1746,7 +1824,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 21043,
     description:
       "Streak-free microfiber cloths for phone screens, tablets, laptops and glasses — lint-free and washable 100+ times.",
-    image: `${P}/cleaning-kit.png`,
+    image: `${P}/real/cl2.jpg`,
+    gallery: [`${P}/real/cl2.jpg`, `${P}/real/cl2-2.jpg`, `${P}/real/cl2-3.jpg`],
     tags: ["microfiber-cloth", "screen-cleaning", "value-for-money", "pack"],
     specs: [
       { label: "Pack", value: "3 cloths (30 × 30 cm)" },
@@ -1766,8 +1845,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 821,
     description:
       "Certified refurbished iPhone 13 in superb condition — 40+ point quality check, 6-month Z Shop warranty, new box with cable. No scratches, battery health above 85%.",
-    image: `${P}/iphone.png`,
-    gallery: [`${P}/iphone.png`, `${P}/iphone-pro.png`],
+    image: `${P}/real/rf1.jpg`,
+    gallery: [`${P}/real/rf1.jpg`, `${P}/real/rf1-2.png`, `${P}/real/rf1-3.jpg`],
     tags: ["refurbished", "certified-pre-owned", "ios", "128gb", "value-for-money"],
     specs: [
       { label: "Condition", value: "Superb — no visible scratches" },
@@ -1787,7 +1866,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 612,
     description:
       "Pre-owned Galaxy S21 FE 5G, fully tested on 42+ parameters with 6-month warranty. Flagship experience at half the price.",
-    image: `${P}/smartphone.jpg`,
+    image: `${P}/real/rf2.jpg`,
+    gallery: [`${P}/real/rf2.jpg`, `${P}/real/rf2-2.png`, `${P}/real/rf2-3.jpg`],
     tags: ["refurbished", "certified-pre-owned", "android", "5g", "value-for-money"],
     specs: [
       { label: "Condition", value: "Superb" },
@@ -1805,7 +1885,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 431,
     description:
       "Good-condition Nord 2T with minor signs of use, 80W SUPERVOOC charging and 6-month warranty — honest savings on a solid phone.",
-    image: `${P}/smartphone.jpg`,
+    image: `${P}/real/rf3.jpg`,
+    gallery: [`${P}/real/rf3.jpg`, `${P}/real/rf3-2.jpg`, `${P}/real/rf3-3.jpg`],
     tags: ["refurbished", "used-phone", "android", "5g", "value-for-money"],
     specs: [
       { label: "Condition", value: "Good — minor marks" },
@@ -1823,7 +1904,8 @@ export const PRODUCTS: Product[] = [
     ratingCount: 923,
     description:
       "Budget entry into the iPhone world — used iPhone 11 with verified battery health, 6-month warranty and 7-day replacement.",
-    image: `${P}/smartphone.jpg`,
+    image: `${P}/real/rf4.jpg`,
+    gallery: [`${P}/real/rf4.jpg`, `${P}/real/rf4-2.png`, `${P}/real/rf4-3.jpg`],
     tags: ["refurbished", "used-phone", "ios", "exchange-device", "value-for-money"],
     specs: [
       { label: "Condition", value: "Good" },

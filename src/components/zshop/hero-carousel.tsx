@@ -32,7 +32,7 @@ const SLIDES: Slide[] = [
     cta: "Shop Smartphones",
     category: "smartphones",
     surface: "bg-surface-hero",
-    image: "/products/android-ultra.png",
+    image: "/products/real/s1.jpg",
     deco: Smartphone,
   },
   {
@@ -42,7 +42,7 @@ const SLIDES: Slide[] = [
     cta: "Explore iPhone",
     category: "iphone",
     surface: "bg-surface-warm",
-    image: "/products/iphone-pro.png",
+    image: "/products/real/ip1.jpg",
     deco: Sparkles,
   },
   {
@@ -52,7 +52,7 @@ const SLIDES: Slide[] = [
     cta: "Shop Audio",
     category: "audio",
     surface: "bg-surface",
-    image: "/products/headphones2.jpg",
+    image: "/products/real/a1.jpg",
     deco: Headphones,
   },
 ];

@@ -144,3 +144,21 @@ Stage Summary:
 - Z Shop is now a fully India-only mobile store: ₹ (en-IN lakh grouping) as the sole currency, 20-category mobile taxonomy, 86 products with Indian brands & realistic pricing, UPI/COD/EMI checkout, PIN-code addressing, PAN-India delivery messaging, GST/COD/7-day-replacement trust signals — all on the SHOP.CO monochrome token system. No legacy USD/currency-switcher code remains.
 - Key files: src/lib/zshop/{types,data,store}.ts, src/components/zshop/{category-art,header,top-bar,trust-badges,hero-carousel,promo-cards,shop-view,checkout-view,footer,chat-widget,orders-view,account-view,product-detail}.tsx, src/app/layout.tsx, scripts/gen-india-images.ts.
 - Note for next rounds: reviews/photography colors intentionally preserved per rebrand spec; price bands intentionally include boundary rupees in exactly one band each; cron webDevReview continues to iterate on styling/features.
+
+---
+Task ID: 7
+Agent: Z.ai Code (main)
+Task: "use original products images" — replace the AI-generated catalog imagery with authentic/real product photos for the entire 90-product India mobile store.
+
+Work Log:
+- BUILT scripts/fetch-real-images.ts: per-product web image search (z-ai image-search CLI, natural-language queries like "Apple iPhone 15 Pro Max natural titanium official product image", gl=us, count=4) → downloads up to 3 valid variants per product → magic-byte sniffing (jpg/png/webp/avif/gif), min 15KB size gate → saved to public/products/real/<id>[,-2,-3].<ext>.
+- DEBUGGED two infra issues: (1) image-search API hard rate-limits (429) — fixed with concurrency 2, 6-12s jitter pacing, 7 retries with 30-50s backoff; (2) the CLI's `-o <file>` flag silently writes nothing — switched to parsing stdout (JSON block after emoji preamble). Manual CLI test confirmed service healthy; rerun achieved 90/90 products OK, 270 real photos downloaded (~48MB).
+- BUILT scripts/apply-real-images.ts: rewrites data.ts per product object (segment-bounded by id) — image → `${P}/real/<id>.<ext>`, gallery rebuilt from downloaded variants (drops gallery when only 1 variant exists). Products without downloads would keep AI fallback (none needed: 90/90 re-pointed, 90 galleries rebuilt). Verified: 270 unique refs, zero missing files, zero non-real product refs left.
+- hero-carousel.tsx: slide images → real/s1.jpg (S24 Ultra), real/ip1.jpg (iPhone 15 Pro Max), real/a1.jpg (Sony WH-1000XM5).
+- QA (agent-browser fresh session): home renders 30+ images with ZERO broken loads (verified via naturalWidth check); deals row shows genuine boAt Wave Call 2, iPhone 11, neckband, triggers, cable photos; featured row shows real S24 Ultra (with S Pen), OnePlus 12 "Never Settle", POCO X6 Pro yellow, iPhone 15 Pro Max titanium; PDP iPhone 15 Pro Max → main + 3 authentic gallery angles + real photos in Frequently-Bought-Together bundle; Chargers & Power grid → genuine Anker GaN infographic, Apple 20W packshot, Samsung 25W adapter, Anker MagGo 3-in-1; active filter chip still works. bun run lint clean; dev.log clean. Screenshots: analysis/r7-hero.png, r7-deals.png, r7-pdp.png, r7-chargers.png.
+- AI-generated images from Task 6 remain on disk (public/products/*.png) as untouched fallbacks but are no longer referenced by data.ts; scripts/fetch-real-images.ts is re-runnable (skips nothing — cheap to re-run if a photo needs replacing; edit the QUERIES map).
+
+Stage Summary:
+- Every product card, gallery, hero slide, bundle and cart thumbnail now shows authentic web-sourced product photography of the actual devices/brands — matching the India store's credibility goals (real boAt/Lava/Noise packshots included).
+- Key files: scripts/fetch-real-images.ts, scripts/apply-real-images.ts, src/lib/zshop/data.ts (image+gallery fields), src/components/zshop/hero-carousel.tsx, public/products/real/ (270 files).
+- Risks/notes: photos are web-sourced (some are official marketing shots with text overlays like boAt's ENx graphic — authentic to how boAt lists them); search infrastructure rate-limits aggressively, so re-runs should keep the gentle pacing profile.
