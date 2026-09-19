@@ -62,6 +62,8 @@ export function Header() {
   const requestSignIn = useZShop((s) => s.requestSignIn);
   const signOut = useZShop((s) => s.signOut);
   const recentSearches = useZShop((s) => s.recentSearches);
+  const deliveryPin = useZShop((s) => s.deliveryPin);
+  const deliveryCity = useZShop((s) => s.deliveryCity);
   const addRecentSearch = useZShop((s) => s.addRecentSearch);
   const removeRecentSearch = useZShop((s) => s.removeRecentSearch);
   const clearRecentSearches = useZShop((s) => s.clearRecentSearches);
@@ -142,8 +144,12 @@ export function Header() {
         <div className="hidden items-center gap-1.5 rounded-md px-2 py-1 text-neutral-950 lg:flex">
           <MapPin className="h-5 w-5" />
           <span className="flex flex-col leading-tight">
-            <span className="text-[11px] text-neutral-800/70">Deliver to</span>
-            <span className="text-sm font-bold">India</span>
+            <span className="text-[11px] text-neutral-800/70">
+              {deliveryPin ? "Deliver to" : "Delivering across"}
+            </span>
+            <span className="text-sm font-bold" data-testid="header-deliver-to">
+              {deliveryPin ? `${deliveryCity} ${deliveryPin}` : "India"}
+            </span>
           </span>
         </div>
 

@@ -34,6 +34,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { StarRating } from "./star-rating";
 import { ProductCard } from "./product-card";
 import { PdpReviews } from "./pdp-reviews";
+import { PincodeChecker } from "./pincode-checker";
+import { BankOffers } from "./bank-offers";
+import { ProductQA } from "./product-qa";
 import { cn } from "@/lib/utils";
 
 export function ProductDetail({ id }: { id: string }) {
@@ -269,6 +272,8 @@ export function ProductDetail({ id }: { id: string }) {
             </p>
           </div>
 
+          <PincodeChecker price={p.price} />
+
           <p className="mt-4 leading-relaxed text-muted-foreground">{p.description}</p>
 
           <p className="mt-3 flex items-center gap-1.5 text-sm font-semibold text-success-600 dark:text-success-400">
@@ -356,6 +361,8 @@ export function ProductDetail({ id }: { id: string }) {
               </dl>
             </CardContent>
           </Card>
+
+          <BankOffers price={p.price} />
 
           <Card className="border-electric-200 bg-electric-50 dark:border-electric-500/30 dark:bg-electric-950/40">
             <CardContent className="p-4">
@@ -457,6 +464,9 @@ export function ProductDetail({ id }: { id: string }) {
 
       {/* customer reviews */}
       <PdpReviews product={p} />
+
+      {/* questions & answers */}
+      <ProductQA product={p} />
 
       {/* popular in category */}
       <section className="mt-10" aria-labelledby="popular-in-category">

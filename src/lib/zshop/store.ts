@@ -85,6 +85,8 @@ interface ZShopState {
   user: User | null;
   orders: Order[];
   promo: string | null;
+  deliveryPin: string | null;
+  deliveryCity: string | null;
 
   // ephemeral
   view: View;
@@ -111,6 +113,8 @@ interface ZShopState {
   clearRecentSearches: () => void;
   applyPromo: (code: string) => boolean;
   removePromo: () => void;
+  setDeliveryLocation: (pin: string, city: string) => void;
+  clearDeliveryLocation: () => void;
   signIn: (user: User) => void;
   signOut: () => void;
   placeOrder: (order: Order) => void;
@@ -137,6 +141,8 @@ export const useZShop = create<ZShopState>()(
       user: null,
       orders: [],
       promo: null,
+      deliveryPin: null,
+      deliveryCity: null,
 
       view: { name: "home" },
       cartOpen: false,
@@ -271,6 +277,8 @@ export const useZShop = create<ZShopState>()(
       },
 
       removePromo: () => set({ promo: null }),
+      setDeliveryLocation: (pin, city) => set({ deliveryPin: pin, deliveryCity: city }),
+      clearDeliveryLocation: () => set({ deliveryPin: null, deliveryCity: null }),
 
       signIn: (user) => {
         const intent = get().signInIntent;
@@ -397,6 +405,8 @@ export const useZShop = create<ZShopState>()(
         user: s.user,
         orders: s.orders,
         promo: s.promo,
+        deliveryPin: s.deliveryPin,
+        deliveryCity: s.deliveryCity,
       }),
       merge: (persisted, current) => {
         const base = { ...current };
@@ -418,6 +428,15 @@ export const useZShop = create<ZShopState>()(
           }
           if (typeof p.promo === "string" && p.promo in PROMO_CODES) {
             base.promo = p.promo;
+          }
+          if (
+            typeof p.deliveryPin === "string" &&
+            /^[1-8][0-9]{5}$/.test(p.deliveryPin) &&
+            typeof p.deliveryCity === "string" &&
+            p.deliveryCity.length > 0
+          ) {
+            base.deliveryPin = p.deliveryPin;
+            base.deliveryCity = p.deliveryCity.replace(/[^A-Za-z &.'\-]/g, "").slice(0, 40);
           }
           if (Array.isArray(p.orders)) {
             base.orders = (p.orders as Order[]).filter(
