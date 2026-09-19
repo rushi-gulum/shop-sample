@@ -43,22 +43,23 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* ---------- Z Shop brand palette ----------
-   Accent  coral-red     #FF4A3D  -> brand-*
-   Secondary electric blue #2F6BFF -> electric-*
-   Base    background #F2F2F2 / text #14181C        */
+/* ---------- Z Shop brand palette — Clean Bento Light ----------
+   Accent        indigo #5B5BF0 -> brand-*
+   Secondary     electric blue #2F6BFF -> electric-* (chat / info)
+   Success       green #16A34A -> success-*
+   Base          background #F6F7F9 / cards #FFFFFF / text #14171C  */
 @theme {
-  --color-brand-50: #fff1ef;
-  --color-brand-100: #ffe1dd;
-  --color-brand-200: #ffc7c0;
-  --color-brand-300: #ffa39a;
-  --color-brand-400: #ff776b;
-  --color-brand-500: #ff4a3d;
-  --color-brand-600: #ed2c1f;
-  --color-brand-700: #c72117;
-  --color-brand-800: #9e2015;
-  --color-brand-900: #7d2016;
-  --color-brand-950: #450d09;
+  --color-brand-50: #f1f1fe;
+  --color-brand-100: #e5e5fd;
+  --color-brand-200: #cdcdfb;
+  --color-brand-300: #a9a9f7;
+  --color-brand-400: #8585f3;
+  --color-brand-500: #5b5bf0;
+  --color-brand-600: #4646d6;
+  --color-brand-700: #3a3ab3;
+  --color-brand-800: #31318f;
+  --color-brand-900: #2c2c72;
+  --color-brand-950: #1b1b45;
 
   --color-electric-50: #eef4ff;
   --color-electric-100: #dce7fe;
@@ -71,75 +72,87 @@
   --color-electric-800: #16369e;
   --color-electric-900: #17317c;
   --color-electric-950: #111f4b;
+
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532d;
+  --color-success-950: #052e16;
 }
 
 :root {
   --radius: 0.625rem;
-  --background: #f2f2f2;
-  --foreground: #14181c;
+  --background: #f6f7f9;
+  --foreground: #14171c;
   --card: #ffffff;
-  --card-foreground: #14181c;
+  --card-foreground: #14171c;
   --popover: #ffffff;
-  --popover-foreground: #14181c;
-  --primary: #ff4a3d;
+  --popover-foreground: #14171c;
+  --primary: #5b5bf0;
   --primary-foreground: #ffffff;
-  --secondary: #e7e9ec;
-  --secondary-foreground: #14181c;
-  --muted: #e9ebee;
-  --muted-foreground: #5b6472;
-  --accent: #eceef1;
-  --accent-foreground: #14181c;
-  --destructive: #d92c1c;
-  --border: #dde0e4;
-  --input: #d5d8dd;
-  --ring: #ff4a3d;
-  --chart-1: #ff4a3d;
+  --secondary: #eef0f3;
+  --secondary-foreground: #14171c;
+  --muted: #eff1f4;
+  --muted-foreground: #5d6470;
+  --accent: #ededfd;
+  --accent-foreground: #3a3ab3;
+  --destructive: #dc2626;
+  --border: #e4e7ec;
+  --input: #d9dde3;
+  --ring: #5b5bf0;
+  --chart-1: #5b5bf0;
   --chart-2: #2f6bff;
-  --chart-3: #0d9488;
+  --chart-3: #16a34a;
   --chart-4: #f59e0b;
   --chart-5: #8b5cf6;
   --sidebar: #ffffff;
-  --sidebar-foreground: #14181c;
-  --sidebar-primary: #ff4a3d;
+  --sidebar-foreground: #14171c;
+  --sidebar-primary: #5b5bf0;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eceef1;
-  --sidebar-accent-foreground: #14181c;
-  --sidebar-border: #dde0e4;
-  --sidebar-ring: #ff4a3d;
+  --sidebar-accent: #eff1f4;
+  --sidebar-accent-foreground: #14171c;
+  --sidebar-border: #e4e7ec;
+  --sidebar-ring: #5b5bf0;
 }
 
 .dark {
-  --background: #14181c;
-  --foreground: #f2f2f2;
-  --card: #1b2128;
-  --card-foreground: #f2f2f2;
-  --popover: #1b2128;
-  --popover-foreground: #f2f2f2;
-  --primary: #ff4a3d;
+  --background: #14171c;
+  --foreground: #f6f7f9;
+  --card: #1c2027;
+  --card-foreground: #f6f7f9;
+  --popover: #1c2027;
+  --popover-foreground: #f6f7f9;
+  --primary: #7b7bf4;
   --primary-foreground: #ffffff;
-  --secondary: #262d36;
-  --secondary-foreground: #f2f2f2;
-  --muted: #232a32;
-  --muted-foreground: #98a1ac;
-  --accent: #262d36;
-  --accent-foreground: #f2f2f2;
-  --destructive: #ff6b5f;
+  --secondary: #262b33;
+  --secondary-foreground: #f6f7f9;
+  --muted: #242932;
+  --muted-foreground: #99a1ad;
+  --accent: #262b33;
+  --accent-foreground: #cdcdfb;
+  --destructive: #ff6b6b;
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.14);
-  --ring: #ff4a3d;
-  --chart-1: #ff4a3d;
+  --ring: #7b7bf4;
+  --chart-1: #7b7bf4;
   --chart-2: #2f6bff;
-  --chart-3: #14b8a6;
+  --chart-3: #22c55e;
   --chart-4: #fbbf24;
   --chart-5: #a78bfa;
-  --sidebar: #1b2128;
-  --sidebar-foreground: #f2f2f2;
-  --sidebar-primary: #ff4a3d;
+  --sidebar: #1c2027;
+  --sidebar-foreground: #f6f7f9;
+  --sidebar-primary: #7b7bf4;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #262d36;
-  --sidebar-accent-foreground: #f2f2f2;
+  --sidebar-accent: #262b33;
+  --sidebar-accent-foreground: #f6f7f9;
   --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #ff4a3d;
+  --sidebar-ring: #7b7bf4;
 }
 
 @layer base {
@@ -160,47 +173,44 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c3c8cf;
+  background: #c6cbd3;
   border-radius: 8px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff4a3d;
+  background: #5b5bf0;
   background-clip: content-box;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #39424d;
+  background: #3a414c;
   background-clip: content-box;
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #ff4a3d;
+  background: #7b7bf4;
   background-clip: content-box;
 }
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #c3c8cf transparent;
-}
-*::-webkit-scrollbar-thumb:hover {
-  scrollbar-color: #ff4a3d transparent;
+  scrollbar-color: #c6cbd3 transparent;
 }
 .dark * {
-  scrollbar-color: #39424d transparent;
+  scrollbar-color: #3a414c transparent;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* coral text selection */
+/* indigo text selection */
 ::selection {
-  background: rgba(255, 74, 61, 0.28);
-  color: #14181c;
+  background: rgba(91, 91, 240, 0.22);
+  color: #14171c;
 }
 .dark ::selection {
-  background: rgba(255, 74, 61, 0.5);
-  color: #fff6f5;
+  background: rgba(123, 123, 244, 0.45);
+  color: #f6f7f9;
 }
 
 /* shimmer skeleton for lazy product images */
