@@ -21,7 +21,7 @@ export function NavBar() {
   }
 
   return (
-    <nav aria-label="Shop categories" className="bg-brand-500 dark:bg-brand-500">
+    <nav aria-label="Shop categories" className="bg-neutral-950 text-white">
       <div className="mx-auto flex max-w-7xl items-center gap-0.5 overflow-x-auto px-3 py-1.5 sm:px-6 [&::-webkit-scrollbar]:hidden">
         <button
           className={cn(

@@ -66,7 +66,7 @@ function TrackingTimeline({ status }: { status: Order["status"] }) {
                   active &&
                     (status === "Delivered"
                       ? "border-success-500 bg-success-500 text-white ring-4 ring-success-500/20"
-                      : "border-brand-500 bg-brand-500 text-white ring-4 ring-brand-500/25"),
+                      : "border-brand-500 bg-brand-500 text-primary-foreground ring-4 ring-brand-500/25"),
                   !done && !active && "border-border bg-background text-muted-foreground/60"
                 )}
               >
@@ -133,7 +133,7 @@ export function OrdersView() {
             When you place an order it will show up here with live tracking.
           </p>
           <Button
-            className="bg-brand-500 font-bold text-white hover:bg-brand-600"
+            className="bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
             onClick={() => navigate({ name: "shop", category: "all" })}
           >
             Start shopping
@@ -178,7 +178,7 @@ export function OrdersView() {
                     className={
                       order.status === "Delivered"
                         ? "border-0 bg-success-600 text-white"
-                        : "border-0 bg-brand-500 text-white"
+                        : "border-0 bg-brand-500 text-primary-foreground"
                     }
                   >
                     {order.status}

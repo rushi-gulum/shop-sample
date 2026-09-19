@@ -43,7 +43,7 @@ export function QuickViewModal() {
                 className="object-cover"
               />
               {discountPercent(p) && (
-                <Badge className="absolute left-3 top-3 border-0 bg-brand-600 text-white">
+                <Badge className="absolute left-3 top-3 border-0 bg-sale text-white">
                   -{discountPercent(p)}%
                 </Badge>
               )}
@@ -84,7 +84,7 @@ export function QuickViewModal() {
               <div className="mt-auto flex flex-col gap-2 pt-2">
                 <div className="flex gap-2">
                   <Button
-                    className="flex-1 bg-brand-500 font-bold text-white hover:bg-brand-600"
+                    className="flex-1 bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
                     onClick={() => addToCart(p.id)}
                   >
                     <ShoppingCart className="mr-1 h-4 w-4" /> Add to cart

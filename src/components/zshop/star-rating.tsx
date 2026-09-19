@@ -13,7 +13,7 @@ export function StarRating({ rating, size = 14, className }: StarRatingProps) {
   for (let i = 1; i <= 5; i++) {
     if (rating >= i - 0.25) {
       stars.push(
-        <Star key={i} size={size} className="fill-amber-400 text-amber-400" strokeWidth={1.5} />
+        <Star key={i} size={size} className="fill-rating text-rating" strokeWidth={1.5} />
       );
     } else if (rating >= i - 0.75) {
       stars.push(
@@ -21,7 +21,7 @@ export function StarRating({ rating, size = 14, className }: StarRatingProps) {
           <Star size={size} className="absolute inset-0 text-muted-foreground/40" strokeWidth={1.5} />
           <StarHalf
             size={size}
-            className="absolute inset-0 fill-amber-400 text-amber-400"
+            className="absolute inset-0 fill-rating text-rating"
             strokeWidth={1.5}
           />
         </span>

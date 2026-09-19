@@ -20,7 +20,7 @@ interface Slide {
   sub: string;
   cta: string;
   category: string;
-  gradient: string;
+  surface: string;
   image: string;
   deco: LucideIcon;
 }
@@ -32,7 +32,7 @@ const SLIDES: Slide[] = [
     sub: "Save up to 40% on flagship laptops, phones & audio gear",
     cta: "Shop Electronics",
     category: "electronics",
-    gradient: "from-brand-400 via-brand-500 to-brand-600",
+    surface: "bg-surface-hero",
     image: "/products/hero-tech.jpg",
     deco: Zap,
   },
@@ -42,7 +42,7 @@ const SLIDES: Slide[] = [
     sub: "Premium headphones & speakers with immersive audio",
     cta: "Explore Audio",
     category: "audio",
-    gradient: "from-electric-500 via-electric-600 to-electric-700",
+    surface: "bg-surface-warm",
     image: "/products/headphones2.jpg",
     deco: Headphones,
   },
@@ -52,7 +52,7 @@ const SLIDES: Slide[] = [
     sub: "Smart appliances & kitchen essentials up to 30% off",
     cta: "Shop Home",
     category: "home-kitchen",
-    gradient: "from-zinc-700 via-zinc-800 to-neutral-900",
+    surface: "bg-surface",
     image: "/products/hero-home.jpg",
     deco: House,
   },
@@ -94,31 +94,31 @@ export function HeroCarousel() {
             <div
               key={slide.title}
               className={cn(
-                "relative flex min-h-[300px] w-full shrink-0 items-center justify-between bg-gradient-to-br sm:min-h-[380px] md:min-h-[420px]",
-                slide.gradient
+                "relative flex min-h-[300px] w-full shrink-0 items-center justify-between sm:min-h-[380px] md:min-h-[420px]",
+                slide.surface
               )}
             >
               {/* decorative icon watermarks */}
               <slide.deco
                 aria-hidden
-                className="pointer-events-none absolute left-6 top-6 h-10 w-10 text-white opacity-20"
+                className="pointer-events-none absolute left-6 top-6 h-10 w-10 text-black opacity-[0.06]"
               />
               <slide.deco
                 aria-hidden
-                className="pointer-events-none absolute bottom-10 right-[38%] h-20 w-20 text-white opacity-10"
+                className="pointer-events-none absolute bottom-10 right-[38%] h-20 w-20 text-black opacity-5"
               />
 
               <div className="relative z-10 flex max-w-[60%] flex-col gap-3 p-6 sm:p-10 md:p-12">
-                <span className="w-fit rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                <span className="w-fit rounded-full bg-neutral-950 px-3 py-1 text-xs font-semibold text-white">
                   <Sparkles className="mr-1 inline h-3 w-3" />
                   {slide.badge}
                 </span>
-                <h1 className="text-2xl font-black leading-tight text-white drop-shadow-sm sm:text-4xl md:text-5xl">
+                <h1 className="text-2xl font-black leading-tight text-neutral-950 sm:text-4xl md:text-5xl">
                   {slide.title}
                 </h1>
-                <p className="max-w-md text-sm text-white/90 sm:text-base">{slide.sub}</p>
+                <p className="max-w-md text-sm text-neutral-600 sm:text-base">{slide.sub}</p>
                 <button
-                  className="group mt-1 flex w-fit items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-neutral-900 shadow-lg transition hover:gap-3 hover:shadow-xl"
+                  className="group mt-1 flex w-fit items-center gap-2 rounded-lg bg-neutral-950 px-5 py-2.5 text-sm font-bold text-white shadow-lg transition hover:bg-neutral-800 hover:gap-3 hover:shadow-xl"
                   onClick={() => navigate({ name: "shop", category: slide.category as never })}
                 >
                   {slide.cta}
@@ -127,7 +127,7 @@ export function HeroCarousel() {
               </div>
 
               <div className="relative mr-6 hidden h-[75%] w-[32%] min-w-[240px] items-center justify-center sm:mr-10 md:flex">
-                <div className="relative h-full w-full overflow-hidden rounded-2xl border-4 border-white/30 shadow-2xl">
+                <div className="relative h-full w-full overflow-hidden rounded-2xl border-4 border-black/10 shadow-2xl">
                   <Image
                     src={slide.image}
                     alt={slide.title}
@@ -146,14 +146,14 @@ export function HeroCarousel() {
         <button
           aria-label="Previous slide"
           onClick={prev}
-          className="absolute left-3 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/25 text-white opacity-0 backdrop-blur-sm transition hover:bg-black/45 focus:opacity-100 group-hover:opacity-100 md:opacity-60"
+          className="absolute left-3 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-neutral-950 opacity-0 shadow-sm backdrop-blur-sm transition hover:bg-white focus:opacity-100 group-hover:opacity-100 md:opacity-60"
         >
           <ChevronLeft className="h-5 w-5" />
         </button>
         <button
           aria-label="Next slide"
           onClick={next}
-          className="absolute right-3 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/25 text-white opacity-0 backdrop-blur-sm transition hover:bg-black/45 focus:opacity-100 md:opacity-60"
+          className="absolute right-3 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-neutral-950 opacity-0 shadow-sm backdrop-blur-sm transition hover:bg-white focus:opacity-100 md:opacity-60"
         >
           <ChevronRight className="h-5 w-5" />
         </button>
@@ -167,7 +167,7 @@ export function HeroCarousel() {
               onClick={() => setIndex(i)}
               className={cn(
                 "h-2 rounded-full transition-all",
-                i === index ? "w-7 bg-white" : "w-2 bg-white/50 hover:bg-white/80"
+                i === index ? "w-7 bg-neutral-950" : "w-2 bg-black/20 hover:bg-black/40"
               )}
             />
           ))}

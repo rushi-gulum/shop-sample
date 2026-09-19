@@ -57,7 +57,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
         {!hideBadges && (
           <div className="absolute left-2 top-2 flex flex-col items-start gap-1">
             {p.featured && (
-              <Badge className="border-0 bg-brand-500 text-white shadow-sm hover:bg-brand-500">
+              <Badge className="border-0 bg-brand-500 text-primary-foreground shadow-sm hover:bg-brand-500">
                 Featured
               </Badge>
             )}
@@ -67,7 +67,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
               </Badge>
             )}
             {discount !== null && (
-              <Badge className="border-0 bg-brand-600 text-white shadow-sm hover:bg-brand-600">
+              <Badge className="border-0 bg-sale text-white shadow-sm hover:bg-sale">
                 -{discount}%
               </Badge>
             )}
@@ -82,7 +82,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
             aria-label={inWishlist ? "Remove from wishlist" : "Toggle wishlist"}
             className={cn(
               "h-8 w-8 rounded-full shadow-sm",
-              inWishlist && "bg-brand-600 text-white hover:bg-brand-600 hover:text-white"
+              inWishlist && "bg-brand-600 text-primary-foreground hover:bg-brand-600 hover:text-primary-foreground"
             )}
             onClick={(e) => {
               e.stopPropagation();
@@ -109,7 +109,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
             aria-label={inCompare ? "Remove from compare" : "Add to compare"}
             className={cn(
               "h-8 w-8 rounded-full shadow-sm",
-              inCompare && "bg-brand-500 text-white hover:bg-brand-500"
+              inCompare && "bg-brand-500 text-primary-foreground hover:bg-brand-500"
             )}
             onClick={(e) => {
               e.stopPropagation();
@@ -155,7 +155,7 @@ export function ProductCard({ id, className, hideBadges }: ProductCardProps) {
         </div>
 
         <Button
-          className="mt-1 w-full gap-2 bg-brand-500 font-semibold text-white shadow-sm shadow-brand-500/25 hover:bg-brand-600"
+          className="mt-1 w-full gap-2 bg-brand-500 font-semibold text-primary-foreground shadow-sm shadow-black/15 hover:bg-brand-600"
           size="sm"
           onClick={() => addToCart(p.id)}
         >

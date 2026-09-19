@@ -31,7 +31,7 @@ export function CategoryChips() {
             className="group flex flex-col items-center gap-2.5 rounded-2xl border bg-card px-2 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-400/70 hover:shadow-lg"
             onClick={() => navigate({ name: "shop", category: c.id })}
           >
-            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-b from-brand-50 to-brand-100 ring-1 ring-inset ring-brand-200/70 transition-transform duration-300 group-hover:scale-105 dark:from-brand-400/10 dark:to-brand-400/15 dark:ring-brand-400/20">
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-50 ring-1 ring-inset ring-brand-200/70 transition-transform duration-300 group-hover:scale-105 dark:bg-brand-400/10 dark:ring-brand-400/20">
               <span className="h-12 w-12">
                 <CategoryArt id={c.id} />
               </span>

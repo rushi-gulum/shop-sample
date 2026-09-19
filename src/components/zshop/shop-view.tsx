@@ -286,7 +286,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
                 <SlidersHorizontal className="mr-1 h-4 w-4" />
                 Filters
                 {activeFilterCount > 0 && (
-                  <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-500 text-[11px] font-bold text-white">
+                  <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-500 text-[11px] font-bold text-primary-foreground">
                     {activeFilterCount}
                   </span>
                 )}
@@ -337,7 +337,7 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
                   Clear filters
                 </Button>
                 <Button
-                  className="bg-brand-500 font-bold text-white hover:bg-brand-600"
+                  className="bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
                   onClick={() => navigate({ name: "shop", category: "all" })}
                 >
                   Browse all products
@@ -354,20 +354,20 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
 
           {/* cross-sell: deals strip */}
           {!isSearch && activeCategory === "all" && (
-            <div className="mt-8 rounded-2xl bg-gradient-to-r from-brand-400 to-brand-500 p-5">
+            <div className="mt-8 rounded-2xl bg-neutral-950 p-5 dark:ring-1 dark:ring-white/15">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <h3 className="flex items-center gap-2 text-lg font-black text-white">
                     <Flame className="h-5 w-5" aria-hidden />
                     Today&apos;s hottest deals
                   </h3>
-                  <p className="text-sm text-white/85">
+                  <p className="text-sm text-white/70">
                     Up to {Math.max(...dealProducts().map((d) => (d.compareAt ? Math.round((1 - d.price / d.compareAt) * 100) : 0)))}% off —
                     limited time only
                   </p>
                 </div>
                 <Button
-                  className="bg-white font-bold text-brand-600 hover:bg-white/90"
+                  className="bg-white font-bold text-neutral-950 hover:bg-white/90"
                   onClick={() => navigate({ name: "deals" })}
                 >
                   See all deals

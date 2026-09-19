@@ -167,13 +167,13 @@ export function ProductDetail({ id }: { id: string }) {
             />
             <div className="absolute left-3 top-3 z-[2] flex flex-col gap-1.5">
               {p.featured && (
-                <Badge className="border-0 bg-brand-500 text-white">Featured</Badge>
+                <Badge className="border-0 bg-brand-500 text-primary-foreground">Featured</Badge>
               )}
               {p.newArrival && !p.featured && (
                 <Badge className="border-0 bg-success-500 text-white">New</Badge>
               )}
               {discount !== null && (
-                <Badge className="border-0 bg-brand-600 text-white">-{discount}%</Badge>
+                <Badge className="border-0 bg-sale text-white">-{discount}%</Badge>
               )}
             </div>
             <button
@@ -251,7 +251,7 @@ export function ProductDetail({ id }: { id: string }) {
                   <span className="text-lg text-muted-foreground line-through">
                     {price(p.compareAt)}
                   </span>
-                  <Badge variant="destructive" className="bg-brand-600">
+                  <Badge variant="destructive" className="bg-sale">
                     -{discount}%
                   </Badge>
                   <span className="text-sm font-semibold text-success-600 dark:text-success-400">
@@ -300,7 +300,7 @@ export function ProductDetail({ id }: { id: string }) {
           <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <Button
               size="lg"
-              className="h-12 bg-brand-500 text-base font-bold text-white shadow-sm shadow-brand-500/30 hover:bg-brand-600"
+              className="h-12 bg-brand-500 text-base font-bold text-primary-foreground shadow-sm shadow-black/20 hover:bg-brand-600"
               onClick={() => addToCart(p.id, qty)}
               data-testid="detail-add-to-cart"
             >
@@ -308,7 +308,7 @@ export function ProductDetail({ id }: { id: string }) {
             </Button>
             <Button
               size="lg"
-              className="h-12 bg-electric-600 text-base font-bold text-white shadow-sm shadow-electric-600/30 hover:bg-electric-700"
+              className="h-12 bg-electric-600 text-base font-bold text-primary-foreground shadow-sm shadow-black/20 hover:bg-electric-700"
               onClick={buyNow}
             >
               <Zap className="mr-2 h-5 w-5" /> Buy now
@@ -438,7 +438,7 @@ export function ProductDetail({ id }: { id: string }) {
                 {selectedIds.length} item{selectedIds.length === 1 ? "" : "s"} selected
               </p>
               <Button
-                className="mt-3 w-full bg-brand-500 font-bold text-white hover:bg-brand-600"
+                className="mt-3 w-full bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
                 onClick={addSelectedBundle}
               >
                 <ShoppingCart className="mr-1.5 h-4 w-4" />
@@ -546,7 +546,7 @@ export function ProductDetail({ id }: { id: string }) {
             </span>
           </span>
           <Button
-            className="bg-brand-500 font-bold text-white hover:bg-brand-600"
+            className="bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
             onClick={() => addToCart(p.id, qty)}
           >
             <ShoppingCart className="h-4 w-4" /> Add to cart

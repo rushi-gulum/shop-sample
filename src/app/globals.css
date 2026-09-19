@@ -43,116 +43,159 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* ---------- Z Shop brand palette — Clean Bento Light ----------
-   Accent        indigo #5B5BF0 -> brand-*
-   Secondary     electric blue #2F6BFF -> electric-* (chat / info)
-   Success       green #16A34A -> success-*
-   Base          background #F6F7F9 / cards #FFFFFF / text #14171C  */
+/* ---------- Z Shop brand palette — SHOP.CO monochrome ----------
+   Primary / brand  #000000 -> brand-* (500 = primary, 600 = hover, 700 = active)
+   Page background  #FFFFFF · Surface #F0F0F0 · Warm #F0EEED · Hero #F2F0F1
+   Text             primary #000000 · secondary #666666 · muted #999999
+   Border           #E0E0E0
+   Semantic         sale/error #FF3333 · rating #FFC633 · success #00C853  */
 @theme {
-  --color-brand-50: #f1f1fe;
-  --color-brand-100: #e5e5fd;
-  --color-brand-200: #cdcdfb;
-  --color-brand-300: #a9a9f7;
-  --color-brand-400: #8585f3;
-  --color-brand-500: #5b5bf0;
-  --color-brand-600: #4646d6;
-  --color-brand-700: #3a3ab3;
-  --color-brand-800: #31318f;
-  --color-brand-900: #2c2c72;
-  --color-brand-950: #1b1b45;
+  /* monochrome brand scale (light mode) */
+  --color-brand-50: #f0f0f0; /* surface */
+  --color-brand-100: #e0e0e0; /* border / strong tint */
+  --color-brand-200: #e0e0e0; /* dividers, input outlines */
+  --color-brand-300: #999999; /* muted text */
+  --color-brand-400: #666666; /* secondary text */
+  --color-brand-500: #000000; /* primary / CTA */
+  --color-brand-600: #333333; /* primary hover */
+  --color-brand-700: #111111; /* primary active */
+  --color-brand-800: #0a0a0a;
+  --color-brand-900: #000000;
+  --color-brand-950: #000000;
 
-  --color-electric-50: #eef4ff;
-  --color-electric-100: #dce7fe;
-  --color-electric-200: #c0d3fe;
-  --color-electric-300: #94b5fd;
-  --color-electric-400: #618cfa;
-  --color-electric-500: #2f6bff;
-  --color-electric-600: #1a50eb;
-  --color-electric-700: #143ec7;
-  --color-electric-800: #16369e;
-  --color-electric-900: #17317c;
-  --color-electric-950: #111f4b;
+  /* secondary action scale (former electric blue, now monochrome) */
+  --color-electric-50: #f0f0f0;
+  --color-electric-100: #e0e0e0;
+  --color-electric-200: #e0e0e0;
+  --color-electric-300: #999999;
+  --color-electric-400: #666666;
+  --color-electric-500: #333333;
+  --color-electric-600: #000000;
+  --color-electric-700: #1f1f1f;
+  --color-electric-800: #111111;
+  --color-electric-900: #000000;
+  --color-electric-950: #000000;
 
-  --color-success-50: #f0fdf4;
-  --color-success-100: #dcfce7;
-  --color-success-200: #bbf7d0;
-  --color-success-300: #86efac;
-  --color-success-400: #4ade80;
-  --color-success-500: #22c55e;
-  --color-success-600: #16a34a;
-  --color-success-700: #15803d;
-  --color-success-800: #166534;
-  --color-success-900: #14532d;
-  --color-success-950: #052e16;
+  /* success */
+  --color-success-50: #e9f9ef;
+  --color-success-100: #c8f2d6;
+  --color-success-200: #9fe8b9;
+  --color-success-300: #6fdb97;
+  --color-success-400: #2fd46e;
+  --color-success-500: #00c853;
+  --color-success-600: #00a844;
+  --color-success-700: #008a38;
+  --color-success-800: #067031;
+  --color-success-900: #0a5c2c;
+  --color-success-950: #03301a;
+
+  /* SHOP.CO design tokens */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-surface: #f0f0f0;
+  --color-surface-warm: #f0eeed;
+  --color-surface-hero: #f2f0f1;
+  --color-text-primary: #000000;
+  --color-text-secondary: #666666;
+  --color-text-muted: #999999;
+  --color-primary-hover: #333333;
+  --color-primary-active: #111111;
+  --color-sale: #ff3333;
+  --color-rating: #ffc633;
+  --color-error: #ff3333;
 }
 
 :root {
   --radius: 0.625rem;
-  --background: #f6f7f9;
-  --foreground: #14171c;
+  --background: #ffffff;
+  --foreground: #000000;
   --card: #ffffff;
-  --card-foreground: #14171c;
+  --card-foreground: #000000;
   --popover: #ffffff;
-  --popover-foreground: #14171c;
-  --primary: #5b5bf0;
+  --popover-foreground: #000000;
+  --primary: #000000;
   --primary-foreground: #ffffff;
-  --secondary: #eef0f3;
-  --secondary-foreground: #14171c;
-  --muted: #eff1f4;
-  --muted-foreground: #5d6470;
-  --accent: #ededfd;
-  --accent-foreground: #3a3ab3;
-  --destructive: #dc2626;
-  --border: #e4e7ec;
-  --input: #d9dde3;
-  --ring: #5b5bf0;
-  --chart-1: #5b5bf0;
-  --chart-2: #2f6bff;
-  --chart-3: #16a34a;
-  --chart-4: #f59e0b;
-  --chart-5: #8b5cf6;
+  --secondary: #f0f0f0;
+  --secondary-foreground: #000000;
+  --muted: #f0f0f0;
+  --muted-foreground: #666666;
+  --accent: #f0f0f0;
+  --accent-foreground: #000000;
+  --destructive: #ff3333;
+  --border: #e0e0e0;
+  --input: #e0e0e0;
+  --ring: #000000;
+  --chart-1: #000000;
+  --chart-2: #999999;
+  --chart-3: #00c853;
+  --chart-4: #ffc633;
+  --chart-5: #ff3333;
   --sidebar: #ffffff;
-  --sidebar-foreground: #14171c;
-  --sidebar-primary: #5b5bf0;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #000000;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eff1f4;
-  --sidebar-accent-foreground: #14171c;
-  --sidebar-border: #e4e7ec;
-  --sidebar-ring: #5b5bf0;
+  --sidebar-accent: #f0f0f0;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #e0e0e0;
+  --sidebar-ring: #000000;
 }
 
 .dark {
-  --background: #14171c;
-  --foreground: #f6f7f9;
-  --card: #1c2027;
-  --card-foreground: #f6f7f9;
-  --popover: #1c2027;
-  --popover-foreground: #f6f7f9;
-  --primary: #7b7bf4;
-  --primary-foreground: #ffffff;
-  --secondary: #262b33;
-  --secondary-foreground: #f6f7f9;
-  --muted: #242932;
-  --muted-foreground: #99a1ad;
-  --accent: #262b33;
-  --accent-foreground: #cdcdfb;
-  --destructive: #ff6b6b;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.14);
-  --ring: #7b7bf4;
-  --chart-1: #7b7bf4;
-  --chart-2: #2f6bff;
-  --chart-3: #22c55e;
-  --chart-4: #fbbf24;
-  --chart-5: #a78bfa;
-  --sidebar: #1c2027;
-  --sidebar-foreground: #f6f7f9;
-  --sidebar-primary: #7b7bf4;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #262b33;
-  --sidebar-accent-foreground: #f6f7f9;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #7b7bf4;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --card: #141414;
+  --card-foreground: #fafafa;
+  --popover: #141414;
+  --popover-foreground: #fafafa;
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+  --secondary: #1c1c1c;
+  --secondary-foreground: #fafafa;
+  --muted: #1c1c1c;
+  --muted-foreground: #a3a3a3;
+  --accent: #1f1f1f;
+  --accent-foreground: #fafafa;
+  --destructive: #ff3333;
+  --border: #262626;
+  --input: #2e2e2e;
+  --ring: #ffffff;
+  --chart-1: #ffffff;
+  --chart-2: #a3a3a3;
+  --chart-3: #00c853;
+  --chart-4: #ffc633;
+  --chart-5: #ff3333;
+  --sidebar: #141414;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #1f1f1f;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #262626;
+  --sidebar-ring: #ffffff;
+
+  /* dark-mode flips: primary buttons become white, surfaces invert */
+  --color-brand-50: #161616;
+  --color-brand-100: #1f1f1f;
+  --color-brand-200: #2e2e2e;
+  --color-brand-300: #8a8a8a;
+  --color-brand-400: #a3a3a3;
+  --color-brand-500: #ffffff;
+  --color-brand-600: #e5e5e5;
+  --color-brand-700: #cccccc;
+  --color-brand-800: #f0f0f0;
+  --color-brand-900: #ffffff;
+  --color-brand-950: #ffffff;
+  --color-electric-50: #161616;
+  --color-electric-100: #1f1f1f;
+  --color-electric-200: #2e2e2e;
+  --color-electric-300: #8a8a8a;
+  --color-electric-400: #a3a3a3;
+  --color-electric-500: #e5e5e5;
+  --color-electric-600: #ffffff;
+  --color-electric-700: #e5e5e5;
+  --color-electric-800: #cccccc;
+  --color-electric-900: #ffffff;
+  --color-electric-950: #ffffff;
 }
 
 @layer base {
@@ -173,44 +216,44 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c6cbd3;
+  background: #d4d4d4;
   border-radius: 8px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #5b5bf0;
+  background: #000000;
   background-clip: content-box;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #3a414c;
+  background: #333333;
   background-clip: content-box;
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #7b7bf4;
+  background: #ffffff;
   background-clip: content-box;
 }
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #c6cbd3 transparent;
+  scrollbar-color: #d4d4d4 transparent;
 }
 .dark * {
-  scrollbar-color: #3a414c transparent;
+  scrollbar-color: #333333 transparent;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* indigo text selection */
+/* black text selection — SHOP.CO editorial contrast */
 ::selection {
-  background: rgba(91, 91, 240, 0.22);
-  color: #14171c;
+  background: #000000;
+  color: #ffffff;
 }
 .dark ::selection {
-  background: rgba(123, 123, 244, 0.45);
-  color: #f6f7f9;
+  background: #ffffff;
+  color: #000000;
 }
 
 /* shimmer skeleton for lazy product images */
@@ -225,9 +268,9 @@ html {
 .img-skeleton {
   background-image: linear-gradient(
     100deg,
-    #e6e8eb 40%,
-    #f2f3f5 50%,
-    #e6e8eb 60%
+    #ececec 40%,
+    #f6f6f6 50%,
+    #ececec 60%
   );
   background-size: 200% 100%;
   animation: zshop-shimmer 1.4s ease-in-out infinite;
@@ -235,9 +278,9 @@ html {
 .dark .img-skeleton {
   background-image: linear-gradient(
     100deg,
-    #1f262e 40%,
-    #2a323c 50%,
-    #1f262e 60%
+    #1a1a1a 40%,
+    #242424 50%,
+    #1a1a1a 60%
   );
 }
 

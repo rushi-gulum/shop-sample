@@ -176,7 +176,7 @@ export function ChatWidget() {
       {!open && (
         <button
           aria-label="Open chat support"
-          className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-gradient-to-r from-electric-600 to-electric-700 py-3 pl-4 pr-5 text-white shadow-xl transition hover:scale-105 hover:shadow-2xl"
+          className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-neutral-950 py-3 pl-4 pr-5 text-white shadow-xl transition hover:scale-105 hover:shadow-2xl dark:ring-1 dark:ring-white/15"
           onClick={() => setOpen(true)}
           data-testid="chat-open"
         >
@@ -196,10 +196,10 @@ export function ChatWidget() {
         aria-label="Ask Zoe chat support"
       >
         {/* header */}
-        <div className="flex items-center gap-3 bg-gradient-to-r from-electric-600 to-electric-700 px-4 py-3 text-white">
+        <div className="flex items-center gap-3 bg-neutral-950 px-4 py-3 text-white">
           <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-white/20">
             <Bot className="h-5 w-5" />
-            <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-electric-700 bg-success-400" />
+            <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-neutral-950 bg-success-400" />
           </span>
           <div className="min-w-0 flex-1 leading-tight">
             <p className="flex items-center gap-1 text-sm font-bold">
@@ -231,7 +231,7 @@ export function ChatWidget() {
                 className={cn(
                   "max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed shadow-sm",
                   m.role === "user"
-                    ? "rounded-br-md bg-electric-600 text-white"
+                    ? "rounded-br-md bg-neutral-950 text-white"
                     : "rounded-bl-md border bg-card"
                 )}
               >
@@ -254,7 +254,7 @@ export function ChatWidget() {
                             <span className="block truncate text-xs font-semibold">{p.title}</span>
                             <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
                               {formatPrice(p.price, currency)} ·
-                              <Star className="h-3 w-3 fill-brand-400 text-brand-400" aria-hidden />
+                              <Star className="h-3 w-3 fill-rating text-rating" aria-hidden />
                               {p.rating}
                             </span>
                           </span>
@@ -274,7 +274,7 @@ export function ChatWidget() {
                 {[0, 1, 2].map((i) => (
                   <span
                     key={i}
-                    className="h-1.5 w-1.5 animate-bounce rounded-full bg-electric-500"
+                    className="h-1.5 w-1.5 animate-bounce rounded-full bg-neutral-400"
                     style={{ animationDelay: `${i * 150}ms` }}
                   />
                 ))}
@@ -291,7 +291,7 @@ export function ChatWidget() {
                 {QUICK_QUESTIONS.map(({ icon: Icon, label, msg }) => (
                   <button
                     key={label}
-                    className="flex items-center gap-1.5 rounded-lg border bg-card px-2.5 py-2 text-[11px] font-semibold text-electric-700 transition hover:border-electric-400 dark:text-electric-300"
+                    className="flex items-center gap-1.5 rounded-lg border bg-card px-2.5 py-2 text-[11px] font-semibold text-neutral-700 transition hover:border-neutral-400 dark:text-neutral-300"
                     onClick={() => send(msg)}
                   >
                     <Icon className="h-3.5 w-3.5 shrink-0" />
@@ -316,13 +316,13 @@ export function ChatWidget() {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type your message..."
             aria-label="Chat message"
-            className="h-10 flex-1 rounded-xl border bg-background px-3.5 text-sm outline-none focus:border-electric-400"
+            className="h-10 flex-1 rounded-xl border bg-background px-3.5 text-sm outline-none focus:border-neutral-950"
             data-testid="chat-input"
           />
           <button
             type="submit"
             aria-label="Send message"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-r from-electric-600 to-electric-700 text-white transition hover:opacity-90 disabled:opacity-50"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-950 text-white transition hover:bg-neutral-800 disabled:opacity-50"
             disabled={!input.trim()}
           >
             <Send className="h-4 w-4" />

@@ -205,7 +205,7 @@ export function CheckoutView() {
             </div>
             <div className="flex gap-3">
               <Button
-                className="bg-brand-500 font-bold text-white hover:bg-brand-600"
+                className="bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
                 onClick={() => {
                   useZShop.getState().setCheckoutOrderId(null);
                   navigate({ name: "orders" });
@@ -239,7 +239,7 @@ export function CheckoutView() {
         <h1 className="text-2xl font-black">Your cart is empty</h1>
         <p className="text-sm text-muted-foreground">Add a few products before checking out.</p>
         <Button
-          className="mt-2 bg-brand-500 font-bold text-white hover:bg-brand-600"
+          className="mt-2 bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
           onClick={() => navigate({ name: "shop", category: "all" })}
         >
           Start shopping
@@ -249,7 +249,7 @@ export function CheckoutView() {
   }
 
   const inputCls = (field: string) =>
-    cn(errors[field] && "border-rose-400 focus-visible:ring-rose-300");
+    cn(errors[field] && "border-destructive focus-visible:ring-destructive/40");
 
   return (
     <div className="mx-auto max-w-7xl px-3 py-4 sm:px-6" data-testid="checkout-view">
@@ -265,7 +265,7 @@ export function CheckoutView() {
           <Card>
             <CardContent className="p-5">
               <h2 className="mb-4 flex items-center gap-2 text-lg font-bold">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-sm font-black text-white">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-sm font-black text-primary-foreground">
                   1
                 </span>
                 <MapPin className="h-4.5 w-4.5 text-brand-600" /> Shipping address
@@ -280,7 +280,7 @@ export function CheckoutView() {
                     onChange={(e) => set("name", e.target.value)}
                     placeholder="Alex Shopper"
                   />
-                  {errors.name && <p className="mt-1 text-xs text-rose-500">{errors.name}</p>}
+                  {errors.name && <p className="mt-1 text-xs text-destructive">{errors.name}</p>}
                 </div>
                 <div className="sm:col-span-2">
                   <Label htmlFor="co-email">Email</Label>
@@ -292,7 +292,7 @@ export function CheckoutView() {
                     onChange={(e) => set("email", e.target.value)}
                     placeholder="you@example.com"
                   />
-                  {errors.email && <p className="mt-1 text-xs text-rose-500">{errors.email}</p>}
+                  {errors.email && <p className="mt-1 text-xs text-destructive">{errors.email}</p>}
                 </div>
                 <div className="sm:col-span-2">
                   <Label htmlFor="co-street">Street address</Label>
@@ -303,7 +303,7 @@ export function CheckoutView() {
                     onChange={(e) => set("street", e.target.value)}
                     placeholder="123 Main Street, Apt 4B"
                   />
-                  {errors.street && <p className="mt-1 text-xs text-rose-500">{errors.street}</p>}
+                  {errors.street && <p className="mt-1 text-xs text-destructive">{errors.street}</p>}
                 </div>
                 <div>
                   <Label htmlFor="co-city">City</Label>
@@ -314,7 +314,7 @@ export function CheckoutView() {
                     onChange={(e) => set("city", e.target.value)}
                     placeholder="San Francisco"
                   />
-                  {errors.city && <p className="mt-1 text-xs text-rose-500">{errors.city}</p>}
+                  {errors.city && <p className="mt-1 text-xs text-destructive">{errors.city}</p>}
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
@@ -326,7 +326,7 @@ export function CheckoutView() {
                       onChange={(e) => set("state", e.target.value)}
                       placeholder="CA"
                     />
-                    {errors.state && <p className="mt-1 text-xs text-rose-500">{errors.state}</p>}
+                    {errors.state && <p className="mt-1 text-xs text-destructive">{errors.state}</p>}
                   </div>
                   <div>
                     <Label htmlFor="co-zip">ZIP</Label>
@@ -337,7 +337,7 @@ export function CheckoutView() {
                       onChange={(e) => set("zip", e.target.value)}
                       placeholder="94105"
                     />
-                    {errors.zip && <p className="mt-1 text-xs text-rose-500">{errors.zip}</p>}
+                    {errors.zip && <p className="mt-1 text-xs text-destructive">{errors.zip}</p>}
                   </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -352,7 +352,7 @@ export function CheckoutView() {
           <Card>
             <CardContent className="p-5">
               <h2 className="mb-4 flex items-center gap-2 text-lg font-bold">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-sm font-black text-white">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-sm font-black text-primary-foreground">
                   2
                 </span>
                 <CreditCard className="h-4.5 w-4.5 text-brand-600" /> Payment method
@@ -396,7 +396,7 @@ export function CheckoutView() {
                       onChange={(e) => set("cardName", e.target.value)}
                       placeholder="ALEX SHOPPER"
                     />
-                    {errors.cardName && <p className="mt-1 text-xs text-rose-500">{errors.cardName}</p>}
+                    {errors.cardName && <p className="mt-1 text-xs text-destructive">{errors.cardName}</p>}
                   </div>
                   <div className="sm:col-span-2">
                     <Label htmlFor="cc-num">Card number</Label>
@@ -408,7 +408,7 @@ export function CheckoutView() {
                       onChange={(e) => set("cardNumber", formatCardNumber(e.target.value))}
                       placeholder="4242 4242 4242 4242"
                     />
-                    {errors.cardNumber && <p className="mt-1 text-xs text-rose-500">{errors.cardNumber}</p>}
+                    {errors.cardNumber && <p className="mt-1 text-xs text-destructive">{errors.cardNumber}</p>}
                   </div>
                   <div>
                     <Label htmlFor="cc-exp">Expiry</Label>
@@ -420,7 +420,7 @@ export function CheckoutView() {
                       onChange={(e) => set("expiry", formatExpiry(e.target.value))}
                       placeholder="12/28"
                     />
-                    {errors.expiry && <p className="mt-1 text-xs text-rose-500">{errors.expiry}</p>}
+                    {errors.expiry && <p className="mt-1 text-xs text-destructive">{errors.expiry}</p>}
                   </div>
                   <div>
                     <Label htmlFor="cc-cvv">CVV</Label>
@@ -433,7 +433,7 @@ export function CheckoutView() {
                       onChange={(e) => set("cvv", e.target.value.replace(/\D/g, "").slice(0, 4))}
                       placeholder="•••"
                     />
-                    {errors.cvv && <p className="mt-1 text-xs text-rose-500">{errors.cvv}</p>}
+                    {errors.cvv && <p className="mt-1 text-xs text-destructive">{errors.cvv}</p>}
                   </div>
                 </div>
               )}
@@ -454,7 +454,7 @@ export function CheckoutView() {
           <Card>
             <CardContent className="p-5">
               <h2 className="mb-3 flex items-center gap-2 text-lg font-bold">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-sm font-black text-white">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-sm font-black text-primary-foreground">
                   3
                 </span>
                 <Truck className="h-4.5 w-4.5 text-brand-600" /> Delivery
@@ -543,7 +543,7 @@ export function CheckoutView() {
                 </div>
               </div>
               <Button
-                className="mt-4 h-12 w-full bg-brand-500 text-base font-bold text-white hover:bg-brand-600 disabled:opacity-60"
+                className="mt-4 h-12 w-full bg-brand-500 text-base font-bold text-primary-foreground hover:bg-brand-600 disabled:opacity-60"
                 onClick={confirmOrder}
                 disabled={placing}
                 data-testid="place-order"

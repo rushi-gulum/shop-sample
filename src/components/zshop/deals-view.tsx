@@ -23,7 +23,7 @@ export function DealsView() {
         <span className="text-foreground">Today&apos;s Deals</span>
       </nav>
 
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-brand-700 via-brand-500 to-brand-400 p-6 text-white shadow-md sm:p-10">
+      <div className="relative overflow-hidden rounded-2xl bg-neutral-950 p-6 text-white shadow-md dark:ring-1 dark:ring-white/15 sm:p-10">
         <Flame
           aria-hidden
           className="pointer-events-none absolute -right-4 -top-6 h-32 w-32 opacity-15"

@@ -89,8 +89,8 @@ export function SignInModal() {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="max-w-md p-0 overflow-hidden" data-testid="signin-modal">
-        <div className="bg-gradient-to-r from-brand-400 to-brand-500 px-6 pb-6 pt-7 text-white">
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-neutral-950 text-lg font-black text-brand-400">
+        <div className="bg-neutral-950 px-6 pb-6 pt-7 text-white">
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-lg font-black text-neutral-950">
             Z
           </span>
           <DialogHeader className="mt-3 space-y-1">
@@ -157,7 +157,7 @@ export function SignInModal() {
               </div>
 
               <Button
-                className="w-full bg-brand-500 font-bold text-white hover:bg-brand-600"
+                className="w-full bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
                 onClick={submit}
                 data-testid="signin-submit"
               >
@@ -238,7 +238,7 @@ export function SignInModal() {
               </div>
 
               <Button
-                className="w-full bg-brand-500 font-bold text-white hover:bg-brand-600"
+                className="w-full bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
                 onClick={() => {
                   if (intent === "register") submit();
                   else submit();
@@ -253,7 +253,7 @@ export function SignInModal() {
           </Tabs>
 
           {error && (
-            <p className="mt-3 rounded-lg bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-600 dark:bg-rose-950/50 dark:text-rose-400">
+            <p className="mt-3 rounded-lg bg-destructive/10 px-3 py-2 text-xs font-semibold text-destructive dark:bg-destructive/15">
               {error}
             </p>
           )}

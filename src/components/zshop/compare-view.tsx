@@ -92,7 +92,7 @@ export function CompareView() {
             Add up to 3 products using the scale icon on any product card.
           </p>
           <Button
-            className="bg-brand-500 font-bold text-white hover:bg-brand-600"
+            className="bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
             onClick={() => navigate({ name: "shop", category: "all" })}
           >
             Browse products
@@ -112,7 +112,7 @@ export function CompareView() {
                       <div className="relative">
                         <button
                           aria-label={`Remove ${p.title} from comparison`}
-                          className="absolute -right-1 -top-1 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-white shadow"
+                          className="absolute -right-1 -top-1 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-primary-foreground shadow"
                           onClick={() => toggleCompare(p.id)}
                         >
                           <X className="h-3.5 w-3.5" />
@@ -147,7 +147,7 @@ export function CompareView() {
                     <td key={p.id} className="p-3">
                       <Button
                         size="sm"
-                        className="w-full bg-brand-500 font-bold text-white hover:bg-brand-600"
+                        className="w-full bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
                         onClick={() => addToCart(p.id)}
                       >
                         <ShoppingCart className="mr-1 h-3.5 w-3.5" /> Add to cart

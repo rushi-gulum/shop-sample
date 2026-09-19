@@ -16,7 +16,7 @@ const AVATAR_STYLES = [
   "bg-brand-100 text-brand-700 dark:bg-brand-400/15 dark:text-brand-300",
   "bg-electric-100 text-electric-700 dark:bg-electric-400/15 dark:text-electric-300",
   "bg-success-100 text-success-700 dark:bg-success-400/15 dark:text-success-300",
-  "bg-amber-100 text-amber-700 dark:bg-amber-400/15 dark:text-amber-300",
+  "bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300",
 ];
 
 function initials(name: string): string {
@@ -97,7 +97,7 @@ export function PdpReviews({ product }: { product: Product }) {
         </h2>
         <Button
           size="sm"
-          className="ml-auto bg-brand-500 font-bold text-white hover:bg-brand-600"
+          className="ml-auto bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
           onClick={() => setFormOpen((o) => !o)}
           aria-expanded={formOpen}
         >
@@ -124,7 +124,7 @@ export function PdpReviews({ product }: { product: Product }) {
               <div key={b.stars} className="flex items-center gap-3 text-sm">
                 <span className="flex w-10 items-center gap-1 font-semibold tabular-nums">
                   {b.stars}
-                  <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" aria-hidden />
+                  <Star className="h-3.5 w-3.5 fill-rating text-rating" aria-hidden />
                 </span>
                 <div
                   className="h-2.5 flex-1 overflow-hidden rounded-full bg-muted"
@@ -164,7 +164,7 @@ export function PdpReviews({ product }: { product: Product }) {
                       className={cn(
                         "h-7 w-7 transition-colors",
                         n <= (formHover || formRating)
-                          ? "fill-amber-400 text-amber-400"
+                          ? "fill-rating text-rating"
                           : "text-muted-foreground/40"
                       )}
                     />
@@ -198,7 +198,7 @@ export function PdpReviews({ product }: { product: Product }) {
                 </Button>
                 <Button
                   size="sm"
-                  className="bg-brand-500 font-bold text-white hover:bg-brand-600"
+                  className="bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
                   onClick={submitReview}
                 >
                   Submit review
@@ -218,7 +218,7 @@ export function PdpReviews({ product }: { product: Product }) {
             className={cn(
               "rounded-full px-3 py-1 font-semibold transition",
               sortBy === s
-                ? "bg-brand-500 text-white"
+                ? "bg-brand-500 text-primary-foreground"
                 : "bg-muted text-muted-foreground hover:text-foreground"
             )}
             onClick={() => setSortBy(s)}

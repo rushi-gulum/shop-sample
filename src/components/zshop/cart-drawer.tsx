@@ -61,11 +61,11 @@ export function CartDrawer() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent side="right" className="flex w-full flex-col p-0 sm:max-w-md">
-        <SheetHeader className="flex-row items-center justify-between border-b bg-brand-400 px-4 py-3 dark:bg-brand-400">
-          <SheetTitle className="flex items-center gap-2 text-neutral-950">
+        <SheetHeader className="flex-row items-center justify-between border-b bg-neutral-950 px-4 py-3 text-white">
+          <SheetTitle className="flex items-center gap-2 text-white">
             <ShoppingBag className="h-5 w-5" />
             Your Cart
-            <span className="text-sm font-semibold text-neutral-800">
+            <span className="text-sm font-semibold text-neutral-300">
               {t.itemCount} item{t.itemCount === 1 ? "" : "s"}
             </span>
           </SheetTitle>
@@ -81,7 +81,7 @@ export function CartDrawer() {
               Browse our catalog and add your favorite items.
             </p>
             <Button
-              className="mt-2 gap-2 bg-brand-500 font-bold text-white hover:bg-brand-600"
+              className="mt-2 gap-2 bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
               onClick={() => navigate({ name: "shop", category: "all" })}
             >
               Start shopping <X className="hidden" />
@@ -161,7 +161,7 @@ export function CartDrawer() {
                     </div>
                     <button
                       aria-label={`Remove ${p.title} from cart`}
-                      className="h-fit rounded-md p-1 text-muted-foreground transition hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950"
+                      className="h-fit rounded-md p-1 text-muted-foreground transition hover:bg-destructive/10 hover:text-destructive"
                       onClick={() => removeFromCart(item.id)}
                     >
                       <Trash2 className="h-4 w-4" />
@@ -170,7 +170,7 @@ export function CartDrawer() {
                 );
               })}
               <button
-                className="w-full rounded-lg border border-dashed py-2 text-xs font-semibold text-muted-foreground transition hover:border-rose-300 hover:text-rose-500"
+                className="w-full rounded-lg border border-dashed py-2 text-xs font-semibold text-muted-foreground transition hover:border-destructive/40 hover:text-destructive"
                 onClick={clearCart}
               >
                 Clear cart
@@ -290,7 +290,7 @@ export function CartDrawer() {
                 <span className="font-black">{price(t.total)}</span>
               </div>
               <Button
-                className="mt-2 w-full bg-brand-500 py-2.5 font-bold text-white hover:bg-brand-600"
+                className="mt-2 w-full bg-brand-500 py-2.5 font-bold text-primary-foreground hover:bg-brand-600"
                 onClick={checkout}
                 data-testid="checkout-button"
               >

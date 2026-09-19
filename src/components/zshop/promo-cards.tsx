@@ -10,7 +10,7 @@ export function PromoCards() {
     <section aria-label="Membership offers" className="mx-auto max-w-7xl px-3 pt-8 sm:px-6">
       <div className="grid gap-4 md:grid-cols-2">
         {/* Z Prime */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-400 via-brand-500 to-brand-600 p-6 text-white shadow-md sm:p-8">
+        <div className="relative overflow-hidden rounded-2xl bg-neutral-950 p-6 text-white shadow-md dark:ring-1 dark:ring-white/15 sm:p-8">
           <Crown
             aria-hidden
             className="pointer-events-none absolute -right-6 -top-6 h-32 w-32 opacity-15"
@@ -23,7 +23,7 @@ export function PromoCards() {
             Free same-day delivery, exclusive deals, and more.
           </p>
           <button
-            className="mt-5 flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-brand-600 shadow transition hover:gap-3"
+            className="mt-5 flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-neutral-950 shadow transition hover:gap-3"
             onClick={() => requestSignIn("prime")}
           >
             Try free for 30 days <ArrowRight className="h-4 w-4" />
@@ -31,20 +31,20 @@ export function PromoCards() {
         </div>
 
         {/* Trade & Save */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-electric-600 via-electric-500 to-electric-400 p-6 text-white shadow-md sm:p-8">
+        <div className="relative overflow-hidden rounded-2xl bg-surface-warm p-6 text-neutral-950 shadow-md sm:p-8">
           <Recycle
             aria-hidden
             className="pointer-events-none absolute -right-6 -top-6 h-32 w-32 opacity-15"
           />
-          <span className="flex w-fit items-center gap-1 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
+          <span className="flex w-fit items-center gap-1 rounded-full bg-neutral-950 px-3 py-1 text-xs font-semibold text-white">
             <RefreshCcw className="h-3 w-3" /> Trade-in
           </span>
           <h3 className="mt-3 text-2xl font-black sm:text-3xl">Trade & Save</h3>
-          <p className="mt-1.5 max-w-sm text-sm text-white/90">
+          <p className="mt-1.5 max-w-sm text-sm text-neutral-600">
             Get up to 50% back when you trade in eligible devices.
           </p>
           <button
-            className="mt-5 flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-electric-600 shadow transition hover:gap-3"
+            className="mt-5 flex items-center gap-2 rounded-lg bg-neutral-950 px-5 py-2.5 text-sm font-bold text-white shadow transition hover:gap-3"
             onClick={() =>
               useZShop.getState().navigate({ name: "shop", category: "electronics" })
             }

@@ -41,7 +41,7 @@ export function WishlistView() {
         </div>
         {items.length > 0 && (
           <Button
-            className="bg-brand-500 font-bold text-white hover:bg-brand-600"
+            className="bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
             onClick={() => {
               for (const p of items) addToCart(p.id, 1, true);
               useZShop.getState().setCartOpen(true);
@@ -62,7 +62,7 @@ export function WishlistView() {
             Tap the heart on any product to save it here for later.
           </p>
           <Button
-            className="bg-brand-500 font-bold text-white hover:bg-brand-600"
+            className="bg-brand-500 font-bold text-primary-foreground hover:bg-brand-600"
             onClick={() => navigate({ name: "shop", category: "all" })}
           >
             Discover products
