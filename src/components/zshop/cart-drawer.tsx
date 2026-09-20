@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import {
   BadgePercent,
@@ -17,6 +17,16 @@ import {
 } from "lucide-react";
 import { FREE_SHIPPING_THRESHOLD, PRODUCT_MAP } from "@/lib/zshop/data";
 import { usePrice, useZShop } from "@/lib/zshop/store";
+import {
+  PINCODE_REGEX,
+  deliveryEtaFromToday,
+  lookupPincode,
+} from "@/lib/zshop/pincode";
+import {
+  PINCODE_REGEX,
+  deliveryEtaFromToday,
+  lookupPincode,
+} from "@/lib/zshop/pincode";
 import {
   Sheet,
   SheetContent,
@@ -110,6 +120,7 @@ export function CartDrawer() {
                 value={Math.min(100, (t.subtotal / FREE_SHIPPING_THRESHOLD) * 100)}
                 className="mt-2 h-1.5"
               />
+              <CartEta />
             </div>
 
             {/* items */}
