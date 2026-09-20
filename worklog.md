@@ -208,3 +208,24 @@ Stage Summary:
 - PDP now has the three highest-value Indian e-commerce trust features: PIN-code delivery/COD/serviceability checker (with site-wide header sync), price-scaled bank offers & no-cost EMI panel, and a product Q&A section — all deterministic client-side, monochrome SHOP.CO-styled with green/sale semantic accents only.
 - Key files: src/lib/zshop/pincode.ts, src/lib/zshop/store.ts, src/components/zshop/{pincode-checker,bank-offers,product-qa,product-detail,header}.tsx.
 - Next-round ideas: show PIN-based ETA on cart/checkout + product cards; PIN checker in cart drawer; delivery-pincode checker API-backed city dictionary (real city names per PIN prefix); Diwali festival banner strip; Hindi microcopy toggle.
+
+---
+Task ID: 10
+Agent: Z.ai Code (main)
+Task: User requested a "pincode to check location" strip on the home page, then reversed course — "remove pincode from home page that recently added feature". Round ended as: removal + cleanup + Popularity sort.
+
+Work Log:
+- (Start of round) Built src/components/zshop/delivery-strip.tsx — slim home-page PIN → delivery-location strip sharing the persisted deliveryPin/deliveryCity store state with the PDP checker and header — and mounted it at the top of HomeView.
+- (Start of round) Started a cart-drawer PIN-ETA line (CartEta). The edit session left cart-drawer.tsx in a BROKEN state: duplicate pincode import blocks + <CartEta /> referenced with no function definition → "lookupPincode is defined multiple times" → GET / 500 on all routes.
+- USER REVERSAL: "remove pincode from home page that recently added feature".
+- REVERTED home-view.tsx (removed DeliveryStrip import + mount), deleted delivery-strip.tsx from disk.
+- REVERTED cart-drawer.tsx fully to its pre-round state (removed useMemo, both pincode import blocks, <CartEta /> usage) — dev server recovered: GET / 200, compiles clean. rg confirms zero leftover references (DeliveryStrip / delivery-strip / CartEta).
+- FEATURE (kept from this round): shop-view.tsx Popularity sort — new SortKey "popularity" listed FIRST in the sort dropdown ("Popularity"), sorted by ratingCount desc with rating desc tiebreak. Verified in browser: Smartphones grid reorders Redmi Note 13 (24,156 ratings) → Samsung (18,423) → POCO (15,782) → Samsung (11,205).
+- RE-VERIFIED untouched pincode surfaces still work: PDP checker ("Check delivery & COD at your PIN") + header sync — PIN 110001 → "Deliver to Jammu, Jammu & Kashmir — 110001", ETA + "Ships from" hub render; Bank offers & EMI panel intact. Per user direction, the HOME PAGE must stay pincode-free going forward; PDP + header remain the sanctioned pincode surfaces.
+- QA: home renders TrustBadges → Hero with no strip (analysis/t10-home-removed.png); sort dropdown lists Popularity first (analysis/t10-popularity-sort.png); PDP checker intact (analysis/t10-pdp-pincode-intact.png). Fresh-load browser console clean (the Next.js "1 Issue" overlay badge was a stale HMR artifact from the transient 500 — gone on fresh load). bun run lint clean; dev.log clean 200s.
+
+Stage Summary:
+- User rolled back the home-page pincode surface; storefront home is strip-free again while all Task 9 features (PDP checker + header sync, bank offers, product Q&A) remain intact and functional.
+- New: "Popularity" sort (most-reviewed first) is now the first option in the shop sort dropdown.
+- Risk note for future agents: do NOT re-add a pincode strip/entry to the home page unless the user asks again; pincode UI belongs on PDP (and header sync) only.
+- Key files: src/components/zshop/{home-view,cart-drawer,shop-view}.tsx (delivery-strip.tsx deleted).

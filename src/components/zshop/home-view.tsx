@@ -5,7 +5,6 @@ import { dealProducts, featuredProducts, newArrivals } from "@/lib/zshop/data";
 import { useZShop } from "@/lib/zshop/store";
 import { HeroCarousel } from "./hero-carousel";
 import { TrustBadges } from "./trust-badges";
-import { DeliveryStrip } from "./delivery-strip";
 import { CategoryChips } from "./category-chips";
 import { ProductCard } from "./product-card";
 import { PromoCards } from "./promo-cards";
@@ -19,8 +18,6 @@ export function HomeView() {
 
   return (
     <div data-testid="home-view">
-      {/* pincode → delivery location strip */}
-      <DeliveryStrip />
       <TrustBadges />
       <HeroCarousel />
       <CategoryChips />

@@ -26,7 +26,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { StarRating } from "./star-rating";
 import { cn } from "@/lib/utils";
 
-type SortKey = "featured" | "price-asc" | "price-desc" | "rating" | "discount";
+type SortKey = "popularity" | "featured" | "price-asc" | "price-desc" | "rating" | "discount";
 
 const PAGE_SIZE = 12;
 
@@ -47,6 +47,7 @@ const PRICE_BANDS = [
 type BandId = (typeof PRICE_BANDS)[number]["id"];
 
 const SORT_LABELS: Record<SortKey, string> = {
+  popularity: "Popularity",
   featured: "Featured first",
   "price-asc": "Price: low to high",
   "price-desc": "Price: high to low",
@@ -114,6 +115,10 @@ export function ShopView({ category = "all", query }: ShopViewProps) {
 
     const sorted = [...list];
     switch (sort) {
+      case "popularity":
+        // most-reviewed first — a solid proxy for real sales popularity
+        sorted.sort((a, b) => b.ratingCount - a.ratingCount || b.rating - a.rating);
+        break;
       case "price-asc":
         sorted.sort((a, b) => a.price - b.price);
         break;
